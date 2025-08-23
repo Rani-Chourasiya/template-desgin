@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bootstrap Offcanvas Notification with Badge</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    .notification-container {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .badge {
+      position: absolute;
+      top: -8px;
+      right: -10px;
+      background: red;
+      color: white;
+      border-radius: 50%;
+      padding: 3px 6px;
+      font-size: 12px;
+      transition: transform 0.3s;
+    }
+
+    .pulse {
+      animation: pulseAnim 1s infinite;
+    }
+
+    @keyframes pulseAnim {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    #notificationButton i {
+      font-size: 28px;
+    }
+
+    .btn .badge {
+      position: relative;
+      top: -23px;
+      left: -24px;
+    }
+  </style>
+</head>
+<body class="p-5">
+
+  <!-- Notification Button with Badge -->
+  <button class="btn btn-link position-relative" id="notificationButton" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+    <i class="fa-solid fa-bell text-dark">
+      <span id="notificationBadge" class="badge">0</span>
+    </i>
+  </button>
+
+  <!-- Offcanvas Notification Panel -->
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header bg-success text-white">
+      <h5 id="offcanvasRightLabel">Notifications</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div id="notificationContent">
+        <!-- Notifications will be loaded here -->
+      </div>
+      <div class="text-end mt-3">
+        <button id="markReadBtn" class="btn btn-sm btn-success">Mark All as Read</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Font Awesome & Bootstrap JS -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const badge = document.getElementById('notificationBadge');
+    const markReadBtn = document.getElementById('markReadBtn');
+    const notificationContent = document.getElementById('notificationContent');
+
+    let notifications = [
+      "A grievance (No: AGY100075 ) has been registered against you.",
+      "A new response has been added today to grievance No: AGY100075",
+      "A new response has been added today to grievance No: CED100073",
+      "A grievance (No: DEP100067 ) has been registered against you.",
+      "A grievance (No: EMP100066 ) has been registered against you."
+    ];
+
+    function updateBadgeFromTable() {
+      const rowCount = document.querySelectorAll('#notificationContent tr').length;
+      badge.textContent = rowCount;
+      badge.style.display = rowCount > 0 ? 'inline-block' : 'none';
+
+      if (rowCount > 0) {
+        badge.classList.add('pulse');
+      } else {
+        badge.classList.remove('pulse');
+      }
+    }
+
+    function populateNotifications() {
+      if (notifications.length === 0) {
+        notificationContent.innerHTML = `<p>No new notifications.</p>`;
+      } else {
+        notificationContent.innerHTML = `
+          <table class="table table-bordered table-sm">
+            <tbody>
+              ${notifications.map(n => `<tr><td>${n}</td></tr>`).join('')}
+            </tbody>
+          </table>`;
+      }
+      updateBadgeFromTable();
+    }
+
+    markReadBtn.addEventListener('click', () => {
+      notifications = [];
+      populateNotifications();
+    });
+
+    // Initialize on load
+    populateNotifications();
+  </script>
+</body>
+</html>

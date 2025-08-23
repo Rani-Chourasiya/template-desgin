@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Push Notification System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- Custom Stylesheet -->
+  <style>
+   @charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800);
+
+html,body{
+    padding: 0;
+    margin: 0;
+      /*color: #fff;*/
+        font-family: "Open Sans", Arial, Helvetica;
+      -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /*-webkit-font-smoothing: antialiased;*/
+  /*-moz-osx-font-smoothing: grayscale;*/
+}
+
+.background-white{
+    background: #ffffff;
+}
+
+.fl{
+    float: left;
+}
+
+body{
+    padding: 0px;
+    margin: 0px;
+    background: #263d53;
+}
+
+header{
+    width: 100%;
+    height: 50px;
+    background: #ffffff;
+}
+
+header .wrapper{
+    /*position: relative;*/
+}
+
+header .notification{
+    float: right;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    right: 300px;
+    top: 7px;
+}
+
+header .notification:hover i{
+    color: #6F7E87;
+    -webkit-transition: all 0.3s;
+      -moz-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+}
+
+header i{
+    color: #9FB6C3;
+    font-size: 22px !important;
+    line-height: 24px !important;
+}
+
+header .count1{
+    position: absolute;
+    top: 2px;
+    width: 15px;
+    font-size: 10px;
+    height: 14px;
+    padding-top: 0px;
+    left: 13px;
+}
+
+.common-count{
+  background: #18B5B5;
+    color: #ffffff;
+  -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
+    text-align: center;
+  border: 1px solid #fff;
+}
+
+header .count2{
+    width: 17px;
+    font-size: 12px;
+    height: 17px;
+    padding-top: 1px;
+    left: 13px;
+    padding-left: 1px;
+    margin-left: 3px;
+    margin-top: -2px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+}
+
+.arrow-up {
+	width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #ffffff;
+    margin-left: 113px;
+}
+
+
+.notification-dropdown{
+
+}
+
+.dd{
+    position: absolute;
+    top: -9999px;
+}
+
+.dropdown-transition{
+    width: 260px;
+    position: absolute;
+    color: #2336AB;
+    right: 177px;
+    top: 48px;
+    -webkit-transform: translateY(18px);
+    -moz-transform: translateY(18px);
+    -o-transform: translateY(18px);
+     transform: translateY(18px);
+    /* -webkit-transition: -webkit-transform 0.4s, opacity 0.4s; */
+    -moz-transition: -moz-transform 0.4s, opacity 0.4s;
+    -ms-transition: -ms-transform 0.4s, opacity 0.4s;
+    -o-transition: -o-transform 0.4s, opacity 0.4s;
+    transition: transform 0.4s, opacity 0.4s;
+}
+
+.notification-dropdown .header{
+    background: #ffffff;
+    width: 100%;
+    height: 44px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid #D5DFE4;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.notification-dropdown .header .container{
+    width: 115px;
+    margin: 0px auto;
+    padding-top: 12px;
+}
+
+.notification-dropdown .items{
+    background: #E9EFF2;
+    width: 100%;
+    max-height: 256px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow-y: auto;
+}
+
+.notification-dropdown .items .list-item{
+    padding: 14px;
+    font-size: 13px;
+    line-height: 18px;
+    border-bottom: 1px solid #D5DFE4;
+    height: 35px;
+    cursor: pointer;
+}
+
+.notification-dropdown .items .list-item:hover{
+    background: #DDECF3;
+}
+
+.new-item{
+    background: #DDECF3;
+}
+
+.notification-dropdown .items .list-item:last-child{
+    border-bottom: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.notification-dropdown .items .list-item .image{
+    margin-right: 12px;
+}
+
+.notification-dropdown .items .list-item img{
+    width: 35px;
+    height: auto;
+    border-radius: 30px;
+}
+
+.notification-dropdown .items .list-item .text{
+    color: #a0b6c3;
+    width: 178px;
+    position: relative;
+    top: -1px;
+}
+
+.notification-dropdown .items .list-item .text b{
+    margin-right: 4px;
+    color: #6F7A87;
+}
+
+  </style>
+
+</head>
+<body id="">
+ <header>
+        <div class="wrapper">
+            <div class="notification">
+                <i class="fa fa-bell-o"></i>
+                <div class="notify-count count1 common-count" count="0">
+                    <div class="value">0</div>
+                </div>
+            </div>
+            <div class="notification-dropdown dd">
+                <div class="arrow-up"></div>
+                <div class="header">
+                    <div class="container">
+                        <div class="text fl">Notifications</div>
+                        <div class="notify-count common-count count2 fl" count="0">
+                            <div class="value">0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="items">
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- Custom JS Script -->
+ <script>
+    /**
+ * Created by prabhat on 10/22/15.
+ */
+
+var initial_data = [
+    {
+        text : 'likes your photo',
+        name : 'Abhijeet',
+        image : 'https://scontent.fdel1-2.fna.fbcdn.net/hprofile-xft1/v/t1.0-1/p148x148/10670210_10204845408278746_7227305120661803700_n.jpg?oh=fcab4d3a74351b7120f67ffd870b3ede&oe=568E2712',
+        read : false
+    },
+    {
+        text : 'commented on your post',
+        name : 'Abhimanyu',
+        image : 'https://scontent.fdel1-2.fna.fbcdn.net/hprofile-xpt1/v/t1.0-1/p148x148/12141640_10206592866093196_6981936416314778117_n.jpg?oh=5e4e8357612a7629ee09601084bb7e64&oe=56C2E97C',
+        read : false
+    },
+    {
+        text : 'posted something on your wall',
+        name : 'Geet',
+        image : 'https://scontent.fdel1-2.fna.fbcdn.net/hprofile-xap1/v/t1.0-1/p148x148/11855626_10207606572787008_5241155885096485589_n.jpg?oh=7dfe8db39e883cff379da166a4ed7594&oe=5687A0E7',
+        read : false
+    }
+]
+
+var notifications = [
+    {
+        text : 'commented on an item you liked',
+        name : 'Akhil Varma',
+        image : 'https://scontent.fdel1-2.fna.fbcdn.net/hprofile-xpf1/v/t1.0-1/c37.0.148.148/p148x148/12065771_10207311993455299_3991813075154734857_n.jpg?oh=06be1d21cb52f4e0edafc8c2c7730334&oe=56899CB5'
+    },
+    {
+        text : 'shared a post',
+        name : 'Abhijit',
+        image : 'https://scontent.fdel1-2.fna.fbcdn.net/hprofile-xpf1/v/t1.0-1/p148x148/1976930_10203739966439862_769227532601458423_n.jpg?oh=5c5a15c674b82a02dba8f79529fb25ee&oe=5689855A'
+    },
+    {
+        text : 'liked your post',
+        name : 'Dhruv Srivastav',
+        image : 'https://scontent.fdel1-2.fna.fbcdn.net/hprofile-xaf1/v/t1.0-1/p148x148/10612713_312244522304144_8280921939613613590_n.jpg?oh=ee7b001ed77ce685657c10063f6d45be&oe=56889109'
+    }
+]
+
+$(document).ready(function(){
+
+    // this is a self-invoked function called initially to render the notification data, checks if any data present in the local storage, otherwise renders the new data from array "initial_data"
+    (function(){
+
+        if(localStorage['notification']){
+            var data = JSON.parse(localStorage['notification'])
+        }else{
+            data = initial_data
+        }
+
+        var count = 0
+
+        for(var a=0;a<data.length;a++) {
+            var item = data[a]
+            var html = $('<div class="list-item noti">\
+                            <div class="image fl">\
+                                <img src="' + item['image'] + '">\
+                            </div>\
+                            <div class="text fl"><b class="name fl">' + item['name'] + '</b>' + item['text'] + '</div>\
+                        </div>');
+            $(html).data('notification', item)
+//            console.log(item['read'])
+            if(!item['read']){
+                count = count + 1
+            }else{
+                $(html).addClass('background-white')
+            }
+            $(document).find('.notification-dropdown .items').append(html)
+        }
+//        $(document).find('.notify-count .value').text(count)
+//        $(document).find('.notify-count').attr('count',count)
+        set_notification(count)                                         // sets the notification counter
+        save_localdata()                                                // updates local storage
+
+    })();
+
+    // click on notification bell
+    $('.notification').click(function(){
+        if(!$(document).find('.notification-dropdown').hasClass('dd')){
+            hide_dropdown()
+        }else{
+            $('.notification-dropdown').removeClass('dd').addClass('dropdown-transition')
+//            $(document).find('.notify-count .value').text(0)
+//            $(document).find('.notify-count').attr('count',0)
+            set_notification(0)
+            save_localdata()
+        }
+    })
+
+
+    // handler to close dropdown on clicking outside of it
+    $(document).on('click',function(e){
+        var target = $(e.target)
+        if(!target.closest('.notification').length && !target.closest('.dropdown-transition').length){
+            if(!$(document).find('.notification-dropdown').hasClass('dd')){
+                hide_dropdown()
+            }
+        }
+    })
+
+    // function to close dropdown and setting notification count to 0
+    function hide_dropdown(){
+        $(document).find('.notification-dropdown').removeClass('dropdown-transition').addClass('dd')
+        $(document).find('.notification-dropdown').find('.list-item').addClass('background-white')
+//        $(document).find('.notify-count .value').text(0)
+//        $(document).find('.notify-count').attr('count',0)
+        set_notification(0)
+        save_localdata()
+    }
+
+
+    // timer function toh trigger push notification in every 5 second
+    setTimeout(function(){
+        var push_notifications = setInterval(function(){
+            if(notifications.length){
+                var item = notifications[0]
+                var html = $('<div class="list-item noti">\
+                            <div class="image fl">\
+                                <img src="'+item['image']+'">\
+                            </div>\
+                            <div class="text fl"><b class="name fl">'+item['name']+'</b>'+item['text']+'</div>\
+                        </div>');
+                $(html).data('notification',item)
+                if(!$(document).find('.notification-dropdown').hasClass('dd')){
+                    $(html).addClass('new-item')                                                // to change background color of new pushed notification when the dropdown is openedx to distinguish the new addition
+                }
+                $(document).find('.notification-dropdown .items').prepend(html)
+                setInterval(function(){
+                    $(html).removeClass('new-item')                                             // background color is made normal after 2 seconds
+                },2000)
+                var count = parseInt($(document).find('.notify-count').attr('count')) + 1
+                set_notification(count)
+//                $(document).find('.notify-count').attr('count',count)
+//                $(document).find('.notify-count .value').text(count)
+                notifications.shift()
+                notifications.push(item)
+                save_localdata()
+            }else{
+                clearInterval(push_notifications)
+            }
+        },5000)
+    },5000)
+
+
+    // function to update local storage
+    function save_localdata(){
+        var list = []
+
+        $(document).find('.notification-dropdown .items .list-item').each(function(i,e){
+            var data = $(this).data('notification')
+            var new_data = {
+                text : data['text'],
+                name : data['name'],
+                image : data['image']
+            }
+            if($(this).hasClass('background-white') || !$(document).find('.notification-dropdown').hasClass('dd')){
+                new_data['read'] = true
+            }else{
+                new_data['read'] = false
+            }
+//            console.log(new_data['read'])
+            list.push(new_data)
+        })
+        localStorage.removeItem('notification')
+        localStorage.setItem("notification", JSON.stringify(list))
+
+    }
+
+
+    //function to update notification counter
+    function set_notification(count){
+        $(document).find('.notify-count').attr('count',count)
+        $(document).find('.notify-count .value').text(count)
+
+        if(count > 0){
+            document.title = '('+count+') - Wingify notification center'                // adding notification count in window title, incase the user is on some other tab.
+        }else{
+            document.title = 'Wingify notification center'
+        }
+    }
+
+})
+
+ </script>
+</body>
+</html>
