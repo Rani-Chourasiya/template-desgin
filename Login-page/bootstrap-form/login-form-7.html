@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+    body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+/** Login 18 start **/
+.login-18 {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.login-18 .form-section {
+    max-width: 600px;
+    margin: 0 auto;
+    background: url(./image/img-18.jpg) top left repeat;
+    background-size: cover;
+    padding: 70px;
+    border-radius: 100px 0 100px 0;
+    z-index: 999;
+    position: relative;
+}
+
+.login-18 .form-section:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -999;
+    background: rgb(33 9 90 / 53%);
+    border-radius: 100px 0 100px 0;
+}
+
+.login-18 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Jost', sans-serif;
+}
+
+.login-18 .form-section a {
+    text-decoration: none;
+}
+
+.login-18 .typing > *{
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingAnim 3s steps(50);
+    text-transform: uppercase;
+}
+
+@keyframes typingAnim {
+    from {width:0}
+    to {width:100%}
+}
+
+.login-18 .form-section p{
+    color: #e2e1e1;
+    margin-bottom: 0;
+    font-size: 16px;
+}
+
+.login-18 .form-section p a{
+    color: #e2e1e1;
+}
+
+.login-18 .form-section ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.login-18 .form-section .social-list li {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.login-18 .logo-2 img{
+    margin-bottom: 20px;
+    height: 35px;
+}
+
+.login-18 .form-section .thembo{
+    margin-left: 4px;
+}
+
+.login-18 .form-section h3 {
+    margin: 0 0 40px;
+    font-size: 22px;
+    font-weight: 400;
+    color: #e2e1e1;
+}
+
+.login-18 .form-section .form-group {
+    margin-bottom: 30px;
+}
+
+.login-18 .form-section .form-control {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    color: #535353;
+    border-radius: 50px;
+    height: 50px;
+    border: 1px solid #fff;
+    background: #fff;
+}
+
+.login-18 .form-section label{
+    color: #e2e1e1;
+    font-size: 16px;
+}
+
+.login-18 .form-section .checkbox .terms{
+    margin-left: 3px;
+}
+
+.login-18 .form-section .terms{
+    margin-left: 3px;
+}
+
+.login-18 .form-section .checkbox {
+    font-size: 16px;
+}
+
+.login-18 .form-section .form-check{
+    float: left;
+    margin-bottom: 0;
+}
+
+.login-18 .form-section .form-check a {
+    color: #e2e1e1;
+}
+
+.login-18 .form-section .form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    position: absolute;
+    margin-left: -22px;
+    border: none;
+    border-radius: 100%;
+}
+
+.login-18 .form-check-input:focus {
+    box-shadow: none;
+}
+
+.login-18 .form-check-input:checked {
+    background-color: red;
+    border-color: red;
+}
+
+.login-18 .form-section .form-check-label {
+    padding-left: 5px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+.login-18 .form-section a{
+    color: #fff;
+}
+
+.login-18 .form-section a.forgot-password {
+    font-size: 16px;
+    color: #e2e1e1;
+    float: right;
+}
+
+.login-18 .social-list{
+    float: left;
+    margin-bottom: 40px;
+}
+
+.login-18 .social-list span {
+    margin-right: 5px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #e2e1e1;
+}
+
+.login-18 .social-list a {
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    display: inline-block;
+    font-size: 17px;
+    color: rgb(255, 255, 255);
+    margin: 0 2px 2px 0;
+    border-radius: 50px;
+}
+
+.login-18 .btn-theme {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    border: none;
+    outline: none !important;
+    color: #fff;
+    text-transform: capitalize;
+    transition: all 0.3s linear;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    border-radius: 50px;
+    width: 100%;
+    float: left;
+}
+
+.login-18 .btn-theme:hover:after {
+    transform: perspective(200px) scaleX(1.05) rotateX(0deg) translateZ(0);
+    transition: transform 0.4s linear, transform 0.4s linear;
+}
+
+.login-18 .btn-theme:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    content: "";
+    border-radius: 7px;
+    transform: perspective(200px) scaleX(0.1) rotateX(90deg) translateZ(-10px);
+    transform-origin: bottom center;
+    transition: transform 0.4s linear, transform 0.4s linear;
+    z-index: -1;
+}
+
+.login-18 .btn-lg{
+    padding: 0 50px;
+    line-height: 50px;
+}
+
+.login-18 .btn{
+    box-shadow: none!important;
+}
+
+.login-18 .btn-primary {
+    background: red;
+}
+
+.login-18 .btn-primary:hover{
+    color: red;
+}
+
+/** Social media **/
+.login-18 .facebook-bg{
+    background: #4867aa;
+}
+
+.login-18 .facebook-bg:hover {
+    background: #3b589e;
+}
+
+.login-18 .twitter-bg {
+    background: #33CCFF;
+}
+
+.login-18 .twitter-bg:hover {
+    background: #2abdef;
+}
+
+.login-18 .google-bg {
+    background: #db4437;
+}
+
+.login-18 .google-bg:hover {
+    background: #dc4e41;
+}
+
+.login-18 .linkedin-bg {
+    background: #2392e0
+}
+
+.login-18 .linkedin-bg:hover {
+    background: #1c82ca;
+    color: #fff;
+}
+
+.login-18 .ocean {
+    height: 5%;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: #015871;
+}
+
+.login-18 .wave {
+    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x;
+    position: absolute;
+    top: -198px;
+    width: 6400px;
+    height: 198px;
+    animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+    transform: translate3d(0, 0, 0);
+}
+
+.login-18 .wave:nth-of-type(2) {
+    top: -175px;
+    animation: wave 7s cubic-bezier(0.36, 0.45, 0.63, 0.53) -0.125s infinite, swell 7s ease -1.25s infinite;
+    opacity: 1;
+}
+
+@keyframes wave {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -1600px;
+    }
+}
+
+@keyframes swell {
+    0%, 100% {
+        transform: translate3d(0, -25px, 0);
+    }
+    50% {
+        transform: translate3d(0, 5px, 0);
+    }
+}
+
+/** MEDIA **/
+@media (max-width: 992px) {
+    .login-18 .form-section {
+        padding: 50px 30px;
+    }
+}
+@media (max-width: 380px) {
+    .login-18 .social-list span {
+    display: flex;
+    margin-bottom: 14px;
+}
+}
+/** Login 18 end **/
+
+  </style>
+
+</head>
+<body id="top">
+<!-- Login 18 start -->
+<div class="login-18">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-section">
+                    <div class="logo-2">
+                        <a href="login-18.html">
+                            <img src="image/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="typing">
+                        <h3>Sign Into Your Account</h3>
+                    </div>
+                    <form action="#" method="GET">
+                        <div class="form-group">
+                            <label for="second_field" class="form-label float-start">Email address</label>
+                            <input name="email" type="email" class="form-control" id="second_field" placeholder="Email Address" aria-label="Email Address">
+                        </div>
+                        <div class="form-group clearfix">
+                            <label for="third_field" class="form-label float-start">Password</label>
+                            <input name="password" type="password" class="form-control" autocomplete="off" id="third_field" placeholder="Password" aria-label="Password">
+                        </div>
+                        <div class="checkbox form-group clearfix">
+                            <div class="form-check checkbox-theme">
+                                <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <a href="forgot-password-18.html" class="float-end">Forgot Password</a>
+                        </div>
+
+                        <div class="form-group clearfix">
+                            <button type="submit" class="btn btn-primary btn-lg btn-theme">Login</button>
+                        </div>
+                    </form>
+                    <div class="social-list">
+                        <span>Or Login With</span>
+                        <a href="#" class="facebook-bg">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" class="twitter-bg">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="google-bg">
+                            <i class="fa fa-google"></i>
+                        </a>
+                        <a href="#" class="linkedin-bg">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <p>Don't have an account?<a href="register-18.html"> Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 18 end -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+</body>
+</html>

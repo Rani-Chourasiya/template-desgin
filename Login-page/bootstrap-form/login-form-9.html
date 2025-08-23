@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+    body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+  
+/** Login 7 start **/
+.login-7-inner {
+    position: relative;
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    padding: 30px 0;
+}
+
+.login-7-inner:before {
+    content: "";
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(./image/img-7.jpg) top left repeat;
+    z-index: -99;
+}
+
+.login-7-bg{
+    background-image: linear-gradient(to bottom, #9143f9, #23067a);
+}
+
+.login-7-inner #particles-js {
+    /* background-size: cover;
+    background-position: 50% 50%;
+    position: fixed;
+    min-height: 100vh;
+    width: 100%;
+    z-index: -999; */
+     position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-color: #23067a; /* Dark purple bg behind particles */
+  z-index: -999;
+}
+
+.login-7 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Jost', sans-serif;
+}
+
+.login-7 .logo {
+    top: 80px;
+    position: absolute;
+}
+
+.login-7 .logo img {
+    height: 30px;
+}
+
+.login-7 .form-info {
+    background: #fff;
+    border-radius: 30px;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.login-7 .form-section {
+    padding: 160px 80px 60px;
+    border-radius: 10px 0 0 10px;
+    text-align: left;
+    position: relative;
+}
+
+.login-7 label {
+    color: #535353;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.login-7 .form-section p{
+    font-size: 16px;
+    color: #535353;
+}
+
+.login-7 .form-section a{
+    color: #535353;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.login-7 .form-section p {
+    margin-bottom: 30px;
+}
+
+.login-7 .form-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.login-7 .form-section .social-list li {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.login-7 .form-section .thembo {
+    margin-left: 4px;
+}
+
+.login-7 .form-section h1 {
+    font-size: 27px;
+    font-weight: 600;
+    color: #7878ff;
+}
+
+.login-7 .form-section h3 {
+    margin: 0 0 35px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #040404;
+}
+
+.login-7 .form-section .typing > *{
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingAnim 3s steps(50);
+    text-transform: uppercase;
+}
+
+@keyframes typingAnim {
+    from {width:0}
+    to {width:100%}
+}
+
+.login-7 .form-section .form-group {
+    margin-bottom: 25px;
+}
+
+.login-7 .form-section .form-control {
+    padding: 10px 20px;
+    font-size: 16px;
+    outline: none;
+    height: 50px;
+    color: #535353;
+    border-radius: 3px;
+    font-weight: 500;
+    border: 1px solid #d3d3d3!important;
+}
+
+.login-7 .form-section .checkbox .terms {
+    margin-left: 3px;
+}
+
+.login-7 .form-section .terms {
+    margin-left: 3px;
+}
+
+.login-7 .btn-section {
+    border-radius: 50px;
+    margin-bottom: 0;
+    display: inline-block;
+    top: 80px;
+    position: absolute;
+    right: 90px;
+}
+
+.login-7 .btn-section .link-btn {
+    font-size: 14px;
+    float: left;
+    text-align: center;
+    width: 100px;
+    padding: 6px 5px;
+    margin-left: 5px;
+    color: #535353;
+    border-radius: 3px;
+    background: #fff;
+    border: 1px solid #d3d3d3;
+}
+
+.login-7 .btn-section .active-bg {
+    color: #fff;
+    background: #7878ff;
+    border: 1px solid #7878ff;
+}
+
+.login-7 .btn-section .link-btn:hover {
+    color: #fff;
+    background: #7878ff;
+    border: 1px solid #7878ff;
+}
+
+.login-7 .form-check-input:focus {
+    box-shadow: none;
+}
+
+.login-7 .form-section .form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    border: 1px solid #d3d3d3;
+    border-radius: 3px;
+    position: absolute;
+    background-color: #fff;
+}
+
+.login-7 .form-check-input:checked {
+    background-color: #7878ff;
+    border: solid #7878ff;
+}
+
+.login-7 .form-section .form-check-label {
+    padding-left: 5px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #535353;
+}
+
+.login-7 .btn-theme {
+    color: #fff;
+    text-align: center;
+    border: 2px solid transparent;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    transition: all .7s ease;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+}
+
+.login-7 .btn-theme:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .7s ease;
+    z-index: -1;
+    border-radius: 3px;
+}
+
+.login-7 .btn-theme:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .7s ease;
+    z-index: -1;
+}
+
+.login-7 .btn-theme:hover {
+    background: transparent;
+}
+
+.login-7 .btn-theme:hover:before {
+    width: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.login-7 .btn-theme:hover:after {
+    width: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.login-7 .btn-lg{
+    padding: 0 50px;
+    line-height: 46px;
+}
+
+.login-7 .btn{
+    box-shadow: none!important;
+}
+
+.login-7 .btn-md{
+    padding: 0 45px;
+    line-height: 41px;
+}
+
+.login-7 .btn-primary {
+    background: #7878ff;
+}
+
+.login-7 .btn-primary:before {
+    background: #7878ff;
+}
+
+.login-7 .btn-primary:after {
+    background: #7878ff;
+}
+
+.login-7 .btn-primary:hover {
+    color: #7878ff;
+    border: 2px solid #7878ff;
+}
+
+.login-7 .social-list a {
+    font-size: 18px;
+    margin-right: 15px;
+    color: #535353;
+}
+
+.login-7 .social-list a:hover {
+    color: #7878ff;
+}
+
+@media (max-width: 992px) {
+    .login-7-inner:before {
+        background: none;
+    }
+
+    .login-7 .form-section {
+        padding: 120px 34px 40px;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .login-7 .logo {
+        top: 40px;
+        left: 40px;
+    }
+
+    .login-7 .btn-section {
+        top: 40px;
+        right: 40px;
+    }
+
+    .login-7-bodycolor .ripple-background{
+        display: none;
+    }
+    .login-7-inner #particles-js {
+    width: 100%;
+    height: 100%;
+    background-color: #23067a; /* same dark purple bg */
+  }
+}
+@media (max-width: 375px) {
+ .login-7 .logo {
+        top: 25px;
+        left: 6rem;
+    }
+
+    .login-7 .btn-section {
+        top: 60px;
+        right: 55px;
+    }
+}
+/** Login 7 end **/
+  </style>
+
+</head>
+<body id="top">
+
+<!-- Login 7 start -->
+<div class="login-7">
+    <div class="login-7-inner">
+        <div id="particles-js"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-info">
+                        <div class="form-section align-self-center">
+                            <div class="btn-section clearfix">
+                                <a href="login-7.html" class="link-btn active btn-1 active-bg default-bg">Login</a>
+                                <a href="register-7.html" class="link-btn btn-2">Register</a>
+                            </div>
+                            <div class="logo">
+                                <a href="login-7.html">
+                                    <img src="image/logo-03.svg" alt="logo">
+                                </a>
+                            </div>
+                            <h1>Welcome!</h1>
+                            <div class="typing">
+                                <h3>Sign Into Your Account</h3>
+                            </div>
+                            <div class="clearfix"></div>
+                            <form action="#" method="GET">
+                                <div class="form-group">
+                                    <label for="first_field" class="form-label">Email address</label>
+                                    <input name="email" type="email" class="form-control" id="first_field" placeholder="Email Address" aria-label="Email Address">
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label for="second_field" class="form-label">Password</label>
+                                    <input name="password" type="password" class="form-control" autocomplete="off" id="second_field" placeholder="Password" aria-label="Password">
+                                </div>
+                                <div class="checkbox form-group clearfix">
+                                    <div class="form-check float-start mb-0">
+                                        <input class="form-check-input" type="checkbox" id="rememberme">
+                                        <label class="form-check-label" for="rememberme">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                    <a href="forgot-password-7.html" class="float-end forgot-password">Forgot your password?</a>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <button type="submit" class="btn btn-primary btn-lg btn-theme">Login</button>
+                                </div>
+                            </form>
+                            <p>Help & Support</p>
+                            <div class="social-list">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-google"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-pinterest"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-youtube"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 7 end -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+ 
+ <!-- particles.js script -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+ particlesJS("particles-js", {
+            particles: {
+            number: { value: 100, density: { enable: true, value_area: 500 } },
+            color: { value: "#b1c900" },
+            shape: {
+                type: "circle",
+                stroke: { width: 0, color: "#000000" },
+                polygon: { nb_sides: 5 },
+                image: { width: 100, height: 100 }
+            },
+            opacity: {
+                value: 0.5, random: false,
+                anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
+            },
+            size: {
+                value: 5, random: true,
+                anim: { enable: false, speed: 40, size_min: 0.1, sync: false }
+            },
+            line_linked: {
+                enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1
+            },
+            move: {
+                enable: true, speed: 6, direction: "none", random: false,
+                straight: false, out_mode: "out",
+                attract: { enable: false, rotateX: 600, rotateY: 1200 }
+            }
+            },
+            interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+            },
+            modes: {
+                grab: { distance: 400, line_linked: { opacity: 1 } },
+                bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+                repulse: { distance: 100 },
+                push: { particles_nb: 4 },
+                remove: { particles_nb: 2 }
+            }
+            },
+            retina_detect: true,
+            config_demo: {
+            hide_card: false,
+            background_color: "#b61924",
+            background_image: "",
+            background_position: "50% 50%",
+            background_repeat: "no-repeat",
+            background_size: "cover"
+            }
+
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+    body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+/** Login 10 start **/
+.login-10 {
+    top: 0;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    opacity: 1;
+    z-index: 999;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    background: linear-gradient(to bottom right, #17ffff 0%, #2500b7e8 100%);
+}
+
+.login-10 a {
+    text-decoration: none;
+}
+
+.login-10 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Jost', sans-serif;
+}
+
+.login-10 .form-section {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 70px 50px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 999;
+}
+
+.login-10 .form-check-input:checked {
+    display: none;
+}
+
+.login-10 .form-section p{
+    color: #535353;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.login-10 .form-section p a{
+    color: #535353;
+}
+
+.login-10 .form-section .extra-login {
+    float: left;
+    width: 100%;
+    margin: 25px 0 25px;
+    text-align: center;
+    position: relative;
+}
+
+.login-10 .form-section .extra-login::before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    height: 1px;
+    background: #d8dcdc;
+    content: "";
+}
+
+.login-10 .form-section .extra-login > span {
+    width: auto;
+    float: none;
+    display: inline-block;
+    background: #fff;
+    padding: 1px 20px;
+    z-index: 1;
+    position: relative;
+    font-size: 15px;
+    color: #535353;
+    text-transform: capitalize;
+}
+
+.login-10 .form-section ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.login-10 .logo-2 img{
+    margin-bottom: 15px;
+    height: 30px;
+}
+
+.login-10 .form-section .social-list li {
+    display: inline-block!important;
+    margin-bottom: 5px;
+}
+
+.login-10 .form-section .social-list li a {
+    font-size: 15px;
+    font-weight: 400;
+    width: 130px;
+    margin: 2px 0 3px 0;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Jost', sans-serif;
+}
+
+.login-10 .form-section .social-list li a i{
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    float: left;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.login-10 .form-section .social-list li a span{
+    margin-right: 7px;
+}
+
+.login-10 .form-section .thembo{
+    margin-left: 4px;
+}
+
+.login-10 .form-section h3 {
+    margin: 0 0 30px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #040404;
+    text-align: center;
+}
+
+.login-10 .form-section .form-group {
+    margin-bottom: 25px;
+}
+
+.login-10 .form-section .form-control {
+    font-size: 16px;
+    outline: none;
+    background: #efefef;
+    padding: 12px 25px;
+    color: #535353;
+    height: 60px;
+    border-radius: 3px;
+    border: 1px solid #efefef;
+}
+
+.login-10 .form-section .checkbox .terms{
+    margin-left: 3px;
+}
+
+.login-10 .form-section .btn-md {
+    cursor: pointer;
+    height: 60px;
+    color: #fff;
+    padding: 13px 50px 12px 50px;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    border-radius: 3px;
+}
+
+.login-10 .form-section input[type=checkbox], input[type=radio] {
+    margin-right: 3px;
+}
+
+.login-10 .form-section button:focus {
+    outline: none;
+    outline: 0 auto -webkit-focus-ring-color;
+}
+
+.login-10 .form-section .btn-theme.focus, .btn-theme:focus {
+    box-shadow: none;
+}
+
+.login-10 .form-section .btn-theme {
+    background: #526fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: none;
+    color: #fff;
+}
+
+.login-10 .form-section .btn-theme:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #4b67f1;
+}
+
+.login-10 .form-section .terms{
+    margin-left: 3px;
+}
+
+.login-10 .form-section .form-check{
+    float: left;
+    margin-bottom: 0;
+    padding-left: 0;
+    position: relative;
+}
+
+.login-10 .form-section .form-check a {
+    color: #535353;
+}
+
+.login-10 .form-section .form-check-input {
+    position: absolute;
+    margin-left: 0;
+}
+
+.login-10 .form-section .form-check label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    margin-left: -25px;
+    border: 1px solid #e8e8e8;
+    background: #e8e8e8;
+    border-radius: 3px;
+}
+
+.login-10 .form-section .form-check-label {
+    padding-left: 25px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #535353;
+}
+
+.login-10 .form-section .checkbox-theme input[type="checkbox"]:checked + label::before {
+    background-color: #526fff;
+    border-color: #526fff;
+}
+
+.login-10 .form-section input[type=checkbox]:checked + label:before {
+    font-weight: 600;
+    color: #fff;
+    line-height: 16px;
+    font-size: 14px;
+    content: "\2713";
+    padding-left: 0;
+}
+
+.login-10 .form-section input[type=checkbox], input[type=radio] {
+    margin-top: 4px;
+}
+
+.login-10 .form-section a.forgot-password {
+    font-size: 16px;
+    color: #535353;
+    float: right;
+    line-height: 60px;
+}
+
+.login-10 .animation-container .lightning-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: flex;
+    transform: translateY(-50%);
+}
+
+.login-10 .animation-container .lightning-container .lightning {
+    position: absolute;
+    display: block;
+    height: 30px;
+    width: 30px;
+    border-radius: 30px;
+    transform-origin: 6px 6px;
+    animation-name: woosh;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation-direction: alternate;
+}
+
+.login-10 .animation-container .lightning-container .lightning.white {
+    background-color: yellow;
+    box-shadow: 0px 50px 50px 0px rgba(255, 255, 255, 0.3);
+}
+
+.login-10 .animation-container .lightning-container .lightning.red {
+    background-color: #fc7171;
+    box-shadow: 0px 50px 50px 0px rgba(252, 113, 113, 0.3);
+    animation-delay: 0.2s;
+}
+
+.login-10 .animation-container .boom-container {
+    position: absolute;
+    display: flex;
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    align-items: center;
+    transform: translateY(-50%);
+    left: 200px;
+    /* top: -145px; */
+}
+
+.login-10 .animation-container .boom-container .shape {
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    transform-origin: center center;
+}
+
+.login-10 .animation-container .boom-container .shape.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    transform-origin: 50% 80%;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    margin-left: -15px;
+    border-width: 0 2.5px 5px 2.5px;
+    border-color: transparent transparent #42e599 transparent;
+    animation-name: boom-triangle;
+}
+
+.login-10 .animation-container .boom-container .shape.triangle.big {
+    margin-left: -25px;
+    border-width: 0 5px 10px 5px;
+    border-color: transparent transparent #fade28 transparent;
+    animation-name: boom-triangle-big;
+}
+
+.login-10 .animation-container .boom-container .shape.disc {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: #fff;
+    animation-name: boom-disc;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+}
+
+.login-10 .animation-container .boom-container .shape.circle {
+    width: 30px;
+    height: 30px;
+    animation-name: boom-circle;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: infinite;
+    border-radius: 100%;
+    margin-left: -30px;
+}
+
+.login-10 .animation-container .boom-container .shape.circle.white {
+    border: 1px solid white;
+}
+
+.login-10 .animation-container .boom-container .shape.circle.big {
+    width: 70px;
+    height: 70px;
+    margin-left: 0px;
+    left: 55rem;
+}
+
+.login-10 .animation-container .boom-container .shape.circle.big.white {
+    border: 2px solid white;
+}
+
+.login-10 .animation-container .boom-container .shape:after {
+    background-color: rgba(178, 215, 232, 0.2);
+}
+
+.login-10 .animation-container .boom-container .shape.triangle, .animation-container .boom-container .shape.circle, .animation-container .boom-container .shape.circle.big, .animation-container .boom-container .shape.disc {
+    animation-delay: 0.38s;
+    animation-duration: 3s;
+}
+
+.login-10 .animation-container .boom-container .shape.circle {
+    animation-delay: 0.6s;
+}
+
+.login-10 .animation-container .boom-container.second {
+    /* left: 485px; */
+    top: 155px;
+}
+
+.login-10 .animation-container .boom-container.second .shape.triangle, .animation-container .boom-container.second .shape.circle, .animation-container .boom-container.second .shape.circle.big, .animation-container .boom-container.second .shape.disc {
+    animation-delay: 1.9s;
+}
+
+.login-10 .animation-container .boom-container.second .shape.circle {
+    animation-delay: 2.15s;
+}
+
+@keyframes woosh {
+    0% {
+        width: 12px;
+        transform: translate(0px, 0px) rotate(-35deg);
+    }
+    15% {
+        width: 50px;
+    }
+    30% {
+        width: 12px;
+        transform: translate(214px, -150px) rotate(-35deg);
+    }
+    30.1% {
+        transform: translate(214px, -150px) rotate(46deg);
+    }
+    50% {
+        width: 110px;
+    }
+    70% {
+        width: 12px;
+        transform: translate(500px, 150px) rotate(46deg);
+    }
+    70.1% {
+        transform: translate(500px, 150px) rotate(-37deg);
+    }
+    85% {
+        width: 50px;
+    }
+    100% {
+        width: 12px;
+        transform: translate(700px, 0) rotate(-37deg);
+    }
+}
+@keyframes boom-circle {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+        transform: scale(3);
+    }
+}
+@keyframes boom-triangle-big {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+        transform: scale(2.5) translate(50px, -50px) rotate(360deg);
+    }
+}
+@keyframes boom-triangle {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+        transform: scale(3) translate(20px, 40px) rotate(360deg);
+    }
+}
+@keyframes boom-disc {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    }
+    40% {
+        opacity: 0;
+        transform: scale(2) translate(-70px, -30px);
+    }
+}
+
+/** Social media **/
+.login-10 .facebook-bg {
+    background: #4867aa;
+}
+
+.login-10 .facebook-i {
+    background: #3b589e;
+}
+
+.login-10 .twitter-bg {
+    background: #33CCFF;
+}
+
+.login-10 .twitter-i {
+    background: #0cace0;
+}
+
+.login-10 .google-bg {
+    background: #db4437;
+}
+
+.login-10 .google-i {
+    background: #c3291c;
+}
+
+@media (max-width: 768px) {
+    .login-10 .form-section {
+        padding: 50px 30px;
+    }
+
+    .login-10 .animation-container{
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .login-10 .form-section .social-list li a i {
+        display: none;
+    }
+
+    .login-10 .form-section .social-list li a {
+        width: 105px;
+    }
+}
+/** Login 10 end **/
+
+  </style>
+
+</head>
+<body id="top">
+
+<!-- Login 10 start -->
+<div class="login-10">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-section">
+                    <div class="logo-2">
+                        <a href="login-10.html">
+                            <img src="image/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <h3>Sign Into Your Account</h3>
+                    <form action="#" method="GET">
+                        <div class="form-group form-box">
+                            <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address">
+                        </div>
+                        <div class="form-group form-box">
+                            <input type="password" name="password" class="form-control" autocomplete="off" placeholder="Password" aria-label="Password">
+                        </div>
+                        <div class="form-group mb-0 clearfix">
+                            <button type="submit" class="btn-md btn-theme float-start">Login</button>
+                            <a href="forgot-password-10.html" class="forgot-password">Forgot Password</a>
+                        </div>
+                        <div class="extra-login clearfix">
+                            <span>Or Login With</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <ul class="social-list">
+                            <li><a href="#" class="facebook-bg"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
+                            <li><a href="#" class="twitter-bg"><i class="fa fa-twitter twitter-i"></i><span>Twitter</span></a></li>
+                            <li><a href="#" class="google-bg"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
+                        </ul>
+                    </form>
+                    <p>Don't have an account? <a href="register-10.html" class="thembo"> Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="animation-container">
+        <div class="lightning-container">
+            <div class="lightning white"></div>
+            <div class="lightning red"></div>
+        </div>
+        <div class="boom-container">
+            <div class="shape circle big white"></div>
+            <div class="shape circle white"></div>
+            <div class="shape triangle big yellow"></div>
+            <div class="shape disc white"></div>
+            <div class="shape triangle blue"></div>
+        </div>
+        <div class="boom-container second">
+            <div class="shape circle big white"></div>
+            <div class="shape circle white"></div>
+            <div class="shape disc white"></div>
+            <div class="shape triangle blue"></div>
+        </div>
+    </div>
+</div>
+<!-- Login 10 end -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multiple Layout Examples - Equal Width & Height with Different Alignments</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 15px;
+      color: #222;
+    }
+
+    h2 {
+      margin: 40px 0 15px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #444;
+    }
+
+    /* ====== Section 1: Flexbox with different vertical alignments but equal height & width ====== */
+    .flex-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: stretch; /* stretch all to equal height */
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 8px;
+      gap: 20px;
+      flex-wrap: wrap;
+      min-height: 150px;
+    }
+
+    .flex-item {
+      background: #64b5f6;
+      color: white;
+      padding: 30px 15px;
+      border-radius: 6px;
+      flex: 1 1 200px;
+      text-align: center;
+      font-weight: bold;
+      min-height: 150px; /* equal height */
+      display: flex;
+      flex-direction: column;
+    }
+    /* Different vertical alignment using justify-content inside flex items */
+    .flex-item:nth-child(1) {
+      justify-content: flex-start;  /* top */
+    }
+    .flex-item:nth-child(2) {
+      justify-content: center;      /* center */
+    }
+    .flex-item:nth-child(3) {
+      justify-content: flex-end;    /* bottom */
+    }
+
+    /* ====== Section 2: CSS Grid with equal width & height (fr units) and different content alignment ====== */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      background: #f3e5f5;
+      padding: 20px;
+      border-radius: 8px;
+      min-height: 150px;
+    }
+
+    .grid-item {
+      background: #ab47bc;
+      color: white;
+      border-radius: 6px;
+      font-weight: bold;
+      display: flex;
+      height: 150px; /* equal height */
+      text-align: center;
+    }
+    /* Different horizontal & vertical alignment */
+    .grid-item:nth-child(1) {
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 20px;
+    }
+    .grid-item:nth-child(2) {
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+    .grid-item:nth-child(3) {
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding: 20px;
+    }
+
+    /* ====== Section 3: Custom grid (2fr 1fr 1fr) with flex alignment & equal height ====== */
+    .custom-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+      background: #fff3e0;
+      padding: 20px;
+      border-radius: 8px;
+      min-height: 150px;
+    }
+
+    .custom-item {
+      background: #fb8c00;
+      color: white;
+      border-radius: 6px;
+      font-weight: bold;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 150px; /* equal height */
+    }
+
+    /* Different vertical alignment */
+    .custom-item:nth-child(1) {
+      justify-content: flex-start;
+      font-size: 1.2rem;
+    }
+    .custom-item:nth-child(2) {
+      justify-content: center;
+      font-style: italic;
+    }
+    .custom-item:nth-child(3) {
+      justify-content: flex-end;
+      font-weight: 900;
+    }
+
+    /* ====== Responsive adjustments ====== */
+
+    /* Between 768px and 1024px: 2 columns */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .custom-container {
+        grid-template-columns: 2fr 1fr;
+      }
+
+      .flex-container {
+        justify-content: flex-start;
+      }
+      .flex-item {
+        flex: 1 1 45%;
+        margin-bottom: 20px;
+        min-height: 150px;
+      }
+    }
+
+    /* Below 768px: single column */
+    @media (max-width: 768px) {
+      .flex-container,
+      .grid-container,
+      .custom-container {
+        grid-template-columns: 1fr;
+        display: block; /* fallback for flex-container */
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .flex-item,
+      .grid-item,
+      .custom-item {
+        height: auto;
+        min-height: auto;
+        margin-bottom: 15px;
+        flex-basis: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>1. Flexbox with Different Vertical Alignment (Equal Height & Width)</h2>
+  <div class="flex-container">
+    <div class="flex-item">Align top</div>
+    <div class="flex-item">Align center</div>
+    <div class="flex-item">Align bottom</div>
+  </div>
+
+  <h2>2. CSS Grid with Different Content Alignment (Equal Width & Height)</h2>
+  <div class="grid-container">
+    <div class="grid-item">Top Left</div>
+    <div class="grid-item">Center</div>
+    <div class="grid-item">Bottom Right</div>
+  </div>
+
+  <h2>3. Custom Grid (2fr 1fr 1fr) with Different Vertical Alignment</h2>
+  <div class="custom-container">
+    <div class="custom-item">Justify flex-start</div>
+    <div class="custom-item">Justify center</div>
+    <div class="custom-item">Justify flex-end</div>
+  </div>
+
+</body>
+</html>

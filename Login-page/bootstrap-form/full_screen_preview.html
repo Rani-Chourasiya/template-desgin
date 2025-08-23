@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+img {
+    height: auto;
+    max-width: 100%;
+}
+
+.theme-layout {
+    float: left;
+    position: relative;
+    width: 100%;
+}
+/*--- theme style ---*/
+
+.theme-layout::before {
+    background: rgba(0, 0, 0, 0.1) none repeat scroll 0 0;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -2;
+}
+
+.preview-box {
+    background: #f5f5f5 none repeat scroll 0 0;
+    border-radius: 5px;
+    display: inline-block;
+    left: 50%;
+    overflow: hidden;
+    padding: 50px;
+    position: fixed;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    box-shadow: 0px 0px 33px rgba(0,0,0,.2);
+}
+.preview-box::before {
+    background: rgba(124,180,65,.6) none repeat scroll 0 0;
+    content: "";
+    height: 140%;
+    left: -150px;
+    position: absolute;
+    top: -84px;
+    transform: rotate(20deg);
+    width: 380px;
+    z-index: -1;
+}
+.prew-inner {
+    background: white none repeat scroll 0 0;
+    border-radius: 6px;
+    box-shadow: 0px 0px 25px rgba(0,0,0,.2);
+    display: inline-block;
+    padding: 50px;
+}
+.prew-inner > h4 {
+    display: inline-block;
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 100%;
+}
+.inner-meta {
+    display: inline-block;
+    width: 100%;
+}
+.inner-meta > figure {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+    width: 100px;
+}
+.inner-meta > p {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 28px;
+    margin-bottom: 0px;
+    padding-left: 20px;
+    vertical-align: middle;
+    width: 69%;
+}
+.inner-meta > a {
+    background: #7cb441 none repeat scroll 0 0;
+    border-radius: 7px;
+    color: #fff;
+    display: inline-block;
+    margin-left: 125px;
+    margin-top: 30px;
+    padding: 10px 20px;
+    text-align: center;
+    vertical-align: middle;
+    transition: all 0.2s linear 0s;
+}
+.inner-meta > a:hover {
+    transform: scale(1.05);
+}
+.inner-meta > a > i {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    width: 13px;
+    margin-left: 10px;
+}
+.inner-meta > a > i svg {
+    fill: #fff;
+    float: right;
+}
+/*--- responsive media quries ---*/
+@media screen and (max-width: 1024px){
+    .preview-box {
+        width: 70%;
+        padding: 30px;
+    }
+}
+@media screen and (max-width: 725px){
+    .preview-box {
+        /* width: calc(100% - 140px); */
+        width: 95%;
+        padding: 30px;
+    }
+
+    .prew-inner {
+        padding: 30px;
+    }
+
+    .prew-inner > h4 {
+        font-size: 17px;
+    }
+
+    .inner-meta > p {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 540px){
+    .inner-meta > p{
+        width: 63%;
+    }
+}
+@media screen and (max-width: 480px){
+    .inner-meta {
+        text-align: center;
+    }
+
+    .inner-meta > p {
+        padding: 0;
+        width: 100%;
+        line-height: 24px;
+        margin-top: 20px;
+    }
+
+    .inner-meta > a {
+        margin-left: 0;
+    }
+}
+@media screen and (max-width: 375px){
+    .prew-inner > h4 {
+        font-size: 15px;
+    }
+    .inner-meta > p{
+        font-size: 12px;
+        line-height: 24px;
+    }
+    .inner-meta > a {
+        margin-left: 0;
+        font-size: 13px;
+    }
+}
+  </style>
+
+</head>
+<body id="">
+
+<div class="theme-layout">
+	<div class="preview-box">
+        <div class="prew-inner">
+            <h4>Winku Online Social Community Network Html Template - Live Preview</h4>
+            <div class="inner-meta">
+                <figure><img src="image/envato.png" alt=""></figure>
+                <p>To ensure the best experience for you, please click on the button below to launch the live demo in a new tab.</p>
+                <a href="#https://wpkixx.com/html/winku-land" title="" target="_blank">Go For Live Demo <i><svg xmlns="#http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+</body>
+</html>

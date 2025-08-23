@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+    body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+/** Login 23 start **/
+.login-23{
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    background: #fff5f5;
+}
+
+.login-23 .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.login-23 a {
+    text-decoration: none;
+}
+
+.login-23 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Jost', sans-serif;
+}
+
+.login-23 .form-info {
+    justify-content: center;
+    align-items: center;
+    padding: 100px 80px;
+    background: #fff;
+}
+
+.login-23 .info{
+    text-align: left;
+}
+
+.login-23 .name_wrap h3 {
+    position: relative;
+    font-size: 40px;
+    font-family: "Poppins", sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.login-23 .info p{
+    color: #f1f0f0;
+}
+
+.login-23 .name_wrap h3 span {
+    color: transparent;
+    -webkit-text-stroke: 1px #fff;
+    padding-left: 2px;
+}
+
+.login-23 .form-check-input:checked {
+    display: none;
+}
+
+.login-23 .login-inner-form .form-group {
+    margin-bottom: 25px;
+}
+
+.login-23 .login-inner-form .form-box {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.login-23 .login-inner-form .form-control {
+    font-size: 16px;
+    outline: none;
+    color: #535353;
+    border-radius: 3px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    background: #f5f5f5;
+    padding: 12px 45px 12px 20px;
+    height: 55px;
+}
+
+.login-23 .login-inner-form img {
+    margin-bottom: 5px;
+    height: 40px;
+}
+
+.login-23 .login-inner-form .form-box i {
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    font-size: 19px;
+    color: #535353;
+}
+
+.login-23 .login-inner-form label{
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.login-23 .login-inner-form .forgot{
+    margin: 0;
+    line-height: 45px;
+    color: #535353;
+    font-size: 15px;
+    float: right;
+}
+
+.login-23 .bg-img {
+    top: 0;
+    bottom: 0;
+    opacity: 1;
+    z-index: 999;
+    position: relative;
+    display: flex;
+    border-radius: 100% 0 0 100%;
+    background-image: linear-gradient(to bottom, #ff0000, #ff8100);
+    padding: 50px 80px;
+}
+
+.login-23 .login-box{
+    background: #fff;
+    margin: 0 auto;
+}
+
+.login-23 .form-section .form-box {
+    float: left;
+    width: 100%;
+    text-align: left;
+    position: relative;
+}
+
+.login-23 .login-inner-form .btn-md {
+    cursor: pointer;
+    color: #fff;
+    padding: 0 50px;
+    height: 55px;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    border-radius: 3px;
+}
+
+.login-23 .login-inner-form input[type=checkbox], input[type=radio] {
+    margin-right: 3px;
+}
+
+.login-23 .login-inner-form p{
+    margin: 0;
+    color: #535353;
+}
+
+.login-23 .login-inner-form p a{
+    color: #535353;
+}
+
+.login-23 .login-inner-form button:focus {
+    outline: none;
+    outline: 0 auto -webkit-focus-ring-color;
+}
+
+.login-23 .login-inner-form .btn-theme.focus, .btn-theme:focus {
+    box-shadow: none;
+}
+
+.login-23 .login-inner-form .btn-theme {
+    background-image: linear-gradient(to bottom, #ff0000, #ff8100);
+    border: none;
+    color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-23 .login-inner-form .btn-theme:hover {
+    background-image: linear-gradient(to bottom, #ff8100, #ff0000);
+}
+
+.login-23 .logo-2{
+    margin-bottom: 15px;
+}
+
+.login-23 .logo-2 img{
+    height: 30px;
+}
+
+.login-23 .nav-pills li{
+    display: inline-block;
+}
+
+.login-23 .login-inner-form .checkbox {
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.login-23 .login-inner-form .form-check{
+    float: left;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.login-23 .login-inner-form .form-check a {
+    color: #d6d6d6;
+    float: right;
+}
+
+.login-23 .login-inner-form .form-check-input {
+    position: absolute;
+    margin-left: 0;
+}
+
+.login-23 .login-inner-form .form-check label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    margin-left: -25px;
+    border: none;
+    border-radius: 3px;
+    background: #f5f5f5;
+}
+
+.login-23 .login-inner-form .form-check-label {
+    padding-left: 25px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #535353;
+}
+
+.login-23 .login-inner-form .checkbox-theme input[type="checkbox"]:checked + label::before {
+    color: #fff;
+    background-image: linear-gradient(to bottom, #ff0000, #ff8100);
+}
+
+.login-23 .login-inner-form input[type=checkbox]:checked + label:before {
+    font-weight: 600;
+    color: #fff;
+    line-height: 18px;
+    font-size: 12px;
+    content: "\2713";
+    padding-left: 5px;
+    background:#ff0000;
+}
+
+.login-23 .login-inner-form input[type=checkbox], input[type=radio] {
+    margin-top: 4px;
+}
+
+.login-23 .login-inner-form .checkbox a {
+    font-size: 16px;
+    color: #535353;
+    float: right;
+    margin-left: 3px;
+}
+
+.login-23 .form-section{
+    text-align: center;
+}
+
+.login-23 .form-section h3{
+    margin: 0 0 40px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #040404;
+}
+
+.login-23 .form-section .text {
+    font-size: 16px;
+    margin-top: 25px;
+    margin-bottom: 0;
+    color: #535353;
+}
+
+.login-23 .form-section .text a{
+    color: #535353;
+}
+
+.login-23 .social-list{
+    bottom: 20px;
+    position: absolute;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.login-23 .social-list a {
+    width: 60px;
+    height: 50px;
+    line-height: 50px;
+    margin-bottom: 5px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 50px 0 0 50px;
+    background: rgb(102 102 102 / 31%);
+}
+
+.login-23 .facebook-bg:hover {
+    background: #3b589e;
+}
+
+.login-23 .twitter-bg:hover {
+    background: #33CCFF;
+}
+
+.login-23 .google-bg:hover {
+    background: #db4437;
+}
+
+.login-23 .linkedin-bg:hover {
+    background: #1c82ca;
+}
+
+/** MEDIA **/
+@media (max-width: 992px) {
+    .login-23 .bg-img{
+        display: none;
+    }
+
+    .login-23 .form-info {
+        padding: 50px 30px;
+    }
+
+    .login-23 .login-box{
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/** Login 23 end **/
+  </style>
+
+</head>
+<body id="top">
+
+<!-- Login 23 start -->
+<div class="login-23">
+    <div class="container">
+        <div class="row login-box">
+            <div class="col-lg-6 col-md-12 form-info align-self-center">
+                <div class="form-section">
+                    <div class="logo-2 clearfix">
+                        <a href="login-23.html">
+                            <img src="image/logo-03.svg" alt="logo">
+                        </a>
+                    </div>
+                    <h3>Sign Into Your Account</h3>
+                    <div class="login-inner-form">
+                        <form action="#" method="GET">
+                            <div class="form-group form-box">
+                                <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address">
+                                <i class="flaticon-mail-2"></i>
+                            </div>
+                            <div class="form-group form-box">
+                                <input type="password" name="password" class="form-control" autocomplete="off" placeholder="Password" aria-label="Password">
+                                <i class="flaticon-password"></i>
+                            </div>
+                            <div class="form-group form-box checkbox clearfix">
+                                <div class="form-check checkbox-theme">
+                                    <input class="form-check-input" type="checkbox" value="" id="rememberMe">
+                                    <label class="form-check-label" for="rememberMe">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <a href="forgot-password-23.html">Forgot Password</a>
+                            </div>
+                            <div class="form-group mb-0">
+                                <button type="submit" class="btn-md btn-theme w-100">Login</button>
+                            </div>
+                            <p class="text">Don't have an account?<a href="register-23.html"> Register here</a></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 bg-img">
+                <div class="info clearfix align-self-center">
+                    <div class="name_wrap"><h3><span>Welcome</span> To Logdy<span class="overlay_effect"></span></h3></div>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of</p>
+                </div>
+                <ul class="social-list">
+                    <li>
+                        <a href="#" class="facebook-bg">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="twitter-bg">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="google-bg">
+                            <i class="fa fa-google"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="linkedin-bg">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 23 end -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+</body>
+</html>

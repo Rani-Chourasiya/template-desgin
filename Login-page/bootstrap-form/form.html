@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        fieldset.scheduler-border {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 8px;
+            margin: 11px 0 0;
+            position: relative;
+        }
+
+        legend.scheduler-border {
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0 10px;
+            color: #343a40;
+            width: auto;
+            position: absolute;
+            top: -12px;
+            left: 10px;
+            background: white;
+        }
+
+        .panel {
+            border: 1px solid transparent;
+            border-radius: 12px !important;
+            box-shadow: 0 0 4px #e7e5e5 !important;
+        }
+
+        .panel-primary {
+            border: 1px solid #2d84fc !important;
+        }
+
+        .panel-header {
+            border-radius: 10px 10px 0 0;
+            font-size: 18px;
+            text-align: center;
+            color: #fff;
+            background: #1b84ff;
+        }
+
+        .panel-body {
+            padding: 0 20px 4px;
+        }
+
+        .panel-footer {
+            border-top: 1px solid #d9d9d9;
+            padding: 10px 20px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .custom-label {
+            margin: .12rem;
+        }
+    </style>
+    </style>
+</head>
+
+<body class="">
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-header">
+                <h3 class="panel-title text-white m-0">Form</h3>
+            </div>
+            <div class="panel-body">
+                <form class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <label for="CompanyID" class="form-label custom-label custom-label">Company ID</label>
+                            <input type="text" class="form-control" id="CompanyID" name="CompanyID" required />
+                            <div class="invalid-feedback">Please enter Company ID.</div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <label for="PolicyNo" class="form-label custom-label">Policy No</label>
+                            <input type="text" class="form-control" id="PolicyNo" name="PolicyNo" required />
+                            <div class="invalid-feedback">Please enter Policy No.</div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <label for="Select" class="form-label custom-label">Policy Type</label>
+                            <select id="policyType" name="policyType" class="form-select" required>
+                                <option selected>Policy Type...</option>
+                                <option>...</option>
+                                <option>...</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a Policy Type.</div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <label for="Select" class="form-label custom-label">Product Type</label>
+                            <select id="productType" name="productType" class="form-select" required>
+                                <option selected>Product Type...</option>
+                                <option>...</option>
+                                <option>...</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a Product Type.</div>
+                        </div>
+                    </div>
+                    <!-- insurance section start -->
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Insurance:</legend>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <label for="Name" class="form-label custom-label">Name</label>
+                                <input type="text" class="form-control" id="insuranceName" name="insuranceName"
+                                    required />
+                                <div class="invalid-feedback">Please enter Name.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="aadhar No." class="form-label custom-label">Aadhar No.</label>
+                                <input type="text" class="form-control" id="aadharInsurance" name="aadharInsurance"
+                                    required pattern="\d{12}" maxlength="12" />
+                                <div class="invalid-feedback">
+                                    Please enter a valid 12-digit Aadhar number.
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="Select" class="form-label custom-label">Gender</label>
+                                <select id="genderInsurance" name="genderInsurance" class="form-select" required>
+                                    <option value="" selected disabled>select...</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                                <div class="invalid-feedback">Please select Gender.</div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-2">
+                                <label for="dob" class="form-label custom-label">Date Of Birth</label>
+                                <input type="date" class="form-control" id="dobInsurance" name="dobInsurance"
+                                    required />
+                                <div class="invalid-feedback">Please enter Date of Birth.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="city" class="form-label custom-label">City</label>
+                                <input type="text" class="form-control" id="cityInsurance" name="cityInsurance"
+                                    required />
+                                <div class="invalid-feedback">Please enter City.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="district" class="form-label custom-label">Area/Colony</label>
+                                <input type="text" class="form-control" id="areaInsurance" name="areaInsurance"
+                                    required />
+                                <div class="invalid-feedback">Please enter Area/Colony.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="" class="form-label custom-label">District</label>
+                                <input type="text" class="form-control" id="districtInsurance" name="districtInsurance"
+                                    required />
+                                <div class="invalid-feedback">Please enter District.</div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-2">
+                                <label for="state" class="form-label custom-label">State</label>
+                                <input type="text" class="form-control" id="stateInsurance" name="stateInsurance"
+                                    required />
+                                <div class="invalid-feedback">Please enter State.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="" class="form-label custom-label">Pin Code</label>
+                                <input type="text" class="form-control" id="pinCodeInsurance" name="pinCodeInsurance"
+                                    required pattern="\d{6}" maxlength="6" />
+                                <div class="invalid-feedback">Please enter a valid 6-digit Pin Code.</div>
+                            </div>
+
+                        </div>
+                    </fieldset>
+                    <!-- insurance section end -->
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <label for="sumAnssumed" class="form-label custom-label">Sum Anssumed</label>
+                            <input type="number" class="form-control" id="sumAssumed" name="sumAssumed" min="0"
+                                required />
+                            <div class="invalid-feedback">Please enter Sum Assumed.</div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <label for="ppt" class="form-label custom-label">PPT</label>
+                            <input type="number" class="form-control" id="ppt" name="ppt" min="0" required />
+                            <div class="invalid-feedback">Please enter PPT.</div>
+                        </div>
+                    </div>
+                    <!-- proposal section start -->
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Propposer:</legend>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <label for="Name" class="form-label custom-label">Name</label>
+                                <input type="text" class="form-control" id="proposerName" name="proposerName"
+                                    required />
+                                <div class="invalid-feedback">Please enter Name.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="aadhar No." class="form-label custom-label">Aadhar No.</label>
+                                <input type="text" class="form-control" id="aadharProposer" name="aadharProposer"
+                                    required pattern="\d{12}" maxlength="12" />
+                                <div class="invalid-feedback">
+                                    Please enter a valid 12-digit Aadhar number.
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="Select" class="form-label custom-label">Relation</label>
+                                <select id="relation" name="relation" class="form-select" required>
+                                    <option value="" selected disabled>Relation...</option>
+                                    <option>Self</option>
+                                    <option>Spouse</option>
+                                    <option>Child</option>
+                                </select>
+                                <div class="invalid-feedback">Please select Relation.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="dob" class="form-label custom-label">Date Of Birth</label>
+                                <input type="date" class="form-control" id="dobProposer" name="dobProposer" required />
+                                <div class="invalid-feedback">Please enter Date of Birth.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="city" class="form-label custom-label">City</label>
+                                <input type="text" class="form-control" id="cityProposer" name="cityProposer"
+                                    required />
+                                <div class="invalid-feedback">Please enter City.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="district" class="form-label custom-label">Area/Colony</label>
+                                <input type="text" class="form-control" id="areaProposer" name="areaProposer"
+                                    required />
+                                <div class="invalid-feedback">Please enter Area/Colony.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <label for="" class="form-label custom-label">District</label>
+                                <input type="text" class="form-control" id="districtProposer" name="districtProposer"
+                                    required />
+                                <div class="invalid-feedback">Please enter District.</div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-2">
+                                <label for="state" class="form-label custom-label">State</label>
+                                <input type="text" class="form-control" id="stateProposer" name="stateProposer"
+                                    required />
+                                <div class="invalid-feedback">Please enter State.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="" class="form-label custom-label">Pin Code</label>
+                                <input type="text" class="form-control" id="pinCodeProposer" name="pinCodeProposer"
+                                    required pattern="\d{6}" maxlength="6" />
+                                <div class="invalid-feedback">Please enter a valid 6-digit Pin Code.</div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-2">
+                                <label for="Select" class="form-label custom-label">Gender</label>
+                                <select id="genderProposer" name="genderProposer" class="form-select" required>
+                                    <option value="" selected disabled>select...</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
+                                </select>
+                                <div class="invalid-feedback">Please select Gender.</div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <!-- proposal section end -->
+                    <div class="bottom-text">
+                        <p class="m-0">Rider Is Avilable</p>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+                            <label class="form-check-label" for="radioDefault1">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+                            <label class="form-check-label" for="radioDefault2">No</label>
+                        </div>
+                    </div>
+
+                    <!-- Nomini section start -->
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Nomini:</legend>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <label for="Name" class="form-label custom-label">Name</label>
+                                <input type="text" class="form-control" id="nominiName" name="nominiName" required />
+                                <div class="invalid-feedback">Please enter Nomini Name.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="age" class="form-label custom-label">Age</label>
+                                <input type="number" class="form-control" id="nominiAge" name="nominiAge" min="0"
+                                    required />
+                                <div class="invalid-feedback">Please enter a valid age.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="Name" class="form-label custom-label">Ratio</label>
+                                <input type="text" class="form-control" id="nominiRatio" name="nominiRatio" required />
+                                <div class="invalid-feedback">Please enter Ratio.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <label for="dob" class="form-label custom-label">Date Of Birth</label>
+                                <input type="date" class="form-control" id="nominiDob" name="nominiDob" required />
+                                <div class="invalid-feedback">Please enter Date of Birth.</div>
+                            </div>
+                            <div class="col-md-6 col-lg-2">
+                                <div class="button-form mt-4 pt-2">
+                                    <a class="btn btn-primary" href="#" role="button" id="addNominiBtn">Add</a>
+                                </div>
+                            </div>
+                    </fieldset>
+                    <!-- Nomini section start -->
+
+                </form>
+            </div>
+            <div class="panel-footer text-end">
+                <a class="btn btn-primary" href="#" role="button">Submit</a>
+                <a class="btn btn-primary" href="#" role="button">clear</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        // Bootstrap validation
+        (() => {
+            "use strict";
+            const forms = document.querySelectorAll(".needs-validation");
+            Array.from(forms).forEach((form) => {
+                form.addEventListener(
+                    "submit",
+                    (event) => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add("was-validated");
+                    },
+                    false
+                );
+            });
+        })();
+    </script>
+</body>
+
+</html>

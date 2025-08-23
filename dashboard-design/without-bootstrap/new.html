@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" width=device-width, initial-scale="1.0">
+    <title>dash</title>
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- Custom Stylesheet -->
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            position: fixed;
+            z-index: 1100;
+            top: 0px;
+            right: 0px;
+            color: rgba(0, 0, 0, 0.87);
+            box-shadow: none;
+            background-color: rgb(23, 24, 33);
+            left: 0px;
+            margin-left: 110px;
+            width: calc(100% - 110px);
+            padding-right: 0px !important;
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+        }
+
+        .header-content {
+            flex-direction: row;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+            position: relative;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            padding-left: 8px;
+            padding-right: 8px;
+            min-height: 56px;
+            background-color: rgb(23, 24, 33);
+            height: 116px;
+        }
+        
+        .mobile-sidebar {
+            position: fixed;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            inset: 0px;
+            background-color: rgba(0, 0, 0, 0.5);
+            -webkit-tap-highlight-color: transparent;
+            z-index: -1;
+        }
+
+        .mobile-drawer .MuiDrawer-paper {
+            box-sizing: border-box;
+            width: 240px;
+        }
+
+        .mobile-sidebar-content {
+            color: rgb(135, 136, 140);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 10px -5px, rgba(0, 0, 0, 0.14) 0px 16px 24px 2px, rgba(0, 0, 0, 0.12) 0px 6px 30px 5px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            z-index: 1200;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background-color: rgb(23, 24, 33);
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1 0 auto;
+            outline: 0px;
+            border-radius: 0px;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            -webkit-box-align: center;
+            align-items: center;
+            margin-left: 10px;
+            flex: 1 1 52.5%;
+        }
+
+        .menu-button {
+            display: inline-flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            cursor: pointer;
+            user-select: none;
+            vertical-align: middle;
+            appearance: none;
+            min-width: 0px;
+            text-align: center;
+            font-size: 1.5rem;
+            color: rgb(255, 255, 255);
+            outline: 0px;
+            border-width: 0px;
+            border-style: initial;
+            border-color: initial;
+            border-image: initial;
+            margin: 0px 0px 0px -12px;
+            text-decoration: none;
+            flex: 0 0 auto;
+            padding: 8px;
+            border-radius: 50%;
+            overflow: visible;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ripple-effect {
+            overflow: hidden;
+            pointer-events: none;
+            position: absolute;
+            z-index: 0;
+            inset: 0px;
+            border-radius: inherit;
+        }
+
+        .search-container {
+            display: inline-flex;
+            flex-direction: column;
+            position: relative;
+            min-width: 0px;
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            vertical-align: top;
+            width: 100%;
+            gap: 4px;
+        }
+
+        .search-input {
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: Inter, sans-serif;
+            line-height: 1.4375em;
+            color: rgb(135, 136, 140);
+            box-sizing: border-box;
+            cursor: text;
+            display: inline-flex;
+            -webkit-box-align: center;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            background-color: rgb(33, 34, 45);
+            transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+            border-radius: 8px;
+            padding: 0px;
+        }
+
+        .search-input::before,
+        .search-input::after {
+            border-bottom: none;
+        }
+
+        .search-input::before {
+            left: 0px;
+            bottom: 0px;
+            content: " ";
+            position: absolute;
+            right: 0px;
+            pointer-events: none;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+            transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .search-icon {
+            display: flex;
+            height: 0.01em;
+            max-height: 2em;
+            -webkit-box-align: center;
+            align-items: center;
+            white-space: nowrap;
+            margin-left: 8px;
+            color: rgb(217, 217, 217);
+        }
+
+        .search-field {
+            font-style: inherit;
+            font-variant: inherit;
+            font-stretch: inherit;
+            line-height: inherit;
+            font-family: inherit;
+            font-optical-sizing: inherit;
+            font-size-adjust: inherit;
+            font-kerning: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            letter-spacing: inherit;
+            border: 0px;
+            box-sizing: content-box;
+            background: none;
+            height: 1.4375em;
+            margin: 0px;
+            -webkit-tap-highlight-color: transparent;
+            display: block;
+            min-width: 0px;
+            width: 100%;
+            animation-name: mui-auto-fill-cancel;
+            animation-duration: 10ms;
+            padding: 14.5px 12px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgb(210, 210, 210);
+        }
+
+        .search-input::after {
+            left: 0px;
+            bottom: 0px;
+            content: "";
+            position: absolute;
+            right: 0px;
+            transform: scaleX(0);
+            pointer-events: none;
+            border-bottom: 2px solid rgb(169, 223, 216);
+            transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+        }
+
+        .header-right {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: end;
+            justify-content: flex-end;
+            margin-right: 15px;
+            flex: 1 1 20%;
+        }
+
+        .notification-wrapper {
+            position: relative;
+            display: inline-flex;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        .notification-button {
+            display: inline-flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            cursor: pointer;
+            user-select: none;
+            vertical-align: middle;
+            appearance: none;
+            min-width: 0px;
+            text-align: center;
+            font-size: 1.5rem;
+            color: rgb(255, 255, 255);
+            outline: 0px;
+            border-width: 0px;
+            border-style: initial;
+            border-color: initial;
+            border-image: initial;
+            margin: 0px;
+            text-decoration: none;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            overflow: visible;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 4px;
+        }
+
+        .notification-icon {
+            width: 29px;
+            height: 32px;
+        }
+
+        .ripple-effect {
+            overflow: hidden;
+            pointer-events: none;
+            /* position: absolute; */
+            z-index: 0;
+            inset: 0px;
+            border-radius: inherit;
+        }
+
+        .notification-wrapper .MuiBadge-badge {
+            top: 11px;
+            right: 11px;
+        }
+
+        .notification-badge {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            -webkit-box-pack: center;
+            justify-content: center;
+            align-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            position: absolute;
+            box-sizing: border-box;
+            font-family: Inter, sans-serif;
+            font-weight: 600;
+            font-size: 0.75rem;
+            line-height: 1;
+            z-index: 1;
+            background-color: rgb(252, 0, 60);
+            color: rgb(255, 255, 255);
+            height: 8px;
+            min-width: 8px;
+            top: 0px;
+            right: 0px;
+            transform: scale(1) translate(50%, -50%);
+            transform-origin: 100% 0%;
+            transition: transform 225ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 4px;
+            padding: 0px;
+        }
+
+        .profile-button {
+            display: inline-flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            position: relative;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            cursor: pointer;
+            user-select: none;
+            vertical-align: middle;
+            appearance: none;
+            font-family: Inter, sans-serif;
+            line-height: 1.75;
+            min-width: 64px;
+            color: inherit;
+            text-transform: none;
+            font-size: 1.25rem;
+            font-weight: 600;
+            outline: 0px;
+            border-width: 0px;
+            border-style: initial;
+            border-image: initial;
+            margin: 0px;
+            text-decoration: none;
+            transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-color: currentcolor;
+            padding: 2.5px 16px;
+            border-radius: 8px;
+            gap: 15px;
+        }
+
+        .profile-avatar {
+            position: relative;
+            display: flex;
+            flex-shrink: 0;
+            font-family: Inter, sans-serif;
+            line-height: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            user-select: none;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 44px;
+            height: 44px;
+        }
+
+        .avatar-image {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            object-fit: cover;
+            color: transparent;
+            text-indent: 10000px;
+        }
+
+        .dropdown-icon {
+            width: 22.5px;
+            height: 22.5px;
+            color: rgb(255, 255, 255);
+            transform: rotate(0deg);
+            transition: 250ms cubic-bezier(0.4, 0, 0.6, 1);
+        }
+
+        .sidebar {
+            flex: 0 0 auto;
+            width: 110px;
+        }
+
+        .sidebar .MuiDrawer-paper {
+            width: 110px;
+        }
+
+        .sidebar-content {
+            color: rgb(135, 136, 140);
+            box-shadow: none;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            z-index: 1200;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            background-color: rgb(23, 24, 33);
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            flex: 1 0 auto;
+            outline: 0px;
+            border-right: 1px solid rgb(44, 45, 51);
+            border-radius: 0px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            min-height: 56px;
+            position: fixed;
+            height: 98px;
+            z-index: 1;
+            background-color: rgb(23, 24, 33);
+            padding: 0px;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 109px;
+        }
+
+        .mobile-sidebar-header {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            min-height: 56px;
+            position: fixed;
+            height: 98px;
+            z-index: 1;
+            background-color: rgb(23, 24, 33);
+            padding: 0px;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 239px;
+        }
+
+        .logo-link {
+            margin: 12px 0px 0px;
+            font: inherit;
+            color: rgb(169, 223, 216);
+            text-decoration: none;
+        }
+
+        .logo-image {
+            height: 40px;
+        }
+
+        [data-simplebar] {
+            position: relative;
+            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .simplebar-wrapper {
+            overflow: hidden;
+            width: inherit;
+            height: inherit;
+            max-width: inherit;
+            max-height: inherit;
+        }
+
+        .simplebar-height-auto-observer-wrapper {
+            box-sizing: inherit !important;
+            height: 100%;
+            width: 100%;
+            max-width: 1px;
+            position: relative;
+            float: left;
+            max-height: 1px;
+            overflow: hidden;
+            z-index: -1;
+            padding: 0;
+            margin: 0;
+            pointer-events: none;
+            flex-grow: inherit;
+            flex-shrink: 0;
+            flex-basis: 0;
+        }
+
+        .simplebar-height-auto-observer {
+            box-sizing: inherit;
+            display: block;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 1000%;
+            width: 1000%;
+            min-height: 1px;
+            min-width: 1px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .simplebar-mask {
+            direction: inherit;
+            position: absolute;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: auto !important;
+            height: auto !important;
+            z-index: 0;
+        }
+
+        .simplebar-offset {
+            direction: inherit !important;
+            box-sizing: inherit !important;
+            resize: none !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            padding: 0;
+            margin: 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .simplebar-content-wrapper {
+            direction: inherit;
+            box-sizing: border-box !important;
+            position: relative;
+            display: block;
+            height: 100%;
+            width: auto;
+            max-width: 100%;
+            max-height: 100%;
+            overflow: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        .simplebar-content:after,
+        .simplebar-content:before {
+            content: " ";
+            display: table;
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            margin: 98px 0px 0px;
+            padding: 10px 0px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            height: 724px;
+            -webkit-box-pack: justify;
+            justify-content: space-between;
+        }
+
+        .nav-item-mobile {
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: center;
+            align-items: center;
+            position: relative;
+            text-decoration: none;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            display: block;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .nav-link-mobile-active {
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            user-select: none;
+            vertical-align: middle;
+            appearance: none;
+            color: inherit;
+            display: flex;
+            -webkit-box-flex: 1;
+            flex-grow: 1;
+            position: relative;
+            min-width: 0px;
+            box-sizing: border-box;
+            text-align: left;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            opacity: 1;
+            background-color: rgb(169, 223, 216);
+            font: inherit;
+            outline: 0px;
+            border-width: 0px;
+            border-style: initial;
+            border-color: initial;
+            border-image: initial;
+            margin: 0px;
+            text-decoration: none;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 6px;
+            padding: 10px 16px;
+            gap: 5px;
+        }
+
+        .nav-icon-mobile-active {
+            flex-shrink: 0;
+            display: inline-flex;
+            min-width: 0px;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            margin-right: auto;
+            color: rgb(23, 24, 33);
+        }
+
+        .sidebar-icon-css-uwwqev {
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-text-mobile-active {
+            flex: 1 1 auto;
+            min-width: 0px;
+            margin: 0px;
+            display: inline-block;
+            opacity: 1;
+            color: rgb(23, 24, 33);
+        }
+
+        .nav-text-mobile-active .MuiListItemText-primary {
+            font-size: 1rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .ripple-effect {
+            overflow: hidden;
+            pointer-events: none;
+            position: absolute;
+            z-index: 0;
+            inset: 0px;
+            border-radius: inherit;
+        }
+
+        .nav-link {
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            user-select: none;
+            vertical-align: middle;
+            appearance: none;
+            color: inherit;
+            display: flex;
+            -webkit-box-flex: 1;
+            flex-grow: 1;
+            position: relative;
+            min-width: 0px;
+            box-sizing: border-box;
+            text-align: left;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            opacity: 0.5;
+            background-color: rgb(23, 24, 33);
+            font: inherit;
+            outline: 0px;
+            border-width: 0px;
+            border-style: initial;
+            border-color: initial;
+            border-image: initial;
+            margin: 0px;
+            text-decoration: none;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 6px;
+            padding: 10px 16px;
+            gap: 5px;
+        }
+
+        .nav-icon-mobile {
+            flex-shrink: 0;
+            display: inline-flex;
+            min-width: 0px;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            margin-right: auto;
+            color: rgb(135, 136, 140);
+        }
+
+        .nav-text-mobile {
+            flex: 1 1 auto;
+            min-width: 0px;
+            margin: 0px;
+            color: rgb(135, 136, 140);
+            display: inline-block;
+            opacity: 1;
+        }
+
+        .nav-link .MuiTouchRipple-root {
+            color: rgb(160, 160, 160);
+        }
+
+        .nav-text-mobile .MuiListItemText-primary {
+            font-size: 1rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .simplebar-placeholder {
+            max-height: 100%;
+            max-width: 100%;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .simplebar-track.simplebar-horizontal {
+            left: 0;
+            height: 11px;
+        }
+
+        .simplebar-track {
+            z-index: 1;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .simplebar-track.simplebar-horizontal .simplebar-scrollbar {
+            right: auto;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            min-height: 0;
+            min-width: 10px;
+            width: auto;
+        }
+
+        .simplebar-scrollbar {
+            position: absolute;
+            left: 0;
+            right: 0;
+            min-height: 10px;
+        }
+
+        .simplebar-track.simplebar-vertical {
+            top: 0;
+            width: 11px;
+        }
+
+        .simplebar-track {
+            z-index: 1;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .simplebar-scrollbar {
+            position: absolute;
+            left: 0;
+            right: 0;
+            min-height: 10px;
+        }
+
+        .simplebar-track.simplebar-vertical .simplebar-scrollbar::before {
+            background-color: rgb(43, 43, 54);
+        }
+
+        .simplebar-scrollbar:before {
+            top: 2px;
+            bottom: 2px;
+            left: 2px;
+            right: 2px;
+        }
+
+        .simplebar-scrollbar:before {
+            position: absolute;
+            content: "";
+            background: #000;
+            border-radius: 7px;
+            left: 2px;
+            right: 2px;
+            opacity: 0;
+            transition: opacity .2s .5s linear;
+        }
+
+        .nav-link-bottom {
+            -webkit-tap-highlight-color: transparent;
+            cursor: pointer;
+            user-select: none;
+            vertical-align: middle;
+            appearance: none;
+            color: inherit;
+            display: flex;
+            -webkit-box-flex: 1;
+            flex-grow: 1;
+            position: relative;
+            min-width: 0px;
+            box-sizing: border-box;
+            text-align: left;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            opacity: 1;
+            background-color: rgb(23, 24, 33);
+            font: inherit;
+            outline: 0px;
+            border-width: 0px;
+            border-style: initial;
+            border-color: initial;
+            border-image: initial;
+            margin: 0px;
+            text-decoration: none;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 6px;
+            padding: 10px 16px;
+            gap: 5px;
+        }
+
+        .header-wide {
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            position: fixed;
+            z-index: 1100;
+            top: 0px;
+            right: 0px;
+            color: rgba(0, 0, 0, 0.87);
+            box-shadow: none;
+            background-color: rgb(23, 24, 33);
+            left: 0px;
+            margin-left: 240px;
+            width: calc(100% - 240px);
+            padding-right: 0px !important;
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+        }
+
+        .nav-item-active {
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: center;
+            align-items: center;
+            position: relative;
+            text-decoration: none;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            display: block;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-right: 3px solid rgb(169, 223, 216);
+        }
+
+        .nav-link-active {
+            -webkit-tap-highlight-color: transparent;
+            background-color: transparent;
+            cursor: pointer;
+            user-select: none;
+            vertical-align: middle;
+            appearance: none;
+            color: inherit;
+            display: flex;
+            -webkit-box-flex: 1;
+            flex-grow: 1;
+            position: relative;
+            min-width: 0px;
+            box-sizing: border-box;
+            text-align: left;
+            -webkit-box-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            align-items: center;
+            opacity: 1;
+            font: inherit;
+            outline: 0px;
+            border-width: 0px;
+            border-style: initial;
+            border-color: initial;
+            border-image: initial;
+            margin: 0px;
+            text-decoration: none;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 6px;
+            padding: 10px 16px;
+            gap: 5px;
+        }
+
+        .nav-icon-active {
+            flex-shrink: 0;
+            display: inline-flex;
+            min-width: 0px;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            margin-right: 0px;
+            color: rgb(169, 223, 216);
+        }
+
+        .nav-icon-active {
+            flex-shrink: 0;
+            display: inline-flex;
+            min-width: 0px;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            margin-right: 0px;
+            color: rgb(169, 223, 216);
+        }
+
+        .nav-text-active {
+            flex: 1 1 auto;
+            min-width: 0px;
+            margin: 0px;
+            display: none;
+            opacity: 0;
+            color: rgb(23, 24, 33);
+        }
+
+        .nav-item {
+            -webkit-box-pack: start;
+            justify-content: flex-start;
+            -webkit-box-align: center;
+            align-items: center;
+            position: relative;
+            text-decoration: none;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            display: block;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-right: 3px solid transparent;
+        }
+
+        .nav-icon {
+            flex-shrink: 0;
+            display: inline-flex;
+            min-width: 0px;
+            -webkit-box-pack: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            margin-right: 0px;
+            color: rgb(135, 136, 140);
+        }
+
+        .nav-text {
+            flex: 1 1 auto;
+            min-width: 0px;
+            margin: 0px;
+            color: rgb(135, 136, 140) !important;
+            display: none;
+            opacity: 0;
+        }
+
+        .main-content {
+            overflow: hidden;
+            width: 100%;
+            -webkit-box-flex: 1;
+            flex-grow: 1;
+            padding-top: 20px;
+            padding-bottom: 25px;
+        }
+
+        .content-wrapper {
+            margin: 0px;
+            color: rgb(135, 136, 140);
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: Inter, sans-serif;
+            line-height: 1.5;
+            background-color: rgb(23, 24, 33);
+        }
+
+        .main-header {
+            position: relative;
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            padding-left: 8px;
+            padding-right: 8px;
+            min-height: 56px;
+            height: 96px;
+        }
+
+        /* .content-grid {
+            display: grid;
+            gap: 14px;
+        }
+
+        .sales-card {
+            color: rgb(135, 136, 140);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(33, 34, 45);
+            height: 100%;
+            transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+        }
+
+        .sales-title {
+            margin: 0px 0px 5px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: Inter, sans-serif;
+            line-height: 1.235;
+            color: rgb(255, 255, 255);
+        }
+
+        .sales-subtitle {
+            margin: 0px 0px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: Inter, sans-serif;
+            line-height: 1.57;
+            color: rgb(160, 160, 160);
+        }
+        .sales-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+        }
+
+        @media (min-width: 0px) {
+            .sales-section {
+                grid-column: span 12;
+                order: 0;
+            }
+
+            .sales-item {
+                grid-column: span 12;
+            }
+
+            .sales-grid {
+                gap: 16px;
+            }
+
+            .footer {
+                -webkit-box-pack: center;
+                justify-content: center;
+                padding-right: 12px;
+                padding-left: 12px;
+            }
+
+            .footer-text {
+                text-align: center;
+            }
+        }
+
+         @media (min-width: 425px) {
+            .sales-item {
+                grid-column: span 12;
+            }
+            .sales-grid {
+                gap: 55px;
+            }
+         }
+
+        @media (min-width: 738px) {
+            .sales-item {
+                grid-column: span 6;
+            }
+            .sales-grid {
+                gap: 24px;
+            }
+            .header-content {
+                padding-left: 12px;
+                padding-right: 12px;
+                min-height: 64px;
+            }
+
+            .main-content {
+                padding-right: 20.7px;
+                padding-left: 21px;
+            }
+
+            .search-container {
+                display: flex;
+            }
+
+            .profile-button {
+                padding-left: 2.5px;
+                padding-right: 2.5px;
+            }
+
+            .sidebar {
+                display: block;
+            }
+
+            .main-header {
+                min-height: 64px;
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .sidebar {
+                display: block;
+            }
+
+            .sidebar-header {
+                padding-left: 12px;
+                padding-right: 12px;
+                min-height: 64px;
+            }
+
+            .mobile-drawer {
+                display: none;
+            }
+
+            .sales-card {
+                padding: 32px;
+            }
+
+            .footer {
+                -webkit-box-pack: end;
+                justify-content: flex-end;
+                padding-right: 20.7px;
+                padding-left: 21px;
+            }
+
+            .footer-text {
+                text-align: right;
+            }
+
+        }
+
+        @media (min-width: 1024px) {
+            .sales-item {
+                grid-column: span 3;
+            }
+        }
+         */
+         .content-grid {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    /* display: grid;
+    gap: 14px; */
+}
+
+.sales-section {
+    width: 100%;
+    grid-column: span 12;
+}
+
+.sales-card {
+    color: rgb(135, 136, 140);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 1px -1px, rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 1px 3px 0px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(33, 34, 45);
+    border-radius: 10px;
+    padding: 1.5rem 1.5rem 4rem;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sales-title {
+    margin: 0 0 5px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: Inter, sans-serif;
+    line-height: 1.235;
+    color: rgb(255, 255, 255);
+}
+
+.sales-subtitle {
+    margin: 0 0 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: Inter, sans-serif;
+    line-height: 1.57;
+    color: rgb(160, 160, 160);
+}
+
+.sales-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    padding: 0.5rem;
+}
+
+.sales-item {
+    /* background: #f8f9fa; */
+    border-radius: 6px;
+    /* padding: 1rem; */
+    transition: transform 0.2s ease;
+}
+
+.sales-item:hover {
+    transform: translateY(-2px);
+}
+
+.sales-item-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.sales-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.sales-value {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0;
+    color: #2c3e50;
+}
+
+.sales-label {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0.25rem 0;
+}
+
+.sales-change {
+    font-size: 0.85rem;
+    color: #27ae60;
+    margin: 0;
+}
+
+/* Large screens (desktops and above) */
+@media (max-width: 1200px) {
+    .sales-grid {
+        grid-template-columns: repeat(10, 1fr);
+        gap: 10px;
+        row-gap: 50px;
+    }
+    .sales-item {
+        grid-column: span 3;
+    }
+    .sales-card {
+        padding: 32px 32px 65px;
+    }
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 900px) {
+    .sales-grid {
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+    }
+    .sales-item {
+        grid-column: span 6;
+    }
+    .sales-title {
+        font-size: 1.35rem;
+    }
+    .sales-subtitle {
+        font-size: 0.95rem;
+    }
+    .sales-icon {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Small screens (mobile) */
+@media (max-width: 600px) {
+    .sales-grid {
+        grid-template-columns: repeat(12, 1fr);
+        gap: 16px;
+    }
+    .sales-item {
+        grid-column: span 12;
+    }
+    .sales-card {
+        padding: 1rem;
+    }
+    .sales-title {
+        font-size: 1.25rem;
+    }
+    .sales-subtitle {
+        font-size: 0.9rem;
+    }
+    .sales-icon {
+        width: 32px;
+        height: 32px;
+    }
+    .sales-value {
+        font-size: 1.1rem;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 425px) {
+    .sales-grid {
+        gap: 16px;
+    }
+    .sales-item {
+        grid-column: span 12;
+    }
+}
+        .mobile-drawer {
+            position: fixed;
+            inset: 0px;
+            visibility: hidden;
+            z-index: 1200;
+        }
+
+        .sales-item-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding: 8px;
+            border-radius: 16px;
+            height: 100%;
+            background-color: rgb(23, 24, 33);
+        }
+
+        .sales-icon {
+            width: 100%;
+            height: auto;
+        }
+
+        .sales-value {
+            margin: 0px 0px 16px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            font-family: Inter, sans-serif;
+            line-height: 1.235;
+            color: rgb(255, 255, 255);
+        }
+
+        .sales-label {
+            margin: 0px 0px 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: Inter, sans-serif;
+            line-height: 1.5;
+            color: rgb(232, 232, 232);
+        }
+
+        .sales-change {
+            margin: 0px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            font-family: Inter, sans-serif;
+            color: rgb(252, 184, 89);
+            line-height: 1.25;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: row;
+            margin-left: 110px;
+            padding-bottom: 25px;
+        }
+
+        .footer-text {
+            margin: 0px;
+            font-size: 1.25rem;
+            font-weight: 500;
+            font-family: Inter, sans-serif;
+            line-height: 1.75;
+        }
+
+        .footer-icon {
+            color: rgb(252, 0, 60);
+            vertical-align: middle;
+        }
+
+        .footer-link {
+            margin: 0px;
+            font: inherit;
+            text-decoration: none;
+            color: rgb(135, 136, 140);
+        }
+         .sidebar-nav.expanded .nav-link-active {
+    background-color: rgb(169, 223, 216);
+}
+.sidebar-nav.expanded .nav-icon-active {
+    color: rgb(23, 24, 33);
+}
+.sidebar-nav.expanded .nav-text-active {
+    color: rgb(23, 24, 33);
+}
+    </style>
+</head>
+
+<body>
+    <div id="" class="content-wrapper">
+        <div class="MuiBox-root container">
+            <header class="header">
+                <div class="header-content">
+                    <div class="header-left">
+                        <button class="menu-button" type="button" aria-label="open drawer">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="iconify iconify--ri MuiBox-root css-16qv2i2"
+                                width="1em" height="1em" viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                    d="M17 4H3v2h14zm-4 7H3v2h10zm4 7H3v2h14zm-1.01-9.186L17.404 7.4L22 11.996l-4.596 4.596l-1.414-1.414l3.182-3.182z">
+                                </path>
+                            </svg><span class="ripple-effect"></span>
+                            <!-- remove svg -->
+                        </button>
+                        <div class="search-container">
+                            <div class="search-input">
+                                <div class="search-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img"
+                                        class="iconify iconify--akar-icons MuiBox-root css-3hfva6" width="1em"
+                                        height="1em" viewBox="0 0 24 24">
+                                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                            d="m21 21l-4.486-4.494M19 10.5a8.5 8.5 0 1 1-17 0a8.5 8.5 0 0 1 17 0Z">
+                                        </path>
+                                    </svg>
+                                    <!-- remove svg -->
+                                </div><input aria-invalid="false" autocomplete="off" id=":r2:"
+                                    placeholder="Search here..." type="text" class="search-field" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <span class="notification-wrapper">
+                            <button class="notification-button" tabindex="0" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    aria-hidden="true" role="img"
+                                    class="iconify iconify--ph MuiBox-root notification-icon" width="1em" height="1em"
+                                    viewBox="0 0 256 256">
+                                    <path fill="currentColor"
+                                        d="M225.29 165.93C216.61 151 212 129.57 212 104a84 84 0 0 0-168 0c0 25.58-4.59 47-13.27 61.93a20.08 20.08 0 0 0-.07 20.07A19.77 19.77 0 0 0 48 196h36.18a44 44 0 0 0 87.64 0H208a19.77 19.77 0 0 0 17.31-10a20.08 20.08 0 0 0-.02-20.07M128 212a20 20 0 0 1-19.6-16h39.2a20 20 0 0 1-19.6 16m-73.34-40C63.51 154 68 131.14 68 104a60 60 0 0 1 120 0c0 27.13 4.48 50 13.33 68Z">
+                                    </path>
+                                </svg>
+                                <!-- remove svg -->
+                                <span class="ripple-effect"></span>
+                            </button>
+                            <span class="MuiBadge-badge notification-badge"></span>
+                        </span>
+                        <button class="profile-button" tabindex="0" type="button" id="account-dropdown-menu"
+                            aria-haspopup="true">
+                            <div class="profile-avatar" aria-label="Nickelfox">
+                                <img src="" class="MuiAvatar-img avatar-image">
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                aria-hidden="true" role="img" class="dropdown-icon" width="1em" height="1em"
+                                viewBox="0 0 24 24">
+                                <g fill="none" fill-rule="evenodd">
+                                    <path
+                                        d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                    </path>
+                                    <path fill="currentColor"
+                                        d="M13.06 16.06a1.5 1.5 0 0 1-2.12 0l-5.658-5.656a1.5 1.5 0 1 1 2.122-2.121L12 12.879l4.596-4.596a1.5 1.5 0 0 1 2.122 2.12l-5.657 5.658Z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <div class="sidebar">
+                <div class="MuiDrawer-paper sidebar-content">
+                    <div class="sidebar-header"><a class="logo-link" href="#"><img class="logo-image" src="/LOGO.png"
+                                alt="logo"></a></div>
+                    <div data-simplebar="init" class="" style="max-height: 100vh;">
+                        <div class="simplebar-wrapper" style="margin: 0px;">
+                            <div class="simplebar-height-auto-observer-wrapper">
+                                <div class="simplebar-height-auto-observer"></div>
+                            </div>
+                        </div>
+                        <div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" tabindex="0" role="region"
+                                    aria-label="scrollable content" style="height: auto; overflow: hidden scroll;">
+                                    <div class="simplebar-content" style="padding: 0px;">
+                                        <nav class="sidebar-nav">
+                                            <li class="nav-item-active">
+                                                <a class="nav-link-active" tabindex="0" href="#">
+                                                    <div class="nav-icon-active"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--mingcute MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 24 24">
+                                                            <g fill="none" fill-rule="evenodd">
+                                                                <path
+                                                                    d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                                                </path>
+                                                                <path fill="currentColor"
+                                                                    d="M10.8 2.65a2 2 0 0 1 2.4 0l7 5.25a2 2 0 0 1 .8 1.6V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5a2 2 0 0 1 .8-1.6z">
+                                                                </path>
+                                                            </g>
+                                                        </svg></div>
+                                                    <div class="nav-text-active"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Dashboard</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--clarity MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 36 36">
+                                                            <path fill="currentColor"
+                                                                d="M18 17a7 7 0 1 0-7-7a7 7 0 0 0 7 7m0-12a5 5 0 1 1-5 5a5 5 0 0 1 5-5"
+                                                                class="clr-i-outline clr-i-outline-path-1"></path>
+                                                            <path fill="currentColor"
+                                                                d="M30.47 24.37a17.16 17.16 0 0 0-24.93 0A2 2 0 0 0 5 25.74V31a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2v-5.26a2 2 0 0 0-.53-1.37M29 31H7v-5.27a15.17 15.17 0 0 1 22 0Z"
+                                                                class="clr-i-outline clr-i-outline-path-2"></path>
+                                                            <path fill="none" d="M0 0h36v36H0z"></path>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Profile</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--material-symbols-light MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 24 24">
+                                                            <path fill="currentColor"
+                                                                d="M4 19h4.673v-8H4zm5.673 0h4.654V5H9.673zm5.654 0H20v-6h-4.673zM3 20V10h5.673V4h6.654v8H21v8z">
+                                                            </path>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Leaderboard</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--ant-design MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 1024 1024">
+                                                            <path fill="currentColor"
+                                                                d="M922.9 701.9H327.4l29.9-60.9l496.8-.9c16.8 0 31.2-12 34.2-28.6l68.8-385.1c1.8-10.1-.9-20.5-7.5-28.4a34.99 34.99 0 0 0-26.6-12.5l-632-2.1l-5.4-25.4c-3.4-16.2-18-28-34.6-28H96.5a35.3 35.3 0 1 0 0 70.6h125.9L246 312.8l58.1 281.3l-74.8 122.1a34.96 34.96 0 0 0-3 36.8c6 11.9 18.1 19.4 31.5 19.4h62.8a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7h161.1a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7H923c19.4 0 35.3-15.8 35.3-35.3a35.42 35.42 0 0 0-35.4-35.2M305.7 253l575.8 1.9l-56.4 315.8l-452.3.8zm96.9 612.7c-17.4 0-31.6-14.2-31.6-31.6s14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6m325.1 0c-17.4 0-31.6-14.2-31.6-31.6s14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6">
+                                                            </path>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Order</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--lets-icons MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 24 24">
+                                                            <g fill="none" stroke="currentColor">
+                                                                <path stroke-linecap="round"
+                                                                    d="M8 12V8a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4"></path>
+                                                                <path
+                                                                    d="M3.694 12.668c.145-1.741.218-2.611.792-3.14S5.934 9 7.681 9h8.639c1.746 0 2.62 0 3.194.528s.647 1.399.792 3.14l.514 6.166c.084 1.013.126 1.52-.17 1.843c-.298.323-.806.323-1.824.323H5.174c-1.017 0-1.526 0-1.823-.323s-.255-.83-.17-1.843z">
+                                                                </path>
+                                                            </g>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Product</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--lucide MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 24 24">
+                                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2">
+                                                                <path d="M3 3v18h18"></path>
+                                                                <path d="m19 9l-5 5l-4-4l-3 3"></path>
+                                                            </g>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Sales
+                                                            Report</span></div><span
+                                                        class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--bi MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 16 16">
+                                                            <path fill="currentColor"
+                                                                d="M2.678 11.894a1 1 0 0 1 .287.801a11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6s-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7s-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105">
+                                                            </path>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Message</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--mingcute MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 24 24">
+                                                            <g fill="none" fill-rule="evenodd">
+                                                                <path
+                                                                    d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                                                </path>
+                                                                <path fill="currentColor"
+                                                                    d="M14.035 2.809c.37-.266.89-.39 1.401-.203a10 10 0 0 1 2.982 1.725c.417.35.57.861.524 1.313c-.075.753.057 1.48.42 2.106c.32.557.802.997 1.39 1.307l.225.11c.414.187.782.576.875 1.113a10 10 0 0 1 0 3.44c-.083.484-.39.847-.753 1.051l-.122.063c-.69.31-1.254.79-1.616 1.416c-.362.627-.494 1.353-.419 2.106c.045.452-.107.964-.524 1.313a10 10 0 0 1-2.982 1.725a1.51 1.51 0 0 1-1.4-.203C13.42 20.75 12.723 20.5 12 20.5s-1.42.249-2.035.691a1.51 1.51 0 0 1-1.401.203a10 10 0 0 1-2.982-1.725a1.51 1.51 0 0 1-.524-1.313c.075-.753-.058-1.48-.42-2.106a3.4 3.4 0 0 0-1.39-1.307l-.225-.11a1.51 1.51 0 0 1-.875-1.113a10 10 0 0 1 0-3.44c.083-.484.39-.847.753-1.051l.122-.062c.69-.311 1.254-.79 1.616-1.417c.361-.626.494-1.353.419-2.106a1.51 1.51 0 0 1 .524-1.313a10 10 0 0 1 2.982-1.725a1.51 1.51 0 0 1 1.4.203c.615.442 1.312.691 2.036.691s1.42-.249 2.035-.691m.957 1.769c-.866.57-1.887.922-2.992.922s-2.126-.353-2.992-.922A8 8 0 0 0 7.068 5.7c.06 1.033-.145 2.093-.697 3.05c-.553.956-1.368 1.663-2.293 2.128a8 8 0 0 0 0 2.242c.925.465 1.74 1.172 2.293 2.13c.552.955.757 2.015.697 3.048a8 8 0 0 0 1.94 1.123c.866-.57 1.887-.922 2.992-.922s2.126.353 2.992.922a8 8 0 0 0 1.94-1.122c-.06-1.034.145-2.094.697-3.05c.552-.957 1.368-1.664 2.293-2.13a8 8 0 0 0 0-2.24c-.925-.466-1.74-1.173-2.293-2.13c-.552-.956-.757-2.016-.697-3.05a8 8 0 0 0-1.94-1.122ZM12 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8m0 2a2 2 0 1 0 0 4a2 2 0 0 0 0-4">
+                                                                </path>
+                                                            </g>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Settings</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--clarity MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 36 36">
+                                                            <path fill="currentColor"
+                                                                d="M27.19 34a2.2 2.2 0 0 1-1.24-.38l-7.46-5a.22.22 0 0 0-.25 0l-7.46 5a2.22 2.22 0 0 1-3.38-2.41l2.45-8.64a.23.23 0 0 0-.08-.24l-7.06-5.55a2.22 2.22 0 0 1 1.29-4l9-.34a.23.23 0 0 0 .2-.15l3.1-8.43a2.22 2.22 0 0 1 4.17 0l3.1 8.43a.23.23 0 0 0 .2.15l9 .34a2.22 2.22 0 0 1 1.29 4L27 22.33a.22.22 0 0 0-.08.24l2.45 8.64A2.23 2.23 0 0 1 27.19 34m-8.82-7.42a2.2 2.2 0 0 1 1.23.42l7.46 5a.22.22 0 0 0 .34-.25l-2.45-8.64a2.21 2.21 0 0 1 .77-2.35l7.06-5.55a.22.22 0 0 0-.13-.4l-9-.34a2.22 2.22 0 0 1-2-1.46l-3.1-8.43a.22.22 0 0 0-.42 0L15.06 13a2.22 2.22 0 0 1-2 1.46l-9 .34a.22.22 0 0 0-.13.4L11 20.76a2.22 2.22 0 0 1 .77 2.35l-2.44 8.64a.21.21 0 0 0 .08.24a.2.2 0 0 0 .26 0l7.46-5a2.2 2.2 0 0 1 1.23-.37Z"
+                                                                class="clr-i-outline clr-i-outline-path-1"></path>
+                                                            <path fill="none" d="M0 0h36v36H0z"></path>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Favourite</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link" tabindex="0" href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--ic MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 24 24">
+                                                            <path fill="currentColor"
+                                                                d="M13.26 3C8.17 2.86 4 6.95 4 12H2.21c-.45 0-.67.54-.35.85l2.79 2.8c.2.2.51.2.71 0l2.79-2.8a.5.5 0 0 0-.36-.85H6c0-3.9 3.18-7.05 7.1-7c3.72.05 6.85 3.18 6.9 6.9c.05 3.91-3.1 7.1-7 7.1c-1.61 0-3.1-.55-4.28-1.48a.994.994 0 0 0-1.32.08c-.42.42-.39 1.13.08 1.49A8.86 8.86 0 0 0 13 21c5.05 0 9.14-4.17 9-9.26c-.13-4.69-4.05-8.61-8.74-8.74m-.51 5c-.41 0-.75.34-.75.75v3.68c0 .35.19.68.49.86l3.12 1.85c.36.21.82.09 1.03-.26c.21-.36.09-.82-.26-1.03l-2.88-1.71v-3.4c0-.4-.34-.74-.75-.74">
+                                                            </path>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">History</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link-bottom" tabindex="0"
+                                                    href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--tabler MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 24 24">
+                                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                                stroke-linejoin="round" stroke-width="2">
+                                                                <path
+                                                                    d="M15 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2">
+                                                                </path>
+                                                                <path d="M21 12H8l3-3m0 6l-3-3"></path>
+                                                            </g>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Login</span>
+                                                    </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                            <li class="nav-item"><a class="nav-link-bottom" tabindex="0"
+                                                    href="#">
+                                                    <div class="nav-icon"><svg xmlns="http://www.w3.org/2000/svg"
+                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            aria-hidden="true" role="img"
+                                                            class="iconify iconify--tdesign MuiBox-root sidebar-icon-css-uwwqev"
+                                                            width="1em" height="1em" viewBox="0 0 24 24">
+                                                            <path fill="currentColor"
+                                                                d="M11.5 4a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7M6 7.5a5.5 5.5 0 1 1 11 0a5.5 5.5 0 0 1-11 0M19 13v4h4v2h-4v4h-2v-4h-4v-2h4v-4zM8 16a4 4 0 0 0-4 4h8.05v2H2v-2a6 6 0 0 1 6-6h4v2z">
+                                                            </path>
+                                                        </svg></div>
+                                                    <div class="nav-text"><span
+                                                            class="MuiListItemText-primary css-1wahzy7">Sign
+                                                            Up</span></div><span
+                                                        class="MuiTouchRipple-root ripple-effect"></span>
+                                                </a></li>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="simplebar-placeholder" style="width: 239px; height: 822px;"></div>
+                    </div>
+                    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                        <div class="simplebar-scrollbar"
+                            style="width: 0px; display: none; transform: translate3d(0px, 0px, 0px);"></div>
+                    </div>
+                    <div class="simplebar-track simplebar-vertical" style="visibility: visible;">
+                        <div class="simplebar-scrollbar"
+                            style="height: 57px; transform: translate3d(0px, 26px, 0px); display: block;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <main class="main-content">
+                <div class="main-header"></div>
+                <div class="content-grid">
+                    <div class="sales-section">
+                        <div class="sales-card">
+                            <h4 class="sales-title">Today’s Sales</h4>
+                            <h6 class="sales-subtitle">Sales Summary</h6>
+                            <div class="sales-grid">
+                                <div class="sales-item">
+                                    <div class="sales-item-content"><img class="sales-icon w-75" src="" alt="Total Sales">
+                                        <div class="MuiBox-root css-0">
+                                            <h4 class="sales-value">$5k</h4>
+                                            <p class="sales-label">Total
+                                                Sales</p>
+                                            <p class="sales-change">+10% from
+                                                yesterday</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sales-item">
+                                    <div class="sales-item-content"><img class="sales-icon w-75" src="" alt="Total Order">
+                                        <div class="MuiBox-root css-0">
+                                            <h4 class="sales-value">500</h4>
+                                            <p class="sales-label">Total
+                                                Order</p>
+                                            <p class="sales-change">+8% from
+                                                yesterday</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sales-item">
+                                    <div class="sales-item-content"><img class="sales-icon w-75" src="" alt="Product Sold">
+                                        <div class="MuiBox-root css-0">
+                                            <h4 class="sales-value">9</h4>
+                                            <p class="sales-label">Product
+                                                Sold</p>
+                                            <p class="sales-change">+2% from
+                                                yesterday</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="sales-item">
+                                    <div class="sales-item-content"><img class="sales-icon w-75" src="" alt="New Customer">
+                                        <div class="MuiBox-root css-0">
+                                            <h4 class="sales-value">12</h4>
+                                            <p class="sales-label">New
+                                                Customer</p>
+                                            <p class="sales-change">+3% from
+                                                yesterday</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+        <footer class="footer">
+            <h6 class="footer-text">Made with <span class="MuiBox-root footer-icon">❤</span> by <a class="footer-link"
+                    href="" rel="noopener" aria-label="Explore ThemeWagon Website"
+                    target="_blank">ThemeWagon</a></h6>
+        </footer>
+    </div>
+    </div>
+
+    <div role="presentation" class="MuiDrawer-root MuiDrawer-modal MuiModal-root MuiModal-hidden mobile-drawer"
+        aria-hidden="true">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop mobile-sidebar"
+            style="opacity: 0; transition: opacity 195ms cubic-bezier(0.4, 0, 0.2, 1); visibility: hidden;"></div>
+        <div tabindex="-1" data-testid="sentinelStart"></div>
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorLeft mobile-sidebar-content"
+            tabindex="-1" style="transform: translateX(0px); visibility: hidden;">
+            <div class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular mobile-sidebar-header"><a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineNone logo-link"
+                    href="#"><img class="MuiBox-root logo-image" src="#" alt="logo with text"></a>
+            </div>
+            <div data-simplebar="init" style="max-height: 100vh;">
+                <div class="simplebar-wrapper" style="margin: 0px;">
+                    <div class="simplebar-height-auto-observer-wrapper">
+                        <div class="simplebar-height-auto-observer"></div>
+                    </div>
+                    <div class="simplebar-mask">
+                        <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                            <div class="simplebar-content-wrapper" tabindex="0" role="region"
+                                aria-label="scrollable content" style="height: auto; overflow: hidden;">
+                                <div class="simplebar-content" style="padding: 0px;">
+
+                                    <nav class="sidebar-nav">
+                                        <li class="nav-item-mobile">
+                                            <a class="nav-link-mobile-active" tabindex="0" href="#">
+                                                <div class="nav-icon-mobile-active">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--mingcute MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <path
+                                                                d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                                            </path>
+                                                            <path fill="currentColor"
+                                                                d="M10.8 2.65a2 2 0 0 1 2.4 0l7 5.25a2 2 0 0 1 .8 1.6V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.5a2 2 0 0 1 .8-1.6z">
+                                                            </path>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <div class="nav-text-mobile-active"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Dashboard</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--clarity MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 36 36">
+                                                        <path fill="currentColor"
+                                                            d="M18 17a7 7 0 1 0-7-7a7 7 0 0 0 7 7m0-12a5 5 0 1 1-5 5a5 5 0 0 1 5-5"
+                                                            class="clr-i-outline clr-i-outline-path-1"></path>
+                                                        <path fill="currentColor"
+                                                            d="M30.47 24.37a17.16 17.16 0 0 0-24.93 0A2 2 0 0 0 5 25.74V31a2 2 0 0 0 2 2h22a2 2 0 0 0 2-2v-5.26a2 2 0 0 0-.53-1.37M29 31H7v-5.27a15.17 15.17 0 0 1 22 0Z"
+                                                            class="clr-i-outline clr-i-outline-path-2"></path>
+                                                        <path fill="none" d="M0 0h36v36H0z"></path>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Profile</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--material-symbols-light MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M4 19h4.673v-8H4zm5.673 0h4.654V5H9.673zm5.654 0H20v-6h-4.673zM3 20V10h5.673V4h6.654v8H21v8z">
+                                                        </path>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Leaderboard</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--ant-design MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 1024 1024">
+                                                        <path fill="currentColor"
+                                                            d="M922.9 701.9H327.4l29.9-60.9l496.8-.9c16.8 0 31.2-12 34.2-28.6l68.8-385.1c1.8-10.1-.9-20.5-7.5-28.4a34.99 34.99 0 0 0-26.6-12.5l-632-2.1l-5.4-25.4c-3.4-16.2-18-28-34.6-28H96.5a35.3 35.3 0 1 0 0 70.6h125.9L246 312.8l58.1 281.3l-74.8 122.1a34.96 34.96 0 0 0-3 36.8c6 11.9 18.1 19.4 31.5 19.4h62.8a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7h161.1a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7H923c19.4 0 35.3-15.8 35.3-35.3a35.42 35.42 0 0 0-35.4-35.2M305.7 253l575.8 1.9l-56.4 315.8l-452.3.8zm96.9 612.7c-17.4 0-31.6-14.2-31.6-31.6s14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6m325.1 0c-17.4 0-31.6-14.2-31.6-31.6s14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6">
+                                                        </path>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Order</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--lets-icons MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                                        <g fill="none" stroke="currentColor">
+                                                            <path stroke-linecap="round"
+                                                                d="M8 12V8a4 4 0 0 1 4-4v0a4 4 0 0 1 4 4v4"></path>
+                                                            <path
+                                                                d="M3.694 12.668c.145-1.741.218-2.611.792-3.14S5.934 9 7.681 9h8.639c1.746 0 2.62 0 3.194.528s.647 1.399.792 3.14l.514 6.166c.084 1.013.126 1.52-.17 1.843c-.298.323-.806.323-1.824.323H5.174c-1.017 0-1.526 0-1.823-.323s-.255-.83-.17-1.843z">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Product</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--lucide MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2">
+                                                            <path d="M3 3v18h18"></path>
+                                                            <path d="m19 9l-5 5l-4-4l-3 3"></path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Sales
+                                                        Report</span></div><span
+                                                    class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--bi MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 16 16">
+                                                        <path fill="currentColor"
+                                                            d="M2.678 11.894a1 1 0 0 1 .287.801a11 11 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8 8 0 0 0 8 14c3.996 0 7-2.807 7-6s-3.004-6-7-6s-7 2.808-7 6c0 1.468.617 2.83 1.678 3.894m-.493 3.905a22 22 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a10 10 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7s-3.582 7-8 7a9 9 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105">
+                                                        </path>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Message</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--mingcute MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                                        <g fill="none" fill-rule="evenodd">
+                                                            <path
+                                                                d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z">
+                                                            </path>
+                                                            <path fill="currentColor"
+                                                                d="M14.035 2.809c.37-.266.89-.39 1.401-.203a10 10 0 0 1 2.982 1.725c.417.35.57.861.524 1.313c-.075.753.057 1.48.42 2.106c.32.557.802.997 1.39 1.307l.225.11c.414.187.782.576.875 1.113a10 10 0 0 1 0 3.44c-.083.484-.39.847-.753 1.051l-.122.063c-.69.31-1.254.79-1.616 1.416c-.362.627-.494 1.353-.419 2.106c.045.452-.107.964-.524 1.313a10 10 0 0 1-2.982 1.725a1.51 1.51 0 0 1-1.4-.203C13.42 20.75 12.723 20.5 12 20.5s-1.42.249-2.035.691a1.51 1.51 0 0 1-1.401.203a10 10 0 0 1-2.982-1.725a1.51 1.51 0 0 1-.524-1.313c.075-.753-.058-1.48-.42-2.106a3.4 3.4 0 0 0-1.39-1.307l-.225-.11a1.51 1.51 0 0 1-.875-1.113a10 10 0 0 1 0-3.44c.083-.484.39-.847.753-1.051l.122-.062c.69-.311 1.254-.79 1.616-1.417c.361-.626.494-1.353.419-2.106a1.51 1.51 0 0 1 .524-1.313a10 10 0 0 1 2.982-1.725a1.51 1.51 0 0 1 1.4.203c.615.442 1.312.691 2.036.691s1.42-.249 2.035-.691m.957 1.769c-.866.57-1.887.922-2.992.922s-2.126-.353-2.992-.922A8 8 0 0 0 7.068 5.7c.06 1.033-.145 2.093-.697 3.05c-.553.956-1.368 1.663-2.293 2.128a8 8 0 0 0 0 2.242c.925.465 1.74 1.172 2.293 2.13c.552.955.757 2.015.697 3.048a8 8 0 0 0 1.94 1.123c.866-.57 1.887-.922 2.992-.922s2.126.353 2.992.922a8 8 0 0 0 1.94-1.122c-.06-1.034.145-2.094.697-3.05c.552-.957 1.368-1.664 2.293-2.13a8 8 0 0 0 0-2.24c-.925-.466-1.74-1.173-2.293-2.13c-.552-.956-.757-2.016-.697-3.05a8 8 0 0 0-1.94-1.122ZM12 8a4 4 0 1 1 0 8a4 4 0 0 1 0-8m0 2a2 2 0 1 0 0 4a2 2 0 0 0 0-4">
+                                                            </path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Settings</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--clarity MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 36 36">
+                                                        <path fill="currentColor"
+                                                            d="M27.19 34a2.2 2.2 0 0 1-1.24-.38l-7.46-5a.22.22 0 0 0-.25 0l-7.46 5a2.22 2.22 0 0 1-3.38-2.41l2.45-8.64a.23.23 0 0 0-.08-.24l-7.06-5.55a2.22 2.22 0 0 1 1.29-4l9-.34a.23.23 0 0 0 .2-.15l3.1-8.43a2.22 2.22 0 0 1 4.17 0l3.1 8.43a.23.23 0 0 0 .2.15l9 .34a2.22 2.22 0 0 1 1.29 4L27 22.33a.22.22 0 0 0-.08.24l2.45 8.64A2.23 2.23 0 0 1 27.19 34m-8.82-7.42a2.2 2.2 0 0 1 1.23.42l7.46 5a.22.22 0 0 0 .34-.25l-2.45-8.64a2.21 2.21 0 0 1 .77-2.35l7.06-5.55a.22.22 0 0 0-.13-.4l-9-.34a2.22 2.22 0 0 1-2-1.46l-3.1-8.43a.22.22 0 0 0-.42 0L15.06 13a2.22 2.22 0 0 1-2 1.46l-9 .34a.22.22 0 0 0-.13.4L11 20.76a2.22 2.22 0 0 1 .77 2.35l-2.44 8.64a.21.21 0 0 0 .08.24a.2.2 0 0 0 .26 0l7.46-5a2.2 2.2 0 0 1 1.23-.37Z"
+                                                            class="clr-i-outline clr-i-outline-path-1"></path>
+                                                        <path fill="none" d="M0 0h36v36H0z"></path>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Favourite</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--ic MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M13.26 3C8.17 2.86 4 6.95 4 12H2.21c-.45 0-.67.54-.35.85l2.79 2.8c.2.2.51.2.71 0l2.79-2.8a.5.5 0 0 0-.36-.85H6c0-3.9 3.18-7.05 7.1-7c3.72.05 6.85 3.18 6.9 6.9c.05 3.91-3.1 7.1-7 7.1c-1.61 0-3.1-.55-4.28-1.48a.994.994 0 0 0-1.32.08c-.42.42-.39 1.13.08 1.49A8.86 8.86 0 0 0 13 21c5.05 0 9.14-4.17 9-9.26c-.13-4.69-4.05-8.61-8.74-8.74m-.51 5c-.41 0-.75.34-.75.75v3.68c0 .35.19.68.49.86l3.12 1.85c.36.21.82.09 1.03-.26c.21-.36.09-.82-.26-1.03l-2.88-1.71v-3.4c0-.4-.34-.74-.75-.74">
+                                                        </path>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">History</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link-bottom" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--tabler MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                            stroke-linejoin="round" stroke-width="2">
+                                                            <path
+                                                                d="M15 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-2">
+                                                            </path>
+                                                            <path d="M21 12H8l3-3m0 6l-3-3"></path>
+                                                        </g>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Login</span>
+                                                </div><span class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                        <li class="nav-item-mobile"><a class="nav-link-bottom" tabindex="0"
+                                                href="#">
+                                                <div class="nav-icon-mobile"><svg xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+                                                        role="img"
+                                                        class="iconify iconify--tdesign MuiBox-root sidebar-icon-css-uwwqev"
+                                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                                        <path fill="currentColor"
+                                                            d="M11.5 4a3.5 3.5 0 1 0 0 7a3.5 3.5 0 0 0 0-7M6 7.5a5.5 5.5 0 1 1 11 0a5.5 5.5 0 0 1-11 0M19 13v4h4v2h-4v4h-2v-4h-4v-2h4v-4zM8 16a4 4 0 0 0-4 4h8.05v2H2v-2a6 6 0 0 1 6-6h4v2z">
+                                                        </path>
+                                                    </svg></div>
+                                                <div class="MuiListItemText-root nav-text-mobile"><span
+                                                        class="MuiListItemText-primary css-1wahzy7">Sign
+                                                        Up</span></div><span
+                                                    class="MuiTouchRipple-root ripple-effect"></span>
+                                            </a></li>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="simplebar-placeholder" style="width: 0px; height: 0px;"></div>
+                </div>
+                <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+                    <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+                </div>
+                <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
+                    <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>
+                </div>
+            </div>
+        </div>
+        <div tabindex="-1" data-testid="sentinelEnd"></div>
+    </div>
+
+
+    <!-- Bootstrap-5 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Custom JS Script -->
+   <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const sidebar = document.querySelector('.sidebar');
+    const header = document.querySelector('.header');
+    const footer = document.querySelector('.footer');
+    const menuButton = document.querySelector('.menu-button');
+    const sidebarNav = document.querySelector('.sidebar-nav');
+    const navTextElements = document.querySelectorAll('.nav-text, .nav-text-active');
+    const menuIcon = menuButton.querySelector('svg');
+    const navLinks = document.querySelectorAll('.nav-link, .nav-link-active');
+    const navItems = document.querySelectorAll('.nav-item, .nav-item-active');
+
+    let isSidebarExpanded = false;
+
+    // Handle sidebar toggle
+    menuButton.addEventListener('click', () => {
+        isSidebarExpanded = !isSidebarExpanded;
+        
+        if (isSidebarExpanded) {
+            sidebar.style.width = '240px';
+            sidebar.querySelector('.MuiDrawer-paper').style.width = '240px';
+            sidebar.querySelector('.sidebar-header').style.width = '239px';
+            header.classList.remove('header');
+            header.classList.add('header-wide');
+            footer.style.marginLeft = '240px';
+            sidebarNav.classList.add('expanded');
+            navTextElements.forEach(el => {
+                el.style.display = 'inline-block';
+                el.style.opacity = '1';
+            });
+            menuIcon.innerHTML = `
+                <path fill="currentColor" d="M17 4H3v2h14zm-4 7H3v2h10zm4 7H3v2h14zm5.01-9.186L20.596 7.4L16 11.996l4.596 4.596l1.414-1.414l-3.182-3.182z"></path>
+            `;
+            // Update active link background in expanded state
+            const activeLink = document.querySelector('.nav-link-active');
+            if (activeLink) {
+                activeLink.style.backgroundColor = 'rgb(169, 223, 216)';
+                const activeIcon = activeLink.querySelector('.nav-icon-active');
+                const activeText = activeLink.querySelector('.nav-text-active');
+                if (activeIcon) activeIcon.style.color = 'rgb(23, 24, 33)';
+                if (activeText) activeText.style.color = 'rgb(23, 24, 33)';
+            }
+        } else {
+            sidebar.style.width = '110px';
+            sidebar.querySelector('.MuiDrawer-paper').style.width = '110px';
+            sidebar.querySelector('.sidebar-header').style.width = '109px';
+            header.classList.remove('header-wide');
+            header.classList.add('header');
+            footer.style.marginLeft = '110px';
+            sidebarNav.classList.remove('expanded');
+            navTextElements.forEach(el => {
+                el.style.display = 'none';
+                el.style.opacity = '0';
+            });
+            menuIcon.innerHTML = `
+                <path fill="currentColor" d="M17 4H3v2h14zm-4 7H3v2h10zm4 7H3v2h14zm-1.01-9.186L17.404 7.4L22 11.996l-4.596 4.596l-1.414-1.414l3.182-3.182z"/>
+            `;
+            // Reset all link backgrounds in collapsed state
+            navLinks.forEach(link => {
+                link.style.backgroundColor = 'transparent';
+                const icon = link.querySelector('.nav-icon, .nav-icon-active');
+                const text = link.querySelector('.nav-text, .nav-text-active');
+                if (icon) icon.style.color = link.classList.contains('nav-link-active') ? 'rgb(169, 223, 216)' : 'rgb(135, 136, 140)';
+                if (text) text.style.color = 'rgb(23, 24, 33)';
+            });
+        }
+    });
+
+    // Handle dynamic active state for navigation links
+    navLinks.forEach((link, index) => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            // Reset all nav items and links
+            navItems.forEach(item => {
+                item.classList.remove('nav-item-active');
+                item.classList.add('nav-item');
+            });
+            navLinks.forEach(l => {
+                l.classList.remove('nav-link-active');
+                l.classList.add('nav-link');
+                l.style.backgroundColor = 'transparent'; // Reset background
+                const icon = l.querySelector('.nav-icon-active, .nav-icon');
+                const text = l.querySelector('.nav-text-active, .nav-text');
+                if (icon) {
+                    icon.classList.remove('nav-icon-active');
+                    icon.classList.add('nav-icon');
+                    icon.style.color = 'rgb(135, 136, 140)';
+                }
+                if (text) {
+                    text.classList.remove('nav-text-active');
+                    text.classList.add('nav-text');
+                    text.style.color = 'rgb(23, 24, 33)';
+                }
+            });
+
+            // Set active state for clicked link
+            const parentItem = navItems[index];
+            parentItem.classList.remove('nav-item');
+            parentItem.classList.add('nav-item-active');
+            link.classList.remove('nav-link');
+            link.classList.add('nav-link-active');
+
+            // Update icon and text classes
+            const icon = link.querySelector('.nav-icon');
+            if (icon) {
+                icon.classList.remove('nav-icon');
+                icon.classList.add('nav-icon-active');
+            }
+            const text = link.querySelector('.nav-text');
+            if (text) {
+                text.classList.remove('nav-text');
+                text.classList.add('nav-text-active');
+            }
+
+            // Apply styles based on sidebar state
+            if (isSidebarExpanded) {
+                link.style.backgroundColor = 'rgb(169, 223, 216)';
+                if (icon) icon.style.color = 'rgb(23, 24, 33)';
+                if (text) text.style.color = 'rgb(23, 24, 33)';
+            } else {
+                link.style.backgroundColor = 'transparent';
+                if (icon) icon.style.color = 'rgb(169, 223, 216)';
+                if (text) text.style.color = 'rgb(23, 24, 33)';
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>

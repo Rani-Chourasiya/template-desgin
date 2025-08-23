@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+    body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+/** Login 35 start **/
+.login-35 {
+    background: url(./image/img-35.jpg) top left repeat;
+    background-size: cover;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    bottom: 0;
+    opacity: 1;
+    z-index: 9;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+
+.login-35:before {
+    content: "";
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+    background: #fff;
+    z-index: -99;
+}
+
+.login-35 .form-section {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 70px 50px;
+    border-radius: 5px;
+    z-index: 999;
+    box-shadow: 0 0 5px rgb(0 0 0 / 20%);
+    background-image: linear-gradient(to bottom, #61daff, #656bff);
+}
+
+.login-35 #particles-js {
+    background-size: cover;
+    background-position: 50% 50%;
+    position: fixed;
+    min-height: 100vh;
+    width: 100%;
+    z-index: -999;
+}
+
+.login-35 .form-section p{
+    color: #fff;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.login-35 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Jost', sans-serif;
+}
+
+.login-35 .form-section a {
+    text-decoration: none;
+}
+
+.login-35 .form-section p a{
+    color: #fff;
+}
+
+.login-35 .form-section .extra-login {
+    float: left;
+    width: 100%;
+    margin: 25px 0 25px;
+    text-align: center;
+    position: relative;
+}
+
+.login-35 .form-section .extra-login::before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    height: 1px;
+    background: #d8dcdc40;
+    content: "";
+}
+
+.login-35 .form-section .extra-login > span {
+    width: auto;
+    float: none;
+    display: inline-block;
+    background: #648cff;
+    padding: 1px 20px;
+    z-index: 1;
+    position: relative;
+    font-size: 15px;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.login-35 .form-section ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.login-35 .logo-2 img{
+    margin-bottom: 20px;
+    height: 30px;
+}
+
+.login-35 .form-section .social-list li {
+    display: inline-block!important;
+    margin-bottom: 5px;
+}
+
+.login-35 .form-section .social-list li a {
+    font-size: 14px;
+    font-weight: 400;
+    width: 130px;
+    margin: 2px 0 3px 0;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: #fff;
+    font-family: 'Jost', sans-serif;
+}
+
+.login-35 .form-section .social-list li a i{
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    float: left;
+    color: #fff;
+    border-radius: 20px;
+}
+
+.login-35 .form-section .social-list li a span{
+    margin-right: 7px;
+}
+
+.login-35 .form-section .thembo{
+    margin-left: 4px;
+}
+
+.login-35 .form-section h3 {
+    margin: 0 0 30px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.login-35 .main-title .words-wrapper b {
+    display: inline-block;
+    position: absolute;
+    white-space: nowrap;
+    left: 0;
+    top: 0;
+}
+
+.login-35 .main-title .words-wrapper b.visible {
+    position: relative;
+}
+
+.login-35 .main-title .no-js .words-wrapper b {
+    opacity: 0;
+}
+
+.login-35 .main-title .no-js .words-wrapper b.visible {
+    opacity: 1;
+}
+
+.login-35 h3{
+    margin: 0 0 30px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.login-35 .form-section .form-group {
+    margin-bottom: 25px;
+}
+
+.login-35 .form-section .form-control {
+    float: left;
+    width: 100%;
+    padding: 12px 20px 12px 20px;
+    height: 50px;
+}
+
+.login-35 .form-section .form-control {
+    font-size: 16px;
+    outline: none;
+    background: #fff;
+    color: #535353;
+    border-radius: 3px;
+    border: 1px solid #fff;
+}
+
+.login-35 .form-section .checkbox .terms{
+    margin-left: 3px;
+}
+
+.login-35 .form-section button:focus {
+    outline: none;
+    outline: 0 auto -webkit-focus-ring-color;
+}
+
+.login-35 .form-section .terms{
+    margin-left: 3px;
+}
+
+.login-35 .form-section .form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-top: 0;
+    position: absolute;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    background-color: #fff;
+    margin-left: -22px;
+}
+
+.login-35 .form-section .checkbox {
+    margin-bottom: 20px;
+}
+
+.login-35 .form-section .form-check{
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.login-35 .form-section .form-check a {
+    color: #535353;
+}
+
+.login-35 .form-section .form-check-label {
+    padding-left: 5px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #fff;
+}
+
+.login-35 .form-check-input:checked {
+    background-color: #ffc801;
+    border-color: #ffc801;
+}
+
+.login-35 .form-section a.forgot-password {
+    font-size: 16px;
+    color: #fff;
+}
+
+.login-35 .btn-theme {
+    color: #fff;
+    text-align: center;
+    border: 2px solid transparent;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    transition: all .7s ease;
+    border-radius: 3px;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    width: 100%;
+}
+
+.login-35 .btn-theme:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .7s ease;
+    z-index: -1;
+    border-radius: 3px;
+}
+
+.login-35 .btn-theme:after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .7s ease;
+    z-index: -1;
+}
+
+.login-35 .btn-theme:hover {
+    background: transparent;
+}
+
+.login-35 .btn-theme:hover:before {
+    width: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.login-35 .btn-theme:hover:after {
+    width: 0;
+    opacity: 1;
+    visibility: visible;
+}
+
+.login-35 .btn-lg{
+    padding: 0 50px;
+    line-height: 46px;
+}
+
+.login-35 .btn{
+    box-shadow: none!important;
+}
+
+.login-35 .btn-md{
+    padding: 0 45px;
+    line-height: 41px;
+}
+
+.login-35 .btn-primary {
+    background: #ffc801;
+}
+
+.login-35 .btn-primary:before {
+    background: #ffc801;
+}
+
+.login-35 .btn-primary:after {
+    background: #ffc801;
+}
+
+.login-35 .btn-primary:hover {
+    color: #ffc801;
+    border: 2px solid #ffc801;
+}
+
+/** Social media **/
+.login-35 .facebook-i {
+    background: #4867aa;
+    color: #fff;
+}
+
+.login-35 .twitter-i {
+    background: #33CCFF;
+    color: #fff;
+}
+
+.login-35 .google-i {
+    background: #db4437;
+    color: #fff;
+}
+
+.login-35 .facebook-color{
+    color: #4867aa;
+}
+
+.login-35 .twitter-color {
+    color: #33CCFF;
+}
+
+.login-35 .google-color {
+    color: #db4437;
+}
+
+@media (max-width: 768px) {
+    .login-35 .form-section {
+        padding: 50px 30px;
+    }
+
+    .login-35:before {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .login-35 .form-section .social-list li a i {
+        display: none;
+    }
+
+    .login-35 .form-section .social-list li a {
+        width: 100px;
+    }
+}
+/** Login 35 end **/
+  </style>
+
+</head>
+<body id="top">
+
+<!-- Login 35 start -->
+<div class="login-35">
+    <div id="particles-js"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 align-items-center">
+                <div class="form-section">
+                    <div class="logo-2">
+                        <a href="login-35.html">
+                            <img src="image/logo-03.svg" alt="logo">
+                        </a>
+                    </div>
+                    <h3>Sign Into Your Account</h3>
+                    <form action="#" method="GET">
+                        <div class="form-group clearfix">
+                            <input name="email" type="email" class="form-control" placeholder="Email Address" aria-label="Email Address">
+                        </div>
+                        <div class="form-group clearfix">
+                            <input name="password" type="password" class="form-control" autocomplete="off" placeholder="Password" aria-label="Password">
+                        </div>
+                        <div class="checkbox form-group clearfix">
+                            <div class="form-check float-start">
+                                <input class="form-check-input" type="checkbox" id="rememberme">
+                                <label class="form-check-label" for="rememberme">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="forgot-password-35.html" class="link-light float-end forgot-password">Forgot your password?</a>
+                        </div>
+                        <div class="form-group mb-0 clearfix">
+                            <button type="submit" class="btn btn-lg btn-primary btn-theme">Login</button>
+                        </div>
+                        <div class="extra-login clearfix">
+                            <span>Or Login With</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <ul class="social-list">
+                            <li><a href="#" class="facebook-color"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
+                            <li><a href="#" class="twitter-color"><i class="fa fa-twitter twitter-i"></i><span>Twitter</span></a></li>
+                            <li><a href="#" class="google-color"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
+                        </ul>
+                    </form>
+                    <p>Don't have an account? <a href="register-35.html" class="thembo"> Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 35 end -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+ <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+ particlesJS("particles-js", {
+            particles: {
+            number: { value: 100, density: { enable: true, value_area: 500 } },
+            color: { value: "#b1c900" },
+            shape: {
+                type: "circle",
+                stroke: { width: 0, color: "#000000" },
+                polygon: { nb_sides: 5 },
+                image: { width: 100, height: 100 }
+            },
+            opacity: {
+                value: 0.5, random: false,
+                anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
+            },
+            size: {
+                value: 5, random: true,
+                anim: { enable: false, speed: 40, size_min: 0.1, sync: false }
+            },
+            line_linked: {
+                enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1
+            },
+            move: {
+                enable: true, speed: 6, direction: "none", random: false,
+                straight: false, out_mode: "out",
+                attract: { enable: false, rotateX: 600, rotateY: 1200 }
+            }
+            },
+            interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+            },
+            modes: {
+                grab: { distance: 400, line_linked: { opacity: 1 } },
+                bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+                repulse: { distance: 100 },
+                push: { particles_nb: 4 },
+                remove: { particles_nb: 2 }
+            }
+            },
+            retina_detect: true,
+            config_demo: {
+            hide_card: false,
+            background_color: "#b61924",
+            background_image: "",
+            background_position: "50% 50%",
+            background_repeat: "no-repeat",
+            background_size: "cover"
+            }
+
+  });
+</script>
+</body>
+</html>

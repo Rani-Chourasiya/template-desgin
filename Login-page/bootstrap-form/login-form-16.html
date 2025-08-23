@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+    body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+/** Login 11 start **/
+.login-11{
+    background: url(./image/img-11.png) top left repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.login-11 .bg-color-11 {
+    top: 0;
+    bottom: 0;
+    min-height: 100vh;
+    z-index: 999;
+    opacity: 1;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.login-11 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Jost', sans-serif;
+}
+
+.login-11 .container{
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.login-11 .form-section{
+    max-width: 500px;
+    margin-right: auto;
+    width: 100%;
+    background: #fff;
+    padding: 50px;
+    border-radius: 0;
+}
+
+.login-11 .form-box{
+    width: 100%;
+}
+
+
+.login-11 .form-check-input:focus {
+    box-shadow: none;
+}
+
+.login-11 .login-inner-form .form-group {
+    margin-bottom: 25px;
+}
+
+.login-11 .login-inner-form .form-box {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.login-11 .login-inner-form .form-control {
+    font-size: 15px;
+    outline: none;
+    color: #535353;
+    border-radius: 3px;
+    border: 1px solid #dbdbdb;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .06);
+}
+
+.login-11 .login-inner-form img {
+    margin-bottom: 5px;
+    height: 40px;
+}
+
+.login-11 .login-inner-form .form-box .form-control {
+    float: left;
+    width: 100%;
+    padding: 13px 15px 13px 65px;
+    height: 55px;
+}
+
+.login-11 .login-inner-form .form-box i {
+    position: absolute;
+    left: 0;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    background: #5d8dfa;
+    border-radius: 3px 0 0 3px;
+    font-size: 20px;
+    color: #fff;
+}
+
+.login-11 .info {
+    color: #fff;
+    text-align: right;
+    max-width: 550px;
+    margin-left: auto;
+}
+
+.login-11 .bg-img {
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.login-11 .animate-charcter {
+    background-image: linear-gradient(-225deg, #231557 0%, #44107a 29%, #ff1361 67%, #fff800 100%);
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    color: #fff;
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 2s linear infinite;
+    display: inline-block;
+    font-size: 55px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.login-11 .login-inner-form .form-label{
+    margin-bottom: 5px;
+    color: #535353;
+    float: left!important;
+}
+
+.login-11 .info P{
+    color: #e5e1e1;
+    font-size: 15px;
+    line-height: 25px;
+    margin-bottom: 0;
+}
+
+.login-11 .login-inner-form .forgot{
+    margin: 0;
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    float: right;
+}
+
+.login-11 .btn-theme {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    border: none;
+    outline: none !important;
+    color: #ffffff;
+    text-transform: capitalize;
+    transition: all 0.3s linear;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 400;
+    width: 100%;
+    font-family: 'Jost', sans-serif;
+    border-radius: 3px;
+}
+
+.login-11 .login-inner-form p{
+    margin: 0;
+    color: #e7e7e7;
+}
+
+.login-11 .login-inner-form p a{
+    color: #e7e7e7;
+}
+
+.login-46 .login-inner-form .btn-theme.focus, .btn-theme:focus {
+    box-shadow: none;
+}
+
+.login-11 .logo{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.login-11 .logo img{
+    height: 25px;
+}
+
+.login-11 h3{
+    text-align: center;
+    margin: 0 0 24px;
+    font-size: 22px;
+    color: #5d8dfa;
+    font-weight: 500;
+}
+
+.login-11 .form-check-input:checked {
+    background-color: #5d8dfa!important;
+    border-color: #5d8dfa!important;
+}
+
+.login-11 .login-inner-form .social-list{
+    padding: 0;
+    text-align: center;
+}
+
+.login-11 .login-inner-form .social-list li {
+    display: inline-block;
+}
+
+.login-11 .login-inner-form .social-list li a {
+    margin: 1px;
+    font-size: 15px;
+    font-weight: 400;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+    display: inline-block;
+    text-align: center;
+    color: #fff;
+}
+
+.login-11 .login-inner-form .social-list li a:hover{
+    text-decoration: none;
+}
+
+.login-11 .login-inner-form .extra-login {
+    float: left;
+    width: 100%;
+    margin: 25px 0;
+    text-align: center;
+    position: relative;
+}
+
+.login-11 .login-inner-form .extra-login::before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    height: 1px;
+    background: #23396726;
+    content: "";
+}
+
+.login-11 .login-inner-form .extra-login > span {
+    width: auto;
+    float: none;
+    display: inline-block;
+    background: #fff;
+    padding: 1px 20px;
+    z-index: 1;
+    position: relative;
+    font-size: 15px;
+    color: #535353;
+    text-transform: capitalize;
+}
+
+.login-11 .login-inner-form .terms{
+    margin-left: 3px;
+}
+
+.login-11 .login-inner-form .checkbox {
+    margin-bottom: 25px;
+    font-size: 15px;
+}
+
+.login-11 .login-inner-form .form-check{
+    float: left;
+    margin-bottom: 0;
+}
+
+.login-11 .login-inner-form .form-check a {
+    color: #535353;
+    float: right;
+}
+
+.login-11 .login-inner-form .form-check-label {
+    padding-left: 5px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #535353;
+}
+
+.login-11 .btn{
+    box-shadow: none!important;
+}
+
+.login-11 .btn-lg{
+    padding: 0 50px;
+    line-height: 55px;
+}
+
+.login-11 .btn-md{
+    padding: 0 50px;
+    line-height: 45px;
+}
+
+.login-11 .btn-primary{
+    background: #5d8dfa;
+}
+
+.login-11 .btn-primary:hover {
+    background: #517fe7;
+}
+
+.login-11 .form-section a {
+    text-decoration: none;
+}
+
+.login-11 .form-section .form-check-input {
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    position: absolute;
+    border: 1px solid #dbdbdb;
+    border-radius: 0;
+    background-color: #fff;
+    margin-left: -22px;
+}
+
+.login-11 .login-inner-form .checkbox a {
+    font-size: 16px;
+    font-weight: 400;
+    color: #535353;
+}
+
+.login-11 .form-section p {
+    margin: 28px 0 0;
+    font-size: 16px;
+    color: #535353;
+}
+
+.login-11 .form-section p a {
+    color: #535353;
+}
+
+.login-11 .facebook-bg {
+    background: #4867aa;
+}
+
+.login-11 .facebook-bg:hover {
+    background: #3b589e;
+    color: #fff;
+}
+
+.login-11 .twitter-bg {
+    background: #33CCFF;
+}
+
+.login-11 .twitter-bg:hover {
+    background: #56d7fe;
+}
+
+.login-11 .google-bg {
+    background: #db4437;
+}
+
+.login-11 .google-bg:hover {
+    background: #dc4e41;
+}
+
+/** MEDIA **/
+@media (max-width: 1200px) {
+    .login-11 .info {
+        margin: 0;
+    }
+
+    .login-11 .waviy {
+        font-size: 33px;
+    }
+}
+
+@media (max-width: 992px) {
+    .login-11 .bg-img{
+        display: none;
+    }
+
+    .login-11 .login-inner-form .social-list li a {
+        width: 100px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 14px;
+    }
+
+    .login-11 .bg-color-11 {
+        padding: 30px 15px;
+    }
+
+    .login-11 .form-section {
+        padding: 50px 30px;
+        margin: 0 auto;
+    }
+}
+/** Login 11 end **/
+  </style>
+
+</head>
+<body id="top">
+
+<!-- Login 11 start -->
+<div class="login-11">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-6 col-md-12 bg-color-11">
+                <div class="form-section">
+                    <div class="logo">
+                        <a href="login-11.html">
+                            <img src="image/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <h3>Sign Into Your Account</h3>
+                    <div class="login-inner-form">
+                        <form action="#" method="GET">
+                            <div class="form-group clearfix">
+                                <label for="first_field" class="form-label">Email address</label>
+                                <div class="form-box">
+                                    <input name="email" type="email" class="form-control" id="first_field" placeholder="Email Address" aria-label="Email Address">
+                                    <i class="flaticon-mail-2"></i>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <label for="second_field" class="form-label">Password</label>
+                                <div class="form-box">
+                                    <input name="password" type="password" class="form-control" autocomplete="off" id="second_field" placeholder="Password" aria-label="Password">
+                                    <i class="flaticon-password"></i>
+                                </div>
+                            </div>
+                            <div class="checkbox form-group clearfix">
+                                <div class="form-check float-start">
+                                    <input class="form-check-input" type="checkbox" id="rememberme">
+                                    <label class="form-check-label" for="rememberme">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <a href="forgot-password-11.html" class="link-light float-end forgot-password">Forgot your password?</a>
+                            </div>
+                            <div class="form-group clearfix mb-0">
+                                <button type="submit" class="btn btn-primary btn-lg btn-theme">Login</button>
+                            </div>
+                        </form>
+                        <div class="extra-login">
+                            <span>Or Login With</span>
+                        </div>
+                        <ul class="social-list clearfix">
+                            <li><a href="#" class="facebook-bg">Facebook</a></li>
+                            <li><a href="#" class="twitter-bg">Twitter</a></li>
+                            <li><a href="#" class="google-bg">Google</a></li>
+                        </ul>
+                    </div>
+                    <p class="text-center">Don't have an account?<a href="register-11.html"> Register here</a></p>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-6 col-md-12 bg-img">
+                <div class="info">
+                    <h1 class="animate-charcter">Welcome To Logdy</h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 11 end -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+</body>
+</html>

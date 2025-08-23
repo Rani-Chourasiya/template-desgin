@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello, World!</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .title {
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .outer-column {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      padding: 10px;
+      background: #f0f0f0;
+    }
+
+    .sub-item {
+      background: #ccc;
+      padding: 20px;
+      text-align: center;
+      border-radius: 4px;
+      flex: 1 1 200px; /* flex-grow, flex-shrink, flex-basis */
+      max-width: 300px;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 400px) {
+      .sub-item {
+        font-size: 14px;
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title">Hello World!</h1>
+  <p style="text-align: center;">Welcome to a responsive layout using Flexbox.</p>
+
+  <div class="outer-column">
+    <div class="sub-item">Item 1</div>
+    <div class="sub-item">Item 2</div>
+    <div class="sub-item">Item 3</div>
+  </div>
+</body>
+</html>

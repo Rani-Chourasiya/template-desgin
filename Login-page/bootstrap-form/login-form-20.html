@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+    body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+/** Login 29 start **/
+.login-29 {
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    background: url(./image/img-29.png) top left repeat;
+    z-index: 999;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-29 a {
+    text-decoration: none;
+}
+
+.login-29 .form-section {
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0!important;
+}
+
+.login-29 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Jost', sans-serif;
+}
+
+.login-29 .form-inner {
+    max-width: 450px;
+    width: 100%;
+    margin-right: auto;
+    text-align: center;
+}
+
+.login-29 .form-check-input:checked {
+    display: none;
+}
+
+.login-29 .form-section .extra-login {
+    float: left;
+    width: 100%;
+    margin: 25px 0 25px;
+    text-align: center;
+    position: relative;
+}
+
+.login-29 .form-section .extra-login::before {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100%;
+    height: 1px;
+    background: #e3e3e370;
+    content: "";
+}
+
+.login-29 .form-section .extra-login > span {
+    width: auto;
+    float: none;
+    display: inline-block;
+    padding: 1px 20px;
+    z-index: 1;
+    position: relative;
+    font-size: 15px;
+    color: #fff;
+    text-transform: capitalize;
+    background: #fd2458;
+}
+
+.login-29 .form-section p {
+    color: #dadada;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 16px;
+}
+
+.login-29 .form-section p {
+    color: #fff;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.login-29 .form-section p a {
+    font-weight: 500;
+    color: #fff;
+}
+
+.login-29 .form-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.login-29 .form-section .social-list li {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.login-29 .form-section .thembo {
+    margin-left: 4px;
+}
+
+.login-29 .form-section h3 {
+    margin: 0 0 30px;
+    font-size: 25px;
+    font-weight: 400;
+    color: #fff;
+}
+
+.login-29 .form-section .form-group {
+    margin-bottom: 25px;
+}
+
+.login-29 .form-section .form-box {
+    float: left;
+    width: 100%;
+    text-align: left;
+    position: relative;
+}
+
+.login-29 .form-section .form-control {
+    padding: 10px 20px;
+    font-size: 15px;
+    outline: none;
+    height: 55px;
+    background: rgba(23, 23, 23, 0.72);
+    color: #616161;
+    border-radius: 50px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-29 .form-section .checkbox .terms {
+    margin-left: 3px;
+}
+
+.login-29 .form-section .btn-md {
+    cursor: pointer;
+    padding: 15.5px 50px 14.5px 50px;
+    font-size: 17px;
+    font-weight: 400;
+    font-family: 'Jost', sans-serif;
+    border-radius: 50px;
+}
+
+.login-29 .form-section input[type=checkbox], input[type=radio] {
+    margin-right: 3px;
+}
+
+.login-29 .form-section button:focus {
+    outline: none;
+    outline: 0 auto -webkit-focus-ring-color;
+}
+
+.login-29 .form-section .btn-theme.focus, .btn-theme:focus {
+    box-shadow: none;
+}
+
+.login-29 .form-section .btn-theme {
+    background: #2c3ca9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: none;
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 400;
+}
+
+.login-29 .form-section .btn-theme:hover {
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.2);
+    background: #223196;
+}
+
+.login-29 .none-2 {
+    display: none;
+}
+
+.login-29 .form-section .terms {
+    margin-left: 3px;
+}
+
+.login-29 .form-section .checkbox {
+    font-size: 14px;
+}
+
+.login-29 .form-section .form-check {
+    float: left;
+    margin-bottom: 0;
+    padding-left: 2px;
+}
+
+.login-29 .form-section .form-check a {
+    color: #fff;
+    float: right;
+}
+
+.login-29 .form-section .form-check-input {
+    position: absolute;
+    margin-left: 0;
+}
+
+.login-29 .form-section .form-check label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 2px;
+    margin-left: -25px;
+    border: 1px solid #fff;
+    border-radius: 50px;
+    background-color: #fff;
+}
+
+.login-29 .form-section .form-check-label {
+    padding-left: 25px;
+    margin-bottom: 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+}
+
+.login-29 .form-section .checkbox-theme input[type="checkbox"]:checked + label::before {
+    background: #2c3ca9;
+    border-color: #2c3ca9;
+}
+
+.login-29 .form-section input[type=checkbox]:checked + label:before {
+    font-weight: 600;
+    color: #fff;
+    line-height: 15px;
+    font-size: 12px;
+    content: "\2713";
+    padding-left: 3px;
+}
+
+.login-29 .form-section input[type=checkbox], input[type=radio] {
+    margin-top: 4px;
+}
+
+.login-29 .form-section a.forgot-password {
+    font-size: 16px;
+    color: #fff;
+    float: right;
+    line-height: 55px;
+}
+
+.login-29 .logo img {
+    margin-bottom: 15px;
+    height: 30px;
+}
+
+.login-29 .form-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.login-29 .form-section .social-list li {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.login-29 .form-section .social-list li a {
+    font-size: 14px;
+    font-weight: 400;
+    width: 130px;
+    margin: 2px 0 3px 0;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.login-29 .form-section .social-list li a i {
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    float: left;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 20px;
+}
+
+.login-29 .form-section .social-list li a span {
+    margin-right: 7px;
+}
+
+/** Social media **/
+.login-29 .facebook-color {
+    color: #4867aa;
+}
+
+.login-29 .twitter-color {
+    color: #33CCFF;
+}
+
+.login-29 .google-color {
+    color: #db4437;
+}
+
+.login-29 .twitter-i {
+    background: #33CCFF;
+}
+
+.login-29 .facebook-i {
+    background: #4867aa;
+}
+
+.login-29 .google-i {
+    background: #db4437;
+}
+
+@media (max-width: 992px) {
+    .login-29 .clip-home {
+        clip-path: polygon(0 0, 100% 0, 100% 0%, 100% 100%, 0 100%);
+        position: relative;
+    }
+
+    .login-29 .form-section {
+        width: 100%;
+    }
+
+    .none-992 {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-29 .form-inner {
+        margin: 0 15px;
+    }
+
+    .login-29 {
+        background: #fd2458;
+    }
+}
+/** Login 29 end **/
+  </style>
+
+</head>
+<body id="top">
+
+<!-- Login 29 start -->
+<div class="login-29">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 align-self-center form-section">
+                <div class="form-inner">
+                    <a href="login-29.html" class="logo">
+                        <img src="image/logo.png" alt="logo">
+                    </a>
+                    <h3>Sign Into Your Account</h3>
+                    <form action="#" method="GET">
+                        <div class="form-group form-box">
+                            <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address">
+                        </div>
+                        <div class="form-group form-box clearfix">
+                            <input type="password" name="password" class="form-control" autocomplete="off" placeholder="Password" aria-label="Password">
+                        </div>
+                        <div class="form-group mb-0 clearfix">
+                            <button type="submit" class="btn-md btn-theme float-start">Login</button>
+                            <a href="forgot-password-29.html" class="forgot-password">Forgot Password</a>
+                        </div>
+                        <div class="extra-login clearfix">
+                            <span>Or Login With</span>
+                        </div>
+                        <div class="clearfix"></div>
+                        <ul class="social-list">
+                            <li><a href="#" class="facebook-color"><i class="fa fa-facebook facebook-i"></i><span>Facebook</span></a></li>
+                            <li><a href="#" class="twitter-color"><i class="fa fa-twitter twitter-i"></i><span>Twitter</span></a></li>
+                            <li><a href="#" class="google-color"><i class="fa fa-google google-i"></i><span>Google</span></a></li>
+                        </ul>
+                    </form>
+                    <div class="clearfix"></div>
+                    <p>Don't have an account? <a href="register-29.html" class="thembo"> Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 29 end -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+</body>
+</html>

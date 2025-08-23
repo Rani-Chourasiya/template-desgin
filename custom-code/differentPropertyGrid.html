@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multiple Layout Examples</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 15px;
+      color: #222;
+    }
+
+    h2 {
+      margin: 40px 0 15px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #444;
+    }
+
+    /* Section 1: Flexbox with custom alignment */
+    .flex-container {
+      display: flex;
+      justify-content: space-around; /* space around items horizontally */
+      align-items: flex-start;       /* align items to top */
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 8px;
+      gap: 20px;
+      flex-wrap: wrap;
+      min-height: 150px;
+    }
+
+    .flex-item {
+      background: #64b5f6;
+      color: white;
+      padding: 30px 15px;
+      border-radius: 6px;
+      flex: 1 1 200px; /* grow, shrink, base size */
+      text-align: center;
+      font-weight: bold;
+    }
+    .flex-item:nth-child(1) {
+      align-self: flex-start;
+    }
+    .flex-item:nth-child(2) {
+      align-self: center;
+    }
+    .flex-item:nth-child(3) {
+      align-self: flex-end;
+    }
+
+    /* Section 2: CSS Grid with fr units (equal width & height) */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      background: #f3e5f5;
+      padding: 20px;
+      border-radius: 8px;
+      min-height: 150px;
+    }
+
+    .grid-item {
+      background: #ab47bc;
+      color: white;
+      padding: 30px 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px;
+      text-align: center;
+    }
+
+    /* Section 3: Custom mixed layout using grid & flex and fr */
+    .custom-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 20px;
+      background: #fff3e0;
+      padding: 20px;
+      border-radius: 8px;
+      min-height: 150px;
+    }
+
+    .custom-item {
+      background: #fb8c00;
+      color: white;
+      border-radius: 6px;
+      font-weight: bold;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* vertical centering */
+    }
+
+    .custom-item:nth-child(1) {
+      justify-content: flex-start;
+      font-size: 1.2rem;
+    }
+    .custom-item:nth-child(2) {
+      justify-content: center;
+      font-style: italic;
+    }
+    .custom-item:nth-child(3) {
+      justify-content: flex-end;
+      font-weight: 900;
+    }
+
+    /* Responsive adjustments */
+
+    /* Between 768px and 1024px: 2 columns */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .custom-container {
+        grid-template-columns: 2fr 1fr; /* reduce from 3 to 2 cols */
+      }
+
+      .flex-container {
+        /* For flex container, limit max 2 per row by shrinking flex-basis */
+        justify-content: flex-start;
+      }
+      .flex-item {
+        flex: 1 1 45%; /* roughly two per row */
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Below 768px: single column */
+    @media (max-width: 768px) {
+      .flex-container,
+      .grid-container,
+      .custom-container {
+        grid-template-columns: 1fr;
+        display: block; /* for flex-container fallback */
+      }
+      .flex-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .flex-item,
+      .grid-item,
+      .custom-item {
+        height: auto;
+        margin-bottom: 15px;
+        flex-basis: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>1. Flexbox with Custom Vertical Alignment</h2>
+  <div class="flex-container">
+    <div class="flex-item">Align start</div>
+    <div class="flex-item">Align center</div>
+    <div class="flex-item">Align end</div>
+  </div>
+
+  <h2>2. CSS Grid with Equal Width and Height (fr units)</h2>
+  <div class="grid-container">
+    <div class="grid-item">Item 1</div>
+    <div class="grid-item">Item 2</div>
+    <div class="grid-item">Item 3</div>
+  </div>
+
+  <h2>3. Custom Grid (2fr 1fr 1fr) with Flex Alignment</h2>
+  <div class="custom-container">
+    <div class="custom-item">Justify flex-start</div>
+    <div class="custom-item">Justify center</div>
+    <div class="custom-item">Justify flex-end</div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>loginForm</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+    integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .login-wrap {
+      background-color: #033b86;
+    }
+
+    .brand-logo {
+      margin-top: 20px;
+    }
+
+    .authfy-login {
+      background-color: #fff;
+      margin: 20px auto;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgb(2 35 79);
+      border-radius: 10px;
+    }
+
+    .authfy-login .authfy-panel {
+      padding: 40px;
+      width: 100%;
+      transition: all .5s ease;
+      opacity: 0;
+      transform: translateX(-100%);
+      -webkit-transform: translateX(-100%);
+    }
+
+    .authfy-panel .authfy-heading {
+      margin-bottom: 30px;
+    }
+
+    .authfy-login .auth-title {
+      font-weight: 700;
+      margin-top: 0px;
+    }
+
+    .authfy-login .authfy-panel.active {
+      opacity: 1;
+      transform: translateX(0);
+      -webkit-transform: translateX(0);
+    }
+
+    .authfy-login .loginOr {
+      position: relative;
+      font-size: 1.5em;
+      color: #aaa;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+
+    .authfy-login .loginOr .hrOr {
+      background-color: #cdcdcd;
+      height: 1px;
+      margin-top: 0px !important;
+      margin-bottom: 0px !important;
+    }
+
+    .authfy-login .loginOr .spanOr {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: -0.75em;
+      margin-left: -1.5em;
+      background-color: white;
+      width: 3em;
+      text-align: center;
+    }
+
+    .panel-login .remember-row {
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .panel-login .remember-row label {
+      font-weight: normal;
+      position: relative;
+      cursor: pointer;
+      color: #666;
+      padding-left: 24px;
+    }
+
+    .authfy-login .forgotPwd {
+      text-align: right;
+    }
+
+    .panel-login .form-control {
+      background-color: #f6f6f6;
+      color: #333333;
+      font-size: 15px;
+      height: auto;
+      position: relative;
+      padding: 10px;
+      outline: none;
+      border: none;
+      border-radius: 20px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 6px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    .panel-login .form-control:focus,
+    .panel-signup .form-control:focus,
+    .panel-forgot .form-control:focus {
+      border-color: #f6f6f6;
+      z-index: 2;
+      outline: 0;
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(146 148 149 / 60%);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(146 148 149 / 60%);
+    }
+
+    .loginForm input[type="email"],
+    .loginForm .email {
+      margin-bottom: 15px;
+    }
+
+    .authfy-panel.panel-forgot {
+      padding-top: 85px;
+    }
+
+    .pwdMask {
+      position: relative;
+    }
+
+    .pwdMask .pwd-toggle {
+      color: #cccccc;
+      position: absolute;
+      z-index: 2;
+    }
+
+    .panel-login .pwdMask .pwd-toggle {
+      top: 12px;
+      right: 15px;
+    }
+
+    .pwdMask .pwd-toggle:hover,
+    .pwdMask .pwd-toggle:focus {
+      cursor: pointer;
+    }
+
+    .pwdMask .pwd-toggle:hover,
+    .pwdMask .pwd-toggle:focus,
+    .pwdMask .pwd-toggle.fa-eye {
+      color: #4f77ff;
+    }
+
+    /*--------------------*/
+    /* 05. Responsive CSS */
+    /*--------------------*/
+
+    @media (min-width: 320px) and (max-width: 375px) {
+
+      .authfy-login .authfy-panel {
+        padding: 32px;
+      }
+
+    }
+
+    @media (max-width: 320px) {
+      .authfy-login .auth-title {
+        font-size: 20px;
+      }
+    }
+
+    .form-control.is-invalid {
+      background-image: none !important;
+    }
+       .login-btn-block {
+    border-radius: 20px;
+}
+  </style>
+</head>
+
+<body class="login-wrap">
+  <section class="login">
+    <div class="container-fluid">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-4 col-md-6 col-sm-8 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+          <!-- brand-logo start -->
+          <div class="brand-logo text-center">
+            <img src="image/maharshtra_bank_logo-new.png" width="120" alt="brand-logo" class="">
+          </div><!-- ./brand-logo -->
+          <!-- authfy-login start -->
+          <div class="authfy-login">
+            <!-- panel-login start -->
+            <div class="authfy-panel panel-login text-center active">
+              <div class="authfy-heading">
+                <h3 class="auth-title">Login to your account</h3>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                  <form name="loginForm" class="loginForm needs-validation" novalidate action="#" method="POST">
+                    <input type="email" class="form-control email" name="username" placeholder="Email address">
+                    <div class="pwdMask">
+                      <input type="password" class="form-control password" name="password" placeholder="Password"
+                        required>
+                      <span class="fa fa-eye-slash pwd-toggle"></span>
+                      <div class="invalid-feedback">
+                        Please enter a password
+                      </div>
+                    </div>
+                    <div class="form-group text-center mt-4">
+                      <button class="btn btn-lg btn-primary login-btn-block fs-6" type="submit">Login with
+                        email</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div> <!-- ./panel-login -->
+          </div> <!-- ./authfy-login -->
+        </div>
+      </div> <!-- ./row -->
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggle = document.querySelector(".pwdMask .pwd-toggle");
+      const input = document.querySelector(".pwdMask input.password");
+
+      if (toggle && input) {
+        toggle.addEventListener("click", function () {
+          if (input.type === "password") {
+            input.type = "text";
+            toggle.classList.remove("fa-eye-slash");
+            toggle.classList.add("fa-eye");
+          } else {
+            input.type = "password";
+            toggle.classList.remove("fa-eye");
+            toggle.classList.add("fa-eye-slash");
+          }
+        });
+      }
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector(".loginForm");
+      const passwordInput = form.querySelector("input[name='password']");
+
+      form.addEventListener("submit", function (e) {
+        if (passwordInput.value.trim() === "") {
+          e.preventDefault(); // stop form submitting
+          passwordInput.classList.add("is-invalid"); // add red border and show message
+        } else {
+          passwordInput.classList.remove("is-invalid"); // remove error if fixed
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>

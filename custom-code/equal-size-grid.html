@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hello, World!</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fff;
+      color: #222;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .grid-container {
+      display: grid;
+      /* 3 equal columns */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      background-color: #f0f0f0;
+      padding: 24px;
+      border-radius: 8px;
+      /* Make all rows equal height by default */
+      align-items: stretch;
+    }
+
+    .grid-item {
+      background-color: #ccc;
+      padding: 24px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      /* Force equal height */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 150px; /* fixed height, or use min-height if preferred */
+    }
+
+    /* Responsive: stack vertically on smaller screens */
+    @media (max-width: 768px) {
+      .grid-container {
+        grid-template-columns: 1fr;
+      }
+      .grid-item {
+        height: auto; /* let height adjust naturally on narrow screens */
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Hello, World!</h1>
+    <p>Responsive CSS Grid layout with equal width and height columns</p>
+  </header>
+
+  <section class="grid-container">
+    <div class="grid-item">Item 1</div>
+    <div class="grid-item">Item 2</div>
+    <div class="grid-item">Item 3</div>
+  </section>
+
+</body>
+</html>

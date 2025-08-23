@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+    <style>
+        .bg-gradient {
+            background: linear-gradient(to right, #797cd2, #393e9e) !important;
+        }
+
+        .h-100vh {
+            height: 100vh;
+        }
+
+        .bg-overlay-home {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.3;
+            width: 100%;
+            height: 100%;
+            background-size: auto;
+            -webkit-animation: bg-animation 7s ease-in-out infinite;
+            animation: bg-animation 7s ease-in-out infinite;
+        }
+
+        @-webkit-keyframes bg-animation {
+            0% {
+                background-position: top;
+            }
+
+            50% {
+                background-position: bottom;
+            }
+
+            100% {
+                background-position: top;
+            }
+        }
+
+        @keyframes bg-animation {
+            0% {
+                background-position: top;
+            }
+
+            50% {
+                background-position: bottom;
+            }
+
+            100% {
+                background-position: top;
+            }
+        }
+
+        /*--- LOGIN/SIGN IN/FORGOT---*/
+        .home-table {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+
+        .home-table .home-table-center {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .home-table .home-table-center .account_box {
+            border-radius: 12px;
+            box-shadow: 10px -10px 0 4px #0ebdca;
+            padding: 50px 40px;
+        }
+
+        .home-table .home-table-center .account_box h5 {
+            font-size: 20px;
+            max-width: 300px;
+            line-height: 1.4;
+        }
+
+        .home-table .home-table-center .account_box .form-control {
+            box-shadow: none !important;
+            color: #ffffff;
+            height: 46px;
+            border: none;
+            border-radius: 3px;
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .home-table .home-table-center .account_box .form-control::-webkit-input-placeholder {
+            /* Chrome/Opera/Safari */
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .home-table .home-table-center .account_box .form-control::-moz-placeholder {
+            /* Firefox 19+ */
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .home-table .home-table-center .account_box .form-control:-ms-input-placeholder {
+            /* IE 10+ */
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .home-table .home-table-center .account_box .form-control:-moz-placeholder {
+            /* Firefox 18- */
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .home-table .home-table-center {
+            font-size: 30px;
+            line-height: 1.2;
+        }
+
+        .home-table .home-table-center{
+            font-size: 14px !important;
+            line-height: 1.8;
+        }
+
+        .home-table .home-table-center  {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body id="top">
+
+    <section class="bg-gradient position-relative h-100vh">
+        <div class="bg-overlay-home" style="background-image: url(image/animation.png);"></div>
+        <div class="home-table">
+            <div class="home-table-center">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class="text-center">
+                                <p class="my-4 pb-3"><a class='text-white' href='#'>Back To Home <i
+                                            class="mdi mdi-home"></i></a></p>
+                            </div>
+                            <div class="account_box bg-gradient">
+                                <img src="image/logo-1.png" alt="" class="img-fluid mx-auto d-block"
+                                    style="height: 32px;">
+                                <form>
+                                    <div class="col-lg-12 mt-3">
+                                        <label class="text-white">Email</label>
+                                        <input type="email" id="exampleInputEmail1" class="form-control trial-input"
+                                            placeholder="Email Id">
+                                    </div>
+                                    <div class="col-lg-12 mt-3">
+                                        <label class="text-white">Password</label>
+                                        <input type="password" id="password1" class="form-control trial-input"
+                                            placeholder="Password">
+                                    </div>
+                                    <div class="col-lg-12 mt-3">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label text-white" for="customCheck1">Remember
+                                                me</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <button class="btn btn-custom w-100 mt-3">Sign In</button>
+                                    </div>
+                                    <div>
+                                        <p class="mb-0 text-center mt-3"><a class='text-white fw-bold'
+                                                href='/html/forgot'>Forgot your password ?</a></p>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="text-center mt-4">
+                                <p><small class="text-white me-2">Don't have an account ?</small> <a
+                                        class='text-white fw-bold' href='/html/signup'>Create an account</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS Script -->
+</body>
+
+</html>

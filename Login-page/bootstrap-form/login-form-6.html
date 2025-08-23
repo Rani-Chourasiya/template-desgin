@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Logdy - Login and Register Form HTML5 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+    <!-- Google fonts -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPoppins:400,500,700,800,900%7CRoboto:100,300,400,400i,500,700">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+    body {
+    font-family: 'Open Sans', sans-serif;
+    color: #424242;
+    margin: 0;
+}
+
+.img-fluid {
+    max-width: 100% !important;
+    height: auto;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+/** Login 6 start **/
+.login-6 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Jost', sans-serif;
+}
+
+.login-6 {
+    z-index: 0;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to bottom, #db3390, #d73131c2);
+    padding: 30px 0;
+}
+
+.login-6 #particles-js {
+    background-size: cover;
+    background-position: 50% 50%;
+    position: fixed;
+    min-height: 100vh;
+    width: 100%;
+    z-index: -999;
+}
+
+.login-6 .form-section{
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    background: #fff;
+    padding: 50px;
+    border-radius: 30px;
+    box-shadow: 0 0 35px rgb(0 0 0 / 10%);
+    text-align: left;
+    position: relative;
+    z-index: 0;
+}
+
+.login-6 .form-section:before {
+    content: "";
+    width: 100%;
+    height: 91px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: url(./image/img-6.png) top left repeat;
+    background-size: cover;
+    z-index: -1;
+    border-radius: 30px 30px 0 0;
+}
+
+.login-6 .form-box{
+    width: 100%;
+}
+
+.login-6 .login-inner-form .form-group {
+    margin-bottom: 35px;
+}
+
+.login-6 .login-inner-form .form-box {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+.login-6 .login-inner-form .form-control {
+    padding: 14.5px 0;
+    font-size: 16px;
+    outline: none;
+    background: transparent!important;
+    color: #535353;
+    font-weight: 500;
+    border: none;
+    border-bottom: solid 2px #bdbdbd;
+    border-radius: 0;
+}
+
+.login-6 .login-inner-form img {
+    margin-bottom: 5px;
+    height: 40px;
+}
+
+.login-6 .login-inner-form .form-box .form-control {
+    float: left;
+    width: 100%;
+    padding: 13px 15px 13px 30px;
+}
+
+.login-6 .login-inner-form .form-box i {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    font-size: 23px;
+    color: #777575;
+}
+
+.login-6 .info {
+    color: #fff;
+    margin: 0 117px 0 auto;
+    text-align: right;
+    max-width: 700px;
+}
+
+.login-6 .bg-img {
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    min-height: 100vh;
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.login-6 .login-inner-form .forgot{
+    margin: 0;
+    line-height: 40px;
+    color: #fff;
+    font-size: 14px;
+    float: right;
+}
+
+.login-6 .btn-theme {
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 400;
+    width: 100%;
+    font-family: 'Jost', sans-serif;
+    border-radius: 3px;
+}
+
+.login-6 .login-inner-form p{
+    margin: 0;
+    color: #e7e7e7;
+}
+
+.login-6 .login-inner-form p a{
+    color: #e7e7e7;
+}
+
+.login-46 .login-inner-form .btn-theme.focus, .btn-theme:focus {
+    box-shadow: none;
+}
+
+.login-6 .logo{
+    margin-bottom: 15px;
+}
+
+.login-6 .logo img{
+    height: 25px;
+}
+
+.login-6 h1{
+    margin: 0 0 35px;
+    font-size: 23px;
+    color: #040404;
+    font-weight: 400;
+}
+
+.login-6 .typing > *{
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typingAnim 3s steps(50);
+}
+
+@keyframes typingAnim {
+    from {width:0}
+    to {width:100%}
+}
+
+.login-6 .form-check-input:checked {
+    background-color: #039ae0!important;
+    border-color: #039ae0!important;
+}
+
+.login-6 .form-check-input:focus {
+    box-shadow: none;
+}
+
+.login-6 .login-inner-form .terms{
+    margin-left: 3px;
+}
+
+.login-6 .login-inner-form .checkbox {
+    margin-bottom: 35px;
+    font-size: 15px;
+}
+
+.login-6 .login-inner-form .form-check{
+    float: left;
+    margin-bottom: 0;
+}
+
+.login-6 .login-inner-form .form-check a {
+    color: #535353;
+    float: right;
+}
+
+.login-6 .login-inner-form .form-check-label {
+    padding-left: 5px;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: #535353;
+}
+
+.login-6 .btn{
+    box-shadow: none!important;
+}
+
+.login-6 .btn-lg{
+    padding: 0 50px;
+    line-height: 50px;
+}
+
+.login-6 .btn-md{
+    padding: 0 50px;
+    line-height: 45px;
+}
+
+.login-6 .btn-primary{
+    background-image: linear-gradient(to bottom, #3b63c5, #39a4ff);
+}
+
+.login-6 .btn-primary:hover {
+    background-image: linear-gradient(to bottom, #355dbf, #3199f1);
+}
+
+.login-6 .form-section a {
+    text-decoration: none;
+}
+
+.login-6 .form-section .form-check-input {
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    position: absolute;
+    border: 2px solid #bdbdbd;
+    border-radius: 0;
+    background-color: #fff;
+    margin-left: -22px;
+}
+
+.login-6 .login-inner-form .checkbox a {
+    font-size: 16px;
+    color: #535353;
+    float: right;
+}
+
+.login-6 .form-section p {
+    font-size: 16px;
+    color: #535353;
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.login-6 .form-section p a {
+    color: #535353;
+}
+
+/** Social media **/
+.login-6 .social-list{
+    margin-bottom: 20px;
+}
+
+.login-6 .social-list .social-list-inner {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.login-6 .social-list .social-list-inner li {
+    display: inline-block;
+    margin: 0 2px 5px 0;
+    position: relative;
+    font-size: 20px;
+}
+
+.login-6 .social-list .social-list-inner i {
+    color: #fff;
+    position: absolute;
+    top: 21px;
+    left: 21px;
+    transition: all 265ms ease-out;
+}
+
+.login-6 .social-list .social-list-inner a {
+    display: inline-block;
+}
+
+.login-6 .social-list .social-list-inner a:before {
+    transform: scale(1);
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    content: " ";
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    display: block;
+    background: linear-gradient(45deg, #39a4ff, #3b63c5);
+    transition: all 265ms ease-out;
+}
+
+.login-6 .social-list .social-list-inner a:hover:before {
+    transform: scale(0);
+    transition: all 265ms ease-in;
+}
+
+.login-6 .social-list .social-list-inner a:hover i {
+    transform: scale(2.2);
+    -ms-transform: scale(2.2);
+    -webkit-transform: scale(2.2);
+    background: -webkit-linear-gradient(45deg, #39a4ff, #3b63c5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 265ms ease-in;
+}
+
+/** MEDIA **/
+@media (max-width: 992px) {
+    .login-6 .form-section {
+        padding: 50px 30px;
+    }
+}
+/** Login 6 end **/
+  </style>
+
+</head>
+<body id="top">
+
+
+<!-- Login 6 start -->
+<div class="login-6">
+    <div id="particles-js"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="form-section">
+                    <div class="logo">
+                        <a href="login-6.html">
+                            <img src="image/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <div class="typing">
+                        <h1>Sign Into Your Account</h1>
+                    </div>
+                    <div class="login-inner-form">
+                        <form action="#" method="GET">
+                            <div class="form-group clearfix">
+                                <div class="form-box">
+                                    <input name="email" type="email" class="form-control" id="first_field" placeholder="Email Address" aria-label="Email Address">
+                                    <i class="flaticon-mail-2"></i>
+                                </div>
+                            </div>
+                            <div class="form-group clearfix">
+                                <div class="form-box">
+                                    <input name="password" type="password" class="form-control" autocomplete="off" id="second_field" placeholder="Password" aria-label="Password">
+                                    <i class="flaticon-password"></i>
+                                </div>
+                            </div>
+                            <div class="checkbox form-group clearfix">
+                                <div class="form-check float-start">
+                                    <input class="form-check-input" type="checkbox" id="rememberme">
+                                    <label class="form-check-label" for="rememberme">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <a href="forgot-password-6.html" class="link-light float-end forgot-password">Forgot your password?</a>
+                            </div>
+                            <div class="form-group clearfix">
+                                <button type="submit" class="btn btn-primary btn-lg btn-theme">Login</button>
+                            </div>
+                        </form>
+                        <div class="social-list">
+                            <ul class="social-list-inner">
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                <li><a href="#"><i class="fa fa-codepen"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>Don't have an account?<a href="register-6.html"> Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login 6 end -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+ <script>
+    // Load particles.js and initialize
+$.getScript("https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js", function () {
+  particlesJS("particles-js", {
+            particles: {
+            number: { value: 100, density: { enable: true, value_area: 500 } },
+            color: { value: "#b1c900" },
+            shape: {
+                type: "circle",
+                stroke: { width: 0, color: "#000000" },
+                polygon: { nb_sides: 5 },
+                image: { width: 100, height: 100 }
+            },
+            opacity: {
+                value: 0.5, random: false,
+                anim: { enable: false, speed: 1, opacity_min: 0.1, sync: false }
+            },
+            size: {
+                value: 5, random: true,
+                anim: { enable: false, speed: 40, size_min: 0.1, sync: false }
+            },
+            line_linked: {
+                enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1
+            },
+            move: {
+                enable: true, speed: 6, direction: "none", random: false,
+                straight: false, out_mode: "out",
+                attract: { enable: false, rotateX: 600, rotateY: 1200 }
+            }
+            },
+            interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" },
+                resize: true
+            },
+            modes: {
+                grab: { distance: 400, line_linked: { opacity: 1 } },
+                bubble: { distance: 400, size: 40, duration: 2, opacity: 8, speed: 3 },
+                repulse: { distance: 100 },
+                push: { particles_nb: 4 },
+                remove: { particles_nb: 2 }
+            }
+            },
+            retina_detect: true,
+            config_demo: {
+            hide_card: false,
+            background_color: "#b61924",
+            background_image: "",
+            background_position: "50% 50%",
+            background_repeat: "no-repeat",
+            background_size: "cover"
+            }
+  });
+});
+
+// Animated canvas background (Login 6 style)
+// (function ($) {
+//   var canvas = $('#bg').children('canvas'),
+//     background = canvas[0],
+//     foreground1 = canvas[1],
+//     foreground2 = canvas[2],
+//     config = {
+//       circle: { amount: 18, layer: 3, color: [157, 97, 207], alpha: 0.3 },
+//       line: { amount: 12, layer: 3, color: [255, 255, 255], alpha: 0.3 },
+//       speed: 0.5,
+//       angle: 20
+//     };
+
+//   if (background.getContext) {
+//     var bctx = background.getContext('2d'),
+//       fctx1 = foreground1.getContext('2d'),
+//       fctx2 = foreground2.getContext('2d'),
+//       M = Math,
+//       degree = config.angle / 360 * M.PI * 2,
+//       circles = [],
+//       lines = [],
+//       wWidth, wHeight, timer;
+
+//     var requestAnim = window.requestAnimationFrame ||
+//       window.mozRequestAnimationFrame ||
+//       window.webkitRequestAnimationFrame ||
+//       window.msRequestAnimationFrame ||
+//       window.oRequestAnimationFrame ||
+//       function (callback) { setTimeout(callback, 1000 / 60); };
+
+//     var cancelAnim = window.cancelAnimationFrame ||
+//       window.mozCancelAnimationFrame ||
+//       window.webkitCancelAnimationFrame ||
+//       window.msCancelAnimationFrame ||
+//       window.oCancelAnimationFrame ||
+//       clearTimeout;
+
+//     function setCanvasSize() {
+//       wWidth = $(window).width();
+//       wHeight = $(window).height();
+//       canvas.each(function () {
+//         this.width = wWidth;
+//         this.height = wHeight;
+//       });
+//     }
+
+//     function drawCircle(x, y, radius, color, alpha) {
+//       var gradient = fctx1.createRadialGradient(x, y, radius, x, y, 0);
+//       gradient.addColorStop(0, `rgba(${color[0]},${color[1]},${color[2]},${alpha})`);
+//       gradient.addColorStop(1, `rgba(${color[0]},${color[1]},${color[2]},${alpha - 0.1})`);
+
+//       fctx1.beginPath();
+//       fctx1.arc(x, y, radius, 0, M.PI * 2, true);
+//       fctx1.fillStyle = gradient;
+//       fctx1.fill();
+//     }
+
+//     function drawLine(x, y, width, color, alpha) {
+//       var endX = x + M.sin(degree) * width;
+//       var endY = y - M.cos(degree) * width;
+//       var gradient = fctx2.createLinearGradient(x, y, endX, endY);
+
+//       gradient.addColorStop(0, `rgba(${color[0]},${color[1]},${color[2]},${alpha})`);
+//       gradient.addColorStop(1, `rgba(${color[0]},${color[1]},${color[2]},${alpha - 0.1})`);
+
+//       fctx2.beginPath();
+//       fctx2.moveTo(x, y);
+//       fctx2.lineTo(endX, endY);
+//       fctx2.lineWidth = 3;
+//       fctx2.lineCap = 'round';
+//       fctx2.strokeStyle = gradient;
+//       fctx2.stroke();
+//     }
+
+//     function drawBackground() {
+//       bctx.clearRect(0, 0, wWidth, wHeight);
+
+//       var g1 = bctx.createRadialGradient(wWidth * 0.3, wHeight * 0.1, 0, wWidth * 0.3, wHeight * 0.1, wWidth * 0.9);
+//       g1.addColorStop(0, 'rgb(0, 26, 77)');
+//       g1.addColorStop(1, 'transparent');
+
+//       bctx.save();
+//       bctx.translate(wWidth, 0);
+//       bctx.scale(-1, 1);
+//       bctx.fillStyle = g1;
+//       bctx.fillRect(0, 0, wWidth, wHeight);
+//       bctx.restore();
+
+//       var g2 = bctx.createRadialGradient(wWidth * 0.1, wHeight * 0.1, 0, wWidth * 0.3, wHeight * 0.1, wWidth);
+//       g2.addColorStop(0, 'rgb(0, 150, 240)');
+//       g2.addColorStop(0.8, 'transparent');
+
+//       bctx.save();
+//       bctx.translate(wWidth, 0);
+//       bctx.scale(-1, 1);
+//       bctx.fillStyle = g2;
+//       bctx.fillRect(0, 0, wWidth, wHeight);
+//       bctx.restore();
+
+//       var g3 = bctx.createRadialGradient(wWidth * 0.1, wHeight * 0.5, 0, wWidth * 0.1, wHeight * 0.5, wWidth * 0.5);
+//       g3.addColorStop(0, 'rgb(40, 20, 105)');
+//       g3.addColorStop(1, 'transparent');
+
+//       bctx.fillStyle = g3;
+//       bctx.fillRect(0, 0, wWidth, wHeight);
+//     }
+
+//     function animate() {
+//       var sin = M.sin(degree), cos = M.cos(degree);
+
+//       fctx1.clearRect(0, 0, wWidth, wHeight);
+//       circles.forEach(item => {
+//         item.x = (item.x + sin * item.speed + wWidth + item.radius * 2) % (wWidth + item.radius * 2) - item.radius;
+//         item.y = (item.y - cos * item.speed + wHeight + item.radius * 2) % (wHeight + item.radius * 2) - item.radius;
+//         drawCircle(item.x, item.y, item.radius, item.color, item.alpha);
+//       });
+
+//       fctx2.clearRect(0, 0, wWidth, wHeight);
+//       lines.forEach(item => {
+//         item.x = (item.x + sin * item.speed + wWidth + item.width * 2) % (wWidth + item.width * 2) - item.width;
+//         item.y = (item.y - cos * item.speed + wHeight + item.width * 2) % (wHeight + item.width * 2) - item.width;
+//         drawLine(item.x, item.y, item.width, item.color, item.alpha);
+//       });
+
+//       timer = requestAnim(animate);
+//     }
+
+//     function createItems() {
+//       circles = [];
+//       lines = [];
+
+//       for (let i = 0; i < config.circle.amount / config.circle.layer; i++) {
+//         for (let j = 0; j < config.circle.layer; j++) {
+//           circles.push({
+//             x: M.random() * wWidth,
+//             y: M.random() * wHeight,
+//             radius: M.random() * (20 + j * 5) + (20 + j * 5),
+//             color: config.circle.color,
+//             alpha: M.random() * 0.2 + (config.circle.alpha - j * 0.1),
+//             speed: config.speed * (1 + j * 0.5)
+//           });
+//         }
+//       }
+
+//       for (let i = 0; i < config.line.amount / config.line.layer; i++) {
+//         for (let j = 0; j < config.line.layer; j++) {
+//           lines.push({
+//             x: M.random() * wWidth,
+//             y: M.random() * wHeight,
+//             width: M.random() * (20 + j * 5) + (20 + j * 5),
+//             color: config.line.color,
+//             alpha: M.random() * 0.2 + (config.line.alpha - j * 0.1),
+//             speed: config.speed * (1 + j * 0.5)
+//           });
+//         }
+//       }
+
+//       cancelAnim(timer);
+//       timer = requestAnim(animate);
+//       drawBackground();
+//     }
+
+//     // Init and resize
+//     $(document).ready(() => {
+//       setCanvasSize();
+//       createItems();
+//     });
+
+//     $(window).resize(() => {
+//       setCanvasSize();
+//       createItems();
+//     });
+//   }
+// })(jQuery);
+
+ </script>
+</body>
+</html>

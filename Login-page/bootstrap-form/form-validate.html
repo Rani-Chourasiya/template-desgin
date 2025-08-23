@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Form Validation</title>
+  <style>
+    .error {
+      color: red;
+      font-size: 0.9em;
+    }
+    .success {
+      color: green;
+    }
+    input {
+      display: block;
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 250px;
+    }
+    label {
+      margin-top: 10px;
+      display: block;
+    }
+    /* Style the anchor to look like a button */
+    .submit-link {
+      display: inline-block;
+      background-color: #007BFF;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .submit-link:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h2>Registration Form</h2>
+
+  <form id="myForm">
+    <label>Name:
+      <input type="text" id="name" name="name">
+      <span class="error" id="nameError"></span>
+    </label>
+
+    <label>Email:
+      <input type="email" id="email" name="email">
+      <span class="error" id="emailError"></span>
+    </label>
+
+    <label>Password:
+      <input type="password" id="password" name="password">
+      <span class="error" id="passwordError"></span>
+    </label>
+
+    <label>Confirm Password:
+      <input type="password" id="confirmPassword" name="confirmPassword">
+      <span class="error" id="confirmPasswordError"></span>
+    </label>
+
+    <!--<button type="submit">Register</button>-->
+    <a href="#" class="submit-link" id="submitLink">Register</a>
+    <p id="formSuccess" class="success"></p>
+  </form>
+
+  <script>
+    document.getElementById('submitLink').addEventListener('click', function (e) {
+      e.preventDefault(); // Prevent actual form submission
+
+      // Clear previous messages
+      document.getElementById('formSuccess').textContent = '';
+      let isValid = true;
+
+      // Get field values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      // Clear previous error messages
+      document.getElementById('nameError').textContent = '';
+      document.getElementById('emailError').textContent = '';
+      document.getElementById('passwordError').textContent = '';
+      document.getElementById('confirmPasswordError').textContent = '';
+
+      // Name validation
+      if (name.length < 3) {
+        document.getElementById('nameError').textContent = 'Name must be at least 3 characters.';
+        isValid = false;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+        isValid = false;
+      }
+
+      // Password validation
+      if (password.length < 6) {
+        document.getElementById('passwordError').textContent = 'Password must be at least 6 characters.';
+        isValid = false;
+      }
+
+      // Confirm password validation
+      if (password !== confirmPassword) {
+        document.getElementById('confirmPasswordError').textContent = 'Passwords do not match.';
+        isValid = false;
+      }
+
+      // If all is valid
+      if (isValid) {
+        document.getElementById('formSuccess').textContent = 'Form submitted successfully!';
+        // Optionally reset the form:
+        // this.reset();
+      }
+    });
+  </script>
+</body>
+</html>

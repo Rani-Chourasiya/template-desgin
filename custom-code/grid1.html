@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hello, World!</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+
+
+    #currentTime {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .outer-column {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      padding: 10px;
+      background: #f0f0f0;
+    }
+
+    .sub-item {
+      background: #ccc;
+      padding: 20px;
+      text-align: center;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1 class="title">Hello World!</h1>
+  <p id="currentTime"></p>
+
+  <div class="outer-column">
+    <div class="sub-item">Item 1</div>
+    <div class="sub-item">Item 2</div>
+    <div class="sub-item">Item 3</div> 
+    <div class="sub-item">Item 4</div>
+    <div class="sub-item">Item 5</div>
+  </div>
+
+  <script>
+    // Show current time
+    const timeEl = document.getElementById('currentTime');
+    const updateTime = () => {
+      const now = new Date();
+      timeEl.textContent = 'Current Time: ' + now.toLocaleTimeString();
+    };
+    updateTime();
+    setInterval(updateTime, 1000);
+  </script>
+</body>
+</html>

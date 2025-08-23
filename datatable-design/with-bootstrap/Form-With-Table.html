@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>code</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+   body
+		{
+			background-color:#AEE19E;
+			background-image:url("https://www.studiopress.com/wp-content/uploads/sp-bg-2880x1452.png");
+		}
+		.form-container
+		{
+			margin-top:40px;
+			margin-bottom: 40px;
+		}
+		#dob
+		{
+			color:orange;
+		}
+		label
+		{
+			color:white;
+			font-size:17px;
+			font-style:italic;
+		}
+
+		.form-control
+		{
+			background-color:#1c7bd0;
+			color:white;
+		}
+		.form-control::placeholder
+		{
+			color:orange;
+		}
+
+		.form-control:focus
+		{
+			background-color:#1c7bd0;
+			color:white;
+		}
+		h1
+		{
+			margin-bottom:40px;
+			font-style:italic;
+			color:white;
+		}
+
+		button
+		{
+			margin-top:30px;
+		}
+		.btn
+		{
+			background-color: orange;
+			color:white;
+		}
+
+		
+		table th,td
+		{
+			color:white;
+			text-align:center;
+		}
+
+  </style>
+
+</head>
+<body id="top">
+<section class="">
+    <!--Start Form -->
+
+		<div class="container form-container">
+				<h1 class="text-center">Form With Table</h1>
+			<div class="row">				
+				<div class = "col form-group">
+					<div class="row">
+					<label class="col-md-3">First Name </label>
+						<div class="col-md-9">
+							<input type="text" class="form-control" id="fname" placeholder="Enter First Name">
+							<small id="fname_alert"></small>
+						</div>
+					</div>
+				</div>
+
+				<div class = "col form-group">
+					<div class="row">
+						<label class="col-md-3">Last Name </label>
+							<div class="col-md-9">
+								<input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
+								<small id="lname_alert"></small>
+							</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+					<div class="col form-group">
+						<div class="row">
+							<label class="col-md-3">Enter Your Age </label>
+								<div class="col-md-9">
+									<input type = "text" class="form-control" id="age" placeholder="Enter Age">
+									<small id="age_alert"></small>
+								</div>
+						</div>
+					</div>
+						<div class="col form-group">
+							<div class="row">
+								<label class="col-md-3">Gender</label>
+									<div class="col-md-9">
+										<div class="form-check form-check-inline">
+											<input type = "radio" class="form-check-input" id="Male" name="gender" value = "Male">
+											<label class="form-check-label" for="male">Male</label>
+										</div>
+
+										<div class="form-check form-check-inline">
+											<input type = "radio" class="form-check-input" id="Female" name="gender" value = "Female">
+											<label class="form-check-label" for="female">Female</label>
+										</div><br>
+										<small id="gender_alert"></small>
+									</div>
+							</div>
+						</div>
+				</div>
+
+				<div class="row">
+						<div class="col form-group">
+							<div class="row">
+								<label class="col-md-3">Address </label>
+									<div class="col-md-9">
+										<textarea class="form-control" placeholder="Enter Your Address" id="address"></textarea>
+										<small id="address_alert"></small>
+									</div>
+							</div>
+						</div>
+
+						<div class="col form-group">
+
+							<div class="row">
+									<label class="col-md-3">Phone Number</label>
+										<div class="col-md-9">
+											<input type = "text" class="form-control" id="pno" placeholder="Enter Your PhoneNumber">
+											<small id="pno_alert"></small>
+										</div>
+							</div>
+						</div>
+				</div>
+
+				<div class="row">
+						<div class="col form-group">
+							<div class="row">
+								<label class="col-md-3">Date Of Birth</label>
+									<div class="col-md-9">
+										<input type="date" class="form-control" id="dob">
+									</div>
+							</div>
+						</div>
+
+						<div class="col form-group">
+								<div class="row">
+									<label class="col-md-3">Qualification</label>
+										<div class="col-md-9">
+											<input list="Qua" class="form-control" placeholder="Enter Your Qualification" id ="Qualification">
+											<datalist id="Qua">
+												<option value ="Bsc Computer Science">
+												<option value = "BCA">
+												<option value = "B.com">
+												<option value = "BBA">
+												<option value = "BE">
+												<option value = "Bsc Maths">
+											</datalist>
+											
+										</div>
+								</div>
+						</div>
+					</div>
+
+						<div class="row">
+							<div class="col form-group">
+									<div class="row">
+										<label class="col-md-3">E-mail</label>
+											<div class="col-md-9">
+													<input type="text" class="form-control" id="email" placeholder="Enter Your E-mail">
+													<small id="email_alert"></small>
+											</div>
+									</div>
+							</div>
+
+							<div class="col form-group">
+									<div class="row">
+										<label class="col-md-3">Company Name</label>
+											<div class="col-md-9">
+													<input type ="text" class="form-control" id="cname" placeholder="Enter Your Company">
+											</div>
+									</div>
+							</div>
+						</div>
+						<button type="submit" onclick="GetData();" class="btn btn-default mx-auto d-block">Submit</button>
+				</div>
+
+				<!-- End Of the Form -->
+
+				<!-- Start Table Here -->
+		<h1 class="text-center">Form Values in Table</h1>
+
+		<table class="table table-bordered">
+				<thead>
+					<tr >
+						<th class="text-center">First name</th>
+						<th class="text-center">Last name</th>
+						<th class="text-center">Age</th>
+						<th class="text-center">Gender</th>
+						<th class="text-center">Address</th>
+						<th class="text-center">Phone Number</th>
+						<th class="text-center">Date of Birth</th>
+						<th class="text-center">Qualification</th>
+						<th class="text-center">E-mail</th>
+						<th class="text-center">Company Name</th>
+					</tr>
+				</thead>
+		</table>
+
+				<!-- End Of the Table -->
+</section>
+
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+ <script>
+    function GetData()
+			{
+
+				var fname = document.getElementById("fname").value;
+				var lname = document.getElementById("lname").value;
+				var age = document.getElementById("age").value;
+				var gender = Gender();
+				var address = document.getElementById("address").value;
+				var pno = document.getElementById("pno").value;
+				var dob = document.getElementById("dob").value;
+				var Qualification = document.getElementById("Qualification").value;
+				var email = document.getElementById("email").value;
+				var cname = document.getElementById("cname").value;
+				var fname_patt = /^[A-Za-z]+$/g;
+				var lname_patt = /^[A-Za-z]+$/g;
+				var age_patt = /^[0-9]+$/g;
+				var pno_patt = /^[0-9]+$/g;
+				var email_at = "@";
+				var email_atsrh = email.search(email_at);
+
+				var table = document.getElementsByTagName('table')[0];
+				
+
+				var newRow = table.insertRow(table.rows.length);
+
+				var cel1 = newRow.insertCell(0);
+				var cel2 = newRow.insertCell(1);
+				var cel3 = newRow.insertCell(2);
+				var cel4 = newRow.insertCell(3);
+				var cel5 = newRow.insertCell(4);
+				var cel6 = newRow.insertCell(5);
+				var cel7 = newRow.insertCell(6);
+				var cel8 = newRow.insertCell(7);
+				var cel9 = newRow.insertCell(8);
+				var cel10 = newRow.insertCell(9);
+
+				cel1.innerHTML = fname;
+				cel2.innerHTML = lname;
+				cel3.innerHTML = age;
+				cel4.innerHTML = gender;
+				cel5.innerHTML = address;
+				cel6.innerHTML = pno;
+				cel7.innerHTML = dob;
+				cel8.innerHTML = Qualification;
+				cel9.innerHTML = email;
+				cel10.innerHTML = cname;
+
+
+				//First name Validation
+
+				if(fname_patt.test(fname)==false)
+				{
+					document.getElementById("fname_alert").innerHTML = "Numbers Here";
+					document.getElementById("fname_alert").style.color = "red";
+
+				}
+
+				if(fname.length==0)
+				{
+					document.getElementById("fname_alert").innerHTML = "First Name Should be Blank";
+					document.getElementById("fname_alert").style.color = "red";
+				}
+
+				//Last name Validation
+
+				if(lname_patt.test(lname) == false)
+				{
+					document.getElementById("lname_alert").innerHTML = "Numbers Here";
+					document.getElementById("lname_alert").style.color = "red";
+				}
+
+				if(lname.length==0)
+				{
+					document.getElementById("lname_alert").innerHTML = "Last Name Should be Blank";
+					document.getElementById("lname_alert").style.color = "red";
+				}
+
+				// Age Validation
+
+				if(age_patt.test(age)==false)
+				{
+					document.getElementById("age_alert").innerHTML = "Your Input is Wrong";
+					document.getElementById("age_alert").style.color = "red";
+				}
+
+				if(age.length == 0)
+				{
+					document.getElementById("age_alert").innerHTML = "Age blank";
+					document.getElementById("age_alert").style.color = "red";
+				} 
+
+				//Address Validation
+				
+				if(address.length== 0 )
+				{
+					document.getElementById("address_alert").innerHTML = "Address Should be Blank";
+					document.getElementById("address_alert").style.color = "red";
+				}
+
+				// Pnone Number Validation
+
+				if(pno_patt.test(pno) == false)
+				{
+					document.getElementById("pno_alert").innerHTML = "Numbers only Allowed";
+					document.getElementById("pno_alert").style.color = "red";
+				}
+      //E-mail Validation
+
+				if(email_atsrh < 0)
+				{
+					document.getElementById("email_alert").innerHTML ="Enter E-mail Correctly";
+					document.getElementById("email_alert").style.color="red";
+				}
+				
+				if(fname.length == 0 || lname.length == 0 || age.length == 0 || address.length == 0 || pno.length == 0 || dob.length == 0 || email.length == 0 || cname.length == 0)
+				{
+
+					table.disabled="true";
+				}
+
+			}
+				
+
+				function Gender()
+				{
+					var m = document.getElementById("Male").checked;
+					var f = document.getElementById("Female").checked;
+					var man =" ";
+
+					if(m == false && f == false)
+					{
+						document.getElementById("gender_alert").innerHTML = "Please Select Gender";
+						document.getElementById("gender_alert").style.color = "red";
+						
+					}else if( m == true)
+					{
+						man = man.innerHTML = "Male";
+					}else
+					{
+						man = man.innerHTML = "Female";
+					}
+					return man;		
+				}
+ </script>
+</body>
+</html>

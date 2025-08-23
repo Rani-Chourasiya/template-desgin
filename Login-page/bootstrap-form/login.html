@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <style>
+  
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: "Roboto", sans-serif;
+    background-color: #CCEFFC;
+
+    background-image: url(img/login_bg_img.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.roboto-regular {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+/* --text formting -- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+li {
+    list-style: none;
+}
+
+ul {
+    padding: 0;
+}      
+
+
+.main_section{
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+.head_section{
+    padding: 0.5rem 10%;
+    margin: 0px;
+    background-color: #CCEFFC;
+}
+.logo_img {
+    
+}
+.top_nav_strip{
+  min-height: 35px;
+  background-color: #02ADF1;
+}
+
+.middle_content{
+  
+}
+.authfy-login {
+    overflow: hidden;
+    background: radial-gradient(96.4% 96.4% at 55.2% 100%, #0679A7 27.39%, #8CDEFF 63.07%);
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 0px 3px #153460;
+    border-radius: 10px;
+    box-sizing: border-box;
+    min-height: 55vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.authfy-login .authfy-panel {
+  padding: 2rem;
+  width: 100%;
+  transition: all .5s ease;
+  opacity: 0;
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+}
+
+.authfy-panel .authfy-heading {
+  margin-bottom: 30px;
+  border-bottom: solid 1px #FFF;
+  padding-bottom: 15px;
+  position: relative;
+}
+.authfy-panel .authfy-heading::before {
+  content: ""; 
+  display: inline-block;
+  width: 100%;
+  height: 1px;
+  background-color: #153460;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+    
+.authfy-login .auth-title {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 33px;
+  color: #153460;
+  text-align: left;
+  text-transform: capitalize;
+}
+    
+.authfy-login .authfy-panel.active {
+  opacity: 1;
+  transform: translateX(0);
+ -webkit-transform: translateX(0);
+}
+	
+.authfy-login .loginOr {
+  position: relative;
+  font-size: 1.5em;
+  color: #aaa;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.authfy-login .loginOr .hrOr {
+  background-color: #cdcdcd;
+  height: 1px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.authfy-login .loginOr .spanOr {
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: -0.75em;
+  margin-left: -1.5em;
+  background-color: white;
+  width: 3em;
+  text-align: center;
+}			
+
+.panel-login .remember-row {
+  margin-bottom: 10px;
+      margin-top: 20px;
+}
+
+.panel-login .remember-row label {
+  font-weight: normal;
+  position: relative;
+  cursor: pointer;
+  color: #666;
+  padding-left: 24px;
+}
+
+.authfy-login .forgotPwd {
+  text-align: right;
+}	
+
+.panel-login .form-control {
+  background-color: #f6f6f6;
+  color: #001B41;
+  font-size: 15px;
+  font-weight: 600;
+  height: auto;
+  position: relative;
+  padding: 7px 10px;
+  outline:none;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 4px 2px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.panel-login .form-control::placeholder {
+  color: #001B41;
+}
+
+.panel-login .form-control:focus, 
+.panel-signup .form-control:focus, 
+.panel-forgot .form-control:focus  {
+  z-index: 2;
+  outline: 0;
+  /* border-color: #f6f6f6;  
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(146 148 149 / 60%);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(146 148 149 / 60%); */
+}
+
+.loginForm input[type="email"], 
+.loginForm .email {
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #FFFFFF;
+  box-shadow: 0px 0px 4px #153460;
+  border-radius: 4px;
+}
+
+.loginForm input[type="password"], 
+.loginForm .password {
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #FFFFFF;
+  box-shadow: 0px 0px 4px #153460;
+  border-radius: 4px;
+}
+.login-btn-block{
+  box-sizing: border-box;
+  background: #153460;
+  border: 1px solid #FFFFFF;
+  box-shadow: 0px 0px 4px #153460;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 16px;
+  color: #FFF;
+  transition: 0.9s;
+}
+.login-btn-block:hover{
+  background: #00A650;
+  color: #FFF;
+  border: 1px solid #FFF;
+}
+
+.authfy-panel.panel-forgot {
+  padding-top: 85px;
+}
+
+.pwdMask {
+  position: relative;
+}
+
+.pwdMask .pwd-toggle {
+  color: #287695;
+  
+  position: absolute;
+  z-index: 2;
+}
+
+.panel-login .pwdMask .pwd-toggle {
+  top: 12px;
+  right: 15px;
+}
+
+.pwdMask .pwd-toggle:hover, 
+.pwdMask .pwd-toggle:focus {
+  cursor: pointer;
+}
+
+.pwdMask .pwd-toggle:hover, 
+.pwdMask .pwd-toggle:focus, 
+.pwdMask .pwd-toggle.fa-eye {
+  color: #153460;
+}
+
+
+
+.footer_bottom{
+  background-color: #02ADF1;
+  min-height: 40px;
+  text-align: center;
+  color: #FFF;
+  align-content: center;
+  font-size: 14px;
+}
+
+
+/*--------------------*/
+/* 05. Responsive CSS */
+/*--------------------*/
+
+@media (max-width: 768px) {
+  .logo_img {
+      width: 200px;
+  }
+  .authfy-login .auth-title{
+    font-size: 25px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 375px) {
+  
+    .authfy-login .authfy-panel {
+      padding: 32px;
+    }
+    
+}
+
+@media (max-width: 320px) {
+    .authfy-login .auth-title {
+    font-size: 20px;
+}
+}
+    </style>
+</head>
+<body>
+   <section class="main_section">
+
+    <div>
+      <header class="head_section">
+        <a href="#" alt="Logo" ><img src="img/maharshtra_logo.png" alt="" class="logo_img"></a>        
+      </header>
+      <nav class="top_nav_strip"></nav>
+    </div>
+
+     <div class="container-fluid middle_content">
+      <div class="row d-flex justify-content-center mt-5 mb-5">
+        <div class="col-lg-4 col-md-6 col-sm-8">
+          
+
+          <!-- authfy-login start -->
+          <div class="authfy-login">
+            <!-- panel-login start -->
+            <div class="authfy-panel panel-login text-center active">
+              <div class="authfy-heading">
+                <h3 class="auth-title">Login to your account</h3>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                  <form name="loginForm" class="loginForm" action="#" method="POST">
+                    <input type="email" class="form-control email" name="username" placeholder="Email address">
+                    <div class="pwdMask">
+                      <input type="password" class="form-control password" name="password" placeholder="Password">
+                      <span class="fa fa-eye-slash pwd-toggle"></span>
+                    </div>
+                    <div class="form-group text-center mt-5 mb-5">
+                      <button class="btn login-btn-block" type="submit">Login with email</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div> <!-- ./panel-login -->
+          </div> <!-- ./authfy-login -->
+        </div>
+      </div> <!-- ./row -->
+    </div>
+
+    <footer class="footer_bottom">
+      <p>© 2025 Maharashtra Gramin Bank Ltd. All Rights Reserved.</p>
+    </footer>
+
+   </section>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggle = document.querySelector(".pwdMask .pwd-toggle");
+    const input = document.querySelector(".pwdMask input.password");
+
+    if (toggle && input) {
+      toggle.addEventListener("click", function () {
+        if (input.type === "password") {
+          input.type = "text";
+          toggle.classList.remove("fa-eye-slash");
+          toggle.classList.add("fa-eye");
+        } else {
+          input.type = "password";
+          toggle.classList.remove("fa-eye");
+          toggle.classList.add("fa-eye-slash");
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+</html>
