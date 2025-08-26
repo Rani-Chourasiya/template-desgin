@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+    <!-- Bootstrap-5 -->
+ <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- Custom Stylesheet -->
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Turret+Road:wght@200;300;400;500;700;800&display=swap');
+
+:root {
+    --header-height: 3.5rem;
+    --nav-width: 219px;
+
+    --first-color: #6923D0;
+    --first-color-light: #F4F0FA;
+    --title-color: #19181B;
+    --text-color: #58555E;
+    --text-color-light: #A5A1AA;
+    --body-color: #F9F6FD;
+    --container-color: #FFFFFF;
+
+    --body-font: 'Poppins', sans-serif;
+    --signature-font: 'Turret Road', sans-serif;
+    --normal-font-size: .938rem;
+    --small-font-size: .75rem;
+    --smaller-font-size: .75rem;
+
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    --z-fixed: 100;
+}
+
+@media screen and (min-width: 1024px) {
+    :root {
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+}
+
+*,::before,::after { box-sizing: border-box; }
+body { margin: var(--header-height) 0 0 0; padding: 1rem 1rem 0; font-family: var(--body-font); font-size: var(--normal-font-size); color: var(--text-color); width: 100%; height: 100vh; background-image: url('https://i.postimg.cc/vmx4Lq0w/bg1.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat; }
+h3 { margin: 0; }
+a { text-decoration: none; }
+img { max-width: 100%; height: auto; }
+
+/*Header*/
+
+.header { position: fixed; top: 0; left: 0; width: 100%; background-color: var(--container-color); box-shadow: 0 1px 0 rgba(22, 8, 43, .1); padding: 0 1rem; z-index: var(--z-fixed); }
+.header-container { display: flex; align-items: center; height: var(--header-height); justify-content: space-between; }
+.header-img { width: 35px; height: 35px; border-radius: 50%; }
+.header-logo { color: var(--title-color); font-weight: var(--font-medium); font-family: var(--signature-font); display: none; }
+.header-search { display: flex; padding: 0.4rem 0.75rem; background-color: var(--first-color-light); border-radius: .25rem; }
+.header-input { width: 100%; border: none; outline: none; background-color: var(--first-color-light); }
+    .header-input::placeholder { font-family: var(--body-font); color: var(--text-color); }
+.header-icon, .header-toggle { font-size: 1.2rem; }
+    .header-toggle { color: var(--title-color); cursor: pointer; }
+
+/*Nav*/
+
+.nav { position: fixed; top: 0; left: -100%; height: 100vh; padding: 1rem 1rem 3rem; background-color: var(--container-color); box-shadow: 1px 0 0 rgba(22, 8, 43, .1); z-index: var(--z-fixed); transition: .4s; }
+.nav-container { height: 100%; display: flex; flex-direction: column; justify-content: space-between; overflow: auto; scrollbar-width: none; }
+.nav-container::-webkit-scrollbar { display: none; }
+.nav-logo { font-weight: var(--font-semi-bold); margin-bottom: 2.5rem; font-family: var(--signature-font); }
+.nav-list, .nav-items { display: grid; }
+    .nav-list { row-gap: 2.5rem; }
+    .nav-items { row-gap: 1.5rem; }
+.nav-subtitle { font-size: var(--normal-font-size); text-transform: uppercase; letter-spacing: 0.1rem; color: var(--text-color-light); }
+.nav-link { display: flex; align-items: center; color: var(--text-color); }
+.nav-icon { font-size: 1.2rem; margin-right: 0.5rem; }
+.nav-name { font-size: var(--small-font-size); font-weight: var(--font-medium); white-space: nowrap; }
+.nav-logout { margin-top: 5rem; }
+
+/*Dropdown*/
+
+.nav-dropdown { overflow: hidden; transition: .4s ease-in-out; max-height: 21px; }
+    .nav-dropdown:hover { max-height: 100rem; }
+.nav-dropdown-collapse { background-color: var(--first-color-light); border-radius: .25rem; margin-top: 1rem; }
+.nav-dropdown-content { display: grid; row-gap: .5rem; padding: 0.75rem 2.5rem 0.75rem 1.8rem; }
+.nav-dropdown-item { font-size: var(--smaller-font-size); font-weight: var(--font-medium); color: var(--text-color); }
+    .nav-dropdown-item:hover { color: var(--first-color); }
+.nav-dropdown-icon { margin-left: auto; transition: .4s; }
+    .nav-dropdown:hover .nav-dropdown-icon { transform: rotate(180deg); }
+.show-menu { left: 0; }
+.active { color: var(--first-color); }
+
+/* 
+section { background-image: url('https://i.postimg.cc/vmx4Lq0w/bg1.jpg'); background-position: center; background-size: cover; background-repeat: no-repeat; } */
+
+/*Media Queries*/
+
+@media screen and (max-width: 320px) {
+    .header-search { width: 70%; }
+}
+
+@media screen and (min-width: 768px) {
+    body { padding: 1rem 3rem 0 6rem; }
+    .header { padding: 0 3rem 0 6rem; }
+    .header-container { height: calc(var(--header-height) + .5rem); }
+    .header-search { width: 300px; padding: 0.55rem .75rem; }
+    .header-toggle { display: none; }
+    .header-logo { display: block; }
+    .header-img { width: 40px; height: 40px; order: 1; }
+    .nav { left: 0; padding: 1.2rem 1.5rem 3rem; width: 68px; }
+        .nav:hover { width: var(--nav-width); }
+    .nav-items { row-gap: 1.7rem; }
+    .nav-icon { font-size: 1.3rem; }
+    .nav-logo-name, .nav-name, .nav-subtitle, .nav-dropdown-icon { opacity: 0; transition: .3s; }
+        .nav:hover .nav-logo-name, .nav:hover .nav-name, .nav:hover .nav-subtitle, .nav:hover .nav-dropdown-icon { opacity: 1; }
+}
+
+  </style>
+
+</head>
+<body id="">
+<section class="">
+    <header class="header">
+        <div class="header-container">
+            <img src="https://u.cubeupload.com/Leo21/perfil1.jpg" alt="" class="header-img">
+
+            <a href="#" class="header-logo">ULTRACODE</a>
+
+            <div class="header-search">
+                <input type="search" placeholder="Search" class="header-input">
+                <i class="bx bx-search header-icon"></i>
+            </div>
+
+            <div class="header-toggle">
+                <i class="bx bx-menu" id="header-toggle"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav" id="navbar">
+        <nav class="nav-container">
+            <div>
+                <a href="#" class="nav-link nav-logo">
+                    <i class="bx bxs-disc nav-icon"></i>
+                    <span class="nav-logo-name">ULTRACODE</span>
+                </a>
+
+                <div class="nav-list">
+                    <div class="nav-items">
+                        <h3 class="nav-subtitle">Profile</h3>
+
+                        <a href="#" class="nav-link active">
+                            <i class="bx bx-home nav-icon"></i>
+                            <span class="nav-name">Home</span>
+                        </a>
+
+                        <div class="nav-dropdown">
+                            <a href="#" class="nav-link">
+                                <i class="bx bx-user nav-icon"></i>
+                                <span class="nav-name">Profile</span>
+                                <i class="bx bx-chevron-down nav-icon nav-dropdown-icon"></i>
+                            </a>
+
+                            <div class="nav-dropdown-collapse">
+                                <div class="nav-dropdown-content">
+                                    <a href="#" class="nav-dropdown-item">Passwords</a>
+                                    <a href="#" class="nav-dropdown-item">Mail</a>
+                                    <a href="#" class="nav-dropdown-item">Accounts</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="nav-link">
+                            <i class="bx bx-message-rounded nav-icon"></i>
+                            <span class="nav-name">Messages</span>
+                        </a>
+                    </div>
+
+                    <div class="nav-items">
+                        <h3 class="nav-subtitle">Menu</h3>
+
+                        <div class="nav-dropdown">
+                            <a href="#" class="nav-link">
+                                <i class="bx bx-bell nav-icon"></i>
+                                <span class="nav-name">Notifications</span>
+                                <i class="bx bx-chevron-down nav-icon nav-dropdown-icon"></i>
+                            </a>
+
+                            <div class="nav-dropdown-collapse">
+                                <div class="nav-dropdown-content">
+                                    <a href="#" class="nav-dropdown-item">Blocked</a>
+                                    <a href="#" class="nav-dropdown-item">Silenced</a>
+                                    <a href="#" class="nav-dropdown-item">Publish</a>
+                                    <a href="#" class="nav-dropdown-item">Program</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="nav-link">
+                            <i class="bx bx-compass nav-icon"></i>
+                            <span class="nav-name">Explore</span>
+                        </a>
+
+                        <a href="#" class="nav-link">
+                            <i class="bx bx-bookmark nav-icon"></i>
+                            <span class="nav-name">Saved</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="nav-link nav-logout">
+                <i class="bx bx-log-out nav-icon"></i>
+                <span class="nav-name">Logout</span>
+            </a>
+        </nav>
+    </div>
+</section>
+<main>
+<section class=""></section>
+</main>
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+
+    <!-- Bootstrap-5 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- Custom JS Script -->
+ <script>
+    //Showing navbar 
+
+const showMenu = (headerToggle, navbarId) => {
+    const toggleBtn = document.getElementById(headerToggle);
+    const nav = document.getElementById(navbarId);
+
+    if(headerToggle && navbarId) {
+        toggleBtn.addEventListener('click', () => {
+            nav.classList.toggle('show-menu');
+            toggleBtn.classList.toggle('bx-x');
+        })
+    }
+}
+
+showMenu('header-toggle', 'navbar');
+
+//Changing Active Link
+
+const linkColor = document.querySelectorAll('.nav-link');
+
+function colorLink() {
+    linkColor.forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+}
+
+linkColor.forEach(l => l.addEventListener('click', colorLink));
+ </script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <title>Dynamic Slide-in Slide-out Animation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- Custom Stylesheet -->
+    <style>
+/* Basic body styling to apply the Inter font */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* --- Keyframe Animations for Panel Sliding --- */
+    /*
+     * These keyframes define the animation for panels sliding in and out from different directions.
+     * Each animation starts from a transformed state (e.g., translateX(100%) for right)
+     * and ends at its original position (translateX(0)).
+     */
+    @keyframes slideInFromRight { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    @keyframes slideOutToRight { from { transform: translateX(0); } to { transform: translateX(100%); } }
+    @keyframes slideInFromLeft { from { transform: translateX(-100%); } to { transform: translateX(0); } }
+    @keyframes slideOutToLeft { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+    @keyframes slideInFromTop { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+    @keyframes slideOutToTop { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+    @keyframes slideInFromBottom { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    @keyframes slideOutToBottom { from { transform: translateY(0); } to { transform: translateY(100%); } }
+    /* Keyframe animation for content fading in with a slight upward translation */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* --- Panel Base Styling --- */
+    /*
+     * Base styles for all panel elements.
+     * They are fixed position, have a background, shadow, and a high z-index.
+     * Initially, panels are hidden using `visibility: hidden;`.
+     */
+    .panel {
+      position: fixed;
+      background-color: white;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+      z-index: 1000;
+      visibility: hidden; /* Hidden by default */
+    }
+
+    /* When a panel has the 'is-open' class, it becomes visible */
+    .panel.is-open { visibility: visible; }
+    /*
+     * Apply fadeIn animation to direct children of .panel-content when the panel is open.
+     * This creates a staggered fade-in effect for the panel's internal content.
+     */
+    .panel.is-open .panel-content > * { animation: fadeIn 0.5s both; }
+    .panel.is-open .panel-content > *:nth-child(1) { animation-delay: 0.3s; }
+    .panel.is-open .panel-content > *:nth-child(2) { animation-delay: 0.4s; }
+    .panel.is-open .panel-content > *:nth-child(3) { animation-delay: 0.5s; }
+    .panel.is-open .panel-content > *:nth-child(4) { animation-delay: 0.6s; }
+    .panel.is-open .panel-content > *:nth-child(5) { animation-delay: 0.7s; }
+
+    /* --- Overlay Styling --- */
+    /*
+     * Styles for the semi-transparent overlay that appears when a panel is open.
+     * It covers the entire screen, has a lower z-index than panels, and transitions
+     * its opacity and visibility for a smooth fade effect.
+     */
+    .overlay {
+      position: fixed;
+      inset: 0; /* Shorthand for top: 0; right: 0; bottom: 0; left: 0; */
+      background-color: rgba(0,0,0,0.6); /* Semi-transparent black */
+      z-index: 999; /* Below panels */
+      opacity: 0; /* Hidden by default */
+      visibility: hidden; /* Hidden by default */
+      transition: opacity 0.4s ease-out, visibility 0.4s ease-out; /* Smooth transition */
+    }
+
+    /* When the overlay has the 'is-open' class, it becomes visible and opaque */
+    .overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* --- Panel Animation Classes --- */
+    /*
+     * These classes apply the specific slide-in/out animations to panels.
+     * `forwards` ensures the animation retains its end state.
+     * `ease-out` provides a smooth deceleration; `ease-in` provides a smooth acceleration.
+     */
+    .panel.animate-in-right { animation: slideInFromRight 0.4s forwards ease-out; }
+    .panel.animate-out-right { animation: slideOutToRight 0.3s forwards ease-in; }
+    .panel.animate-in-left { animation: slideInFromLeft 0.4s forwards ease-out; }
+    .panel.animate-out-left { animation: slideOutToLeft 0.3s forwards ease-in; }
+    .panel.animate-in-top { animation: slideInFromTop 0.4s forwards ease-out; }
+    .panel.animate-out-top { animation: slideOutToTop 0.3s forwards ease-in; }
+    .panel.animate-in-bottom { animation: slideInFromBottom 0.4s forwards ease-out; }
+    .panel.animate-out-bottom { animation: slideOutToBottom 0.3s forwards ease-in; }
+
+@media(max-width: 700px){
+  .custom-col{
+    grid-template-columns: repeat(1, 100%) !important;
+  }
+}
+    </style>
+
+</head>
+<body class="bg-gray-200 flex items-center justify-center h-screen p-4">
+
+    <div class="grid grid-cols-2 gap-4 custom-col">
+        <button data-target-panel="panel-top" class="bg-gradient-to-br from-purple-500 to-indigo-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-200">
+            From Top
+        </button>
+        <button data-target-panel="panel-right" class="bg-gradient-to-br from-green-500 to-teal-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-200">
+            From Right
+        </button>
+        <button data-target-panel="panel-bottom" class="bg-gradient-to-br from-orange-500 to-red-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-200">
+            From Bottom
+        </button>
+        <button data-target-panel="panel-left" class="bg-gradient-to-br from-blue-500 to-cyan-600 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-200">
+            From Left
+        </button>
+    </div>
+
+    <!-- The overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Panel that slides from the TOP -->
+    <div id="panel-top" class="panel" data-direction="top">
+        <div class="panel-content max-w-2xl mx-auto text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Top Panel</h2>
+            <p class="text-gray-600 mb-6">This panel uses keyframes to slide down from the top.</p>
+            <button class="close-btn bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Close</button>
+        </div>
+    </div>
+
+    <!-- Panel that slides from the RIGHT -->
+    <!-- Responsive sizing: w-11/12 on mobile, max-w-md on larger screens -->
+    <div id="panel-right" class="panel" data-direction="right">
+        <div class="panel-content flex flex-col h-full">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Navigation</h2>
+            <nav class="flex flex-col space-y-3 text-lg">
+                <a href="https://www.linkedin.com/in/jswithzikebuz/" class="flex items-center p-2 rounded-md hover:bg-gray-100"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>Home</a>
+                <a href="https://x.com/jswithzikebuz" class="flex items-center p-2 rounded-md hover:bg-gray-100"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>About</a>
+                <a href="https://www.instagram.com/jswithzikebuz/" class="flex items-center p-2 rounded-md hover:bg-gray-100"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3h2m-4 3H9m-7 4h14M5 15h14"></path></svg>Services</a>
+                <a href="https://www.facebook.com/jswithzikebuz" class="flex items-center p-2 rounded-md hover:bg-gray-100"><svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>Contact</a>
+            </nav>
+            <div class="mt-auto">
+                <button class="close-btn w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded">Close Panel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Panel that slides from the BOTTOM -->
+    <div id="panel-bottom" class="panel bg-gray-800 text-white" data-direction="bottom">
+        <div class="panel-content max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
+            <div class="mb-4 sm:mb-0">
+                <h2 class="text-2xl font-bold">Cookie Consent</h2>
+                <p class="text-gray-600">We use cookies to improve your experience.</p>
+            </div>
+            <button class="close-btn bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-lg flex-shrink-0">Accept</button>
+        </div>
+    </div>
+    
+    <!-- Panel that slides from the LEFT -->
+    <!-- Responsive sizing: w-11/12 on mobile, max-w-md on larger screens -->
+    <div id="panel-left" class="panel" data-direction="left">
+        <div class="panel-content flex flex-col h-full">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">User Profile</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-sm font-medium text-gray-600">Username</label>
+                    <input type="text" value="Jswithzikebuz" class="w-full p-2 border border-gray-300 rounded-md mt-1">
+                </div>
+                <div>
+                    <label class="text-sm font-medium text-gray-600">Email</label>
+                    <input type="email" value="Jswithzikebuz@codepen.com" class="w-full p-2 border border-gray-300 rounded-md mt-1">
+                </div>
+                 <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md">Update Profile</button>
+            </div>
+            <div class="mt-auto">
+                <button class="close-btn w-full bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded">Close</button>
+            </div>
+        </div>
+    </div>
+     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+
+    <!-- Bootstrap-5 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <!-- Custom JS Script -->
+    <script>
+// Ensures the script runs after the entire HTML document is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get references to the overlay element
+      const overlay = document.getElementById('overlay');
+      // Variables to keep track of the currently open panel and the element that had focus before opening the panel
+      let openPanel = null;
+      let lastFocusedElement = null;
+
+      /**
+       * Opens a given panel.
+       * @param {HTMLElement} panel - The panel element to open.
+       */
+      const open = (panel) => {
+        // If no panel is provided or a panel is already open, do nothing
+        if (!panel || openPanel) return;
+
+        // Get the direction for the animation from the panel's data attribute
+        const direction = panel.dataset.direction;
+        // Store the currently focused element to restore focus later
+        lastFocusedElement = document.activeElement;
+
+        // Reset panel classes and add 'is-open' and the appropriate 'animate-in' class
+        panel.className = 'panel'; // Resets all classes except 'panel'
+        panel.classList.add('is-open', `animate-in-${direction}`);
+
+        // Apply specific Tailwind classes based on the panel's direction for positioning and sizing
+        if (direction === 'right' || direction === 'left') {
+          // For side panels: full height, responsive width, and padding
+          panel.classList.add('top-0', 'h-full', 'w-11/12', 'sm:max-w-md', 'p-6', 'sm:p-8');
+          panel.classList.add(direction === 'right' ? 'right-0' : 'left-0');
+        } else {
+          // For top/bottom panels: full width, auto height, and padding
+          panel.classList.add('left-0', 'w-full', 'h-auto', 'p-6', 'sm:p-8');
+          panel.classList.add(direction === 'bottom' ? 'bottom-0' : 'top-0');
+        }
+
+        // Show the overlay
+        overlay.classList.add('is-open');
+        // Set the currently open panel
+        openPanel = panel;
+        // Prevent body scrolling when a panel is open
+        document.body.style.overflow = 'hidden';
+        // Focus on the close button for accessibility
+        panel.querySelector('.close-btn').focus();
+      };
+
+      /**
+       * Closes the currently open panel.
+       */
+      const close = () => {
+        // If no panel is open, do nothing
+        if (!openPanel) return;
+
+        // Get the direction for the animation
+        const direction = openPanel.dataset.direction;
+
+        // Remove the 'animate-in' class and add the appropriate 'animate-out' class
+        openPanel.classList.remove(`animate-in-${direction}`);
+        openPanel.classList.add(`animate-out-${direction}`);
+        // Hide the overlay
+        overlay.classList.remove('is-open');
+
+        // Add an event listener to run code after the animation ends
+        openPanel.addEventListener('animationend', () => {
+          // Remove the 'is-open' and 'animate-out' classes to fully hide the panel
+          openPanel.classList.remove('is-open', `animate-out-${direction}`);
+          // Reset the open panel variable
+          openPanel = null;
+          // Restore body scrolling
+          document.body.style.overflow = '';
+        }, { once: true }); // The event listener will only run once
+
+        // Restore focus to the element that was focused before the panel opened
+        if (lastFocusedElement) lastFocusedElement.focus();
+      };
+
+      // --- Event Listeners ---
+
+      // Attach click listeners to all buttons that trigger a panel
+      document.querySelectorAll('[data-target-panel]').forEach(button => {
+        button.addEventListener('click', e => {
+          // Get the target panel's ID from the data attribute
+          const panelId = e.currentTarget.dataset.targetPanel;
+          // Find the panel element by its ID
+          const panel = document.getElementById(panelId);
+          // Open the found panel
+          open(panel);
+        });
+      });
+
+      // Attach click listeners to all close buttons within panels
+      document.querySelectorAll('.close-btn').forEach(button => {
+        button.addEventListener('click', close);
+      });
+
+      // Close the panel when the overlay is clicked
+      overlay.addEventListener('click', close);
+
+      // Close the panel when the Escape key is pressed
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && openPanel) {
+          close();
+        }
+      });
+    });
+  
+    </script>
+</body>
+
+</html>

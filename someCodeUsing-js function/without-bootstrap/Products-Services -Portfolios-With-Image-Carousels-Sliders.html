@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Products & Services - Portfolio with Image Carousel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="/image/favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            box-sizing: border-box !important;
+        }
+
+        body {
+            font-family: Roboto, sans-serif;
+        }
+
+        #container {
+            width: 100%;
+            min-height: 600px;
+            height: 100vh;
+            position: relative;
+            background: #e2e2e2;
+            overflow: visible;
+        }
+
+        #holder {
+            max-width: 800px;
+            width: 98%;
+            min-height: 360px;
+            height: 360px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        #image {
+            width: 60%;
+            height: 100%;
+            float: left;
+            position: relative;
+            z-index: 200;
+            box-shadow: 0px 40px 120px 0px rgba(0, 0, 0, 0.52);
+            overflow: visible;
+        }
+
+        #right {
+            width: 60%;
+            height: 100%;
+            float: right;
+            position: relative;
+        }
+
+        #text {
+            width: 40%;
+            height: 420px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.57);
+            box-shadow: 0px 40px 120px 0px rgba(0, 0, 0, 0.52);
+        }
+
+        a {
+            display: block;
+            text-decoration: none;
+            outline: none;
+        }
+
+        nav {
+            width: 140px;
+            height: 50px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            box-shadow: 0px 7px 24px 3px rgba(0, 0, 0, 0.52);
+            /* Removed display: none to make nav visible */
+        }
+
+        #leftBtn, #rightBtn {
+            width: 50%;
+            height: 100%;
+            float: left;
+            color: rgba(255, 255, 255, 0.57);
+            background: #232323;
+            font-size: 25px;
+            line-height: 200%;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease-in;
+        }
+
+        #rightBtn {
+            border-left: 1px solid rgba(255, 255, 255, 0.57);
+        }
+
+        #leftBtn:hover, #rightBtn:hover {
+            color: #fff;
+        }
+
+        #nav-circles {
+            width: 96px;
+            height: 20px;
+            position: absolute;
+            bottom: 8%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            float: left;
+            border-radius: 100%;
+            border: 2px solid green;
+            margin: 0 6px;
+            cursor: pointer;
+            transition: all 0.75s cubic-bezier(0.86, 0.3, 0.07, 1);
+        }
+
+        .circle.active {
+            background: yellow;
+        }
+
+        #centerText {
+            width: 100%;
+            height: 200px;
+            position: absolute;
+            top: 20%;
+            margin-top: -100px;
+            padding: 10px 0;
+            overflow: visible;
+        }
+
+        p {
+            width: 100%;
+            height: 150px;
+            position: absolute;
+            top: 45px;
+            left: 0;
+            right: -150px;
+            bottom: 0;
+            margin: auto;
+            font-size: 20px;
+            color: #232323;
+            padding: 0 25px;
+            text-align: center;
+            opacity: 0;
+            transition: all 2s cubic-bezier(0.86, 0.3, 0.03, 1), opacity 0.7s cubic-bezier(0.86, 0.3, 0.47, 1) 0.3s;
+        }
+
+        p.quote.active {
+            right: 0;
+            opacity: 1;
+            background: transparent;
+        }
+
+        p.quote:nth-child(2) {
+            top: 25px;
+        }
+
+        .img {
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            position: absolute;
+            right: -100%;
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0;
+            z-index: 400;
+            transition: all 2s cubic-bezier(0.86, 0.3, 0.03, 1), opacity 0.7s cubic-bezier(0.86, 0.3, 0.47, 1) 0.3s;
+        }
+
+        .img.active {
+            right: 0;
+            opacity: 1;
+            z-index: 500;
+        }
+
+        .jobs {
+            background: #fff url(https://cdn.jsdelivr.net/gh/linuxguist/bizpage@main/assets/img/portfolio/card2.jpg);
+        }
+
+        .zuck {
+            background: #fff url(https://cdn.jsdelivr.net/gh/linuxguist/bizpage@main/assets/img/portfolio/construction.jpg);
+        }
+
+        .musk {
+            background: #fff url(https://cdn.jsdelivr.net/gh/linuxguist/bizpage@main/assets/img/portfolio/web3.jpg);
+        }
+
+        #bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: all 1.5s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .jobs-bg {
+            background: #fff url(https://i.imgur.com/LrRr7Af.jpg) center/cover no-repeat;
+        }
+
+        .zuck-bg {
+            background: #fff url(https://i.imgur.com/another-image.jpg) center/cover no-repeat; /* Replace with unique image */
+        }
+
+        .musk-bg {
+            background: #fff url(https://i.imgur.com/yet-another-image.jpg) center/cover no-repeat; /* Replace with unique image */
+        }
+
+        @media screen and (max-width: 700px) {
+            #centerText p {
+                font-size: 20px;
+            }
+        }
+
+        @media screen and (max-width: 580px) {
+            #holder {
+                max-width: 700px;
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .img {
+                background-position: top center;
+            }
+
+            #image {
+                width: 220px;
+                height: 250px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -280px);
+            }
+
+            #right {
+                display: none; /* Hide unused #right div */
+            }
+
+            #text {
+                width: 90%;
+                height: 320px;
+                position: absolute;
+                top: 150px;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+
+            #nav-circles {
+                display: none;
+            }
+
+            #centerText {
+                top: 34%;
+                padding: 150px 0;
+            }
+        }
+
+        @media screen and (max-width: 450px) {
+            #image {
+                width: 200px;
+                height: 230px;
+                transform: translate(-50%, -250px);
+            }
+
+            #text {
+                width: 100%;
+                height: 320px;
+                top: 150px;
+            }
+
+            #centerText {
+                padding: 120px 0;
+            }
+        }
+
+        .quote {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="holder">
+            <div id="image">
+                <div class="img jobs"></div>
+                <div class="img zuck"></div>
+                <div class="img musk"></div>
+            </div>
+            <div id="right"></div>
+            <div id="text">
+                <div id="centerText">
+                    <p class="quote">
+                        <i class="fa fa-info-circle" style="font-size:30px;color:blue"></i> Products / Services: <br><br>
+                        Describe the Product / Service Offered Here <br><br>
+                        <i class="fa fa-hand-point-right" style="font-size:30px;color:blue"></i> Point 1 <br><br>
+                        <i class="fa fa-hand-point-right" style="font-size:30px;color:blue"></i> Point 2
+                    </p>
+                    <p class="quote">
+                        <i class="fa fa-info-circle" style="font-size:30px;color:blue"></i> Products / Services: <br><br>
+                        Describe the Product / Service Offered Here <br><br>
+                        <i class="fa fa-hand-point-right" style="font-size:30px;color:blue"></i> Point 1 <br><br>
+                        <i class="fa fa-hand-point-right" style="font-size:30px;color:blue"></i> Point 2
+                    </p>
+                    <p class="quote">
+                        <i class="fa fa-info-circle" style="font-size:30px;color:blue"></i> Products / Services: <br><br>
+                        Describe the Product / Service Offered Here <br><br>
+                        <i class="fa fa-hand-point-right" style="font-size:30px;color:blue"></i> Point 1 <br><br>
+                        <i class="fa fa-hand-point-right" style="font-size:30px;color:blue"></i> Point 2
+                    </p>
+                </div>
+                <nav>
+                    <a id="leftBtn" class="prev"><i class="fa fa-arrow-left"></i></a>
+                    <a id="rightBtn" class="next"><i class="fa fa-arrow-right"></i></a>
+                </nav>
+            </div>
+        </div>
+        <div id="bg">
+            <div class="slide jobs-bg"></div>
+            <div class="slide zuck-bg"></div>
+            <div class="slide musk-bg"></div>
+        </div>
+        <div id="nav-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize first elements as active
+            $(".circle").first().addClass("active");
+            $("#bg .slide").first().addClass("active");
+            $("#image .img").first().addClass("active");
+            $(".quote").first().addClass("active");
+
+            // Function to start auto-slide
+            function startAutoSlide() {
+                return setInterval(function() {
+                    var $currentCircle = $("#nav-circles .active");
+                    var $nextCircle = $currentCircle.next().length ? $currentCircle.next() : $(".circle").first();
+                    var position = $("#nav-circles .circle").index($nextCircle);
+
+                    $(".circle").removeClass("active").eq(position).addClass("active");
+                    $("#bg .slide").removeClass("active").eq(position).addClass("active");
+                    $("#image .img").removeClass("active").eq(position).addClass("active");
+                    $(".quote").removeClass("active").eq(position).addClass("active");
+                }, 4500);
+            }
+
+            let autoSlide = startAutoSlide();
+
+            // Circle click handler
+            $(".circle").click(function() {
+                clearInterval(autoSlide);
+                var position = $(this).index();
+
+                $(".circle").removeClass("active").eq(position).addClass("active");
+                $("#bg .slide").removeClass("active").eq(position).addClass("active");
+                $("#image .img").removeClass("active").eq(position).addClass("active");
+                $(".quote").removeClass("active").eq(position).addClass("active");
+
+                autoSlide = startAutoSlide(); // Restart auto-slide
+            });
+
+            // Navigation buttons handler
+            $("#leftBtn, #rightBtn").click(function() {
+                clearInterval(autoSlide);
+                var $currentCircle = $("#nav-circles .active");
+                var $nextCircle;
+
+                if ($(this).hasClass("next")) {
+                    $nextCircle = $currentCircle.next().length ? $currentCircle.next() : $(".circle").first();
+                } else {
+                    $nextCircle = $currentCircle.prev().length ? $currentCircle.prev() : $(".circle").last();
+                }
+
+                var position = $("#nav-circles .circle").index($nextCircle);
+
+                $(".circle").removeClass("active").eq(position).addClass("active");
+                $("#bg .slide").removeClass("active").eq(position).addClass("active");
+                $("#image .img").removeClass("active").eq(position).addClass("active");
+                $(".quote").removeClass("active").eq(position).addClass("active");
+
+                autoSlide = startAutoSlide(); // Restart auto-slide
+            });
+        });
+    </script>
+</body>
+</html>

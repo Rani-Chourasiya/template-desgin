@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OTP Input with Auto-Focus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <style>
+      body {
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.otp-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 350px;
+}
+
+.otp-inputs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.otp-inputs input {
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  font-size: 1.5rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.otp-inputs input:focus {
+  border-color: #4a6cf7;
+  outline: none;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(74, 108, 247, 0.2);
+}
+
+.verify-btn {
+  background: #4a6cf7;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.verify-btn:hover {
+  background: #3a5bd9;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+}
+    </style>
+</head>
+<body>
+    <section>
+        <div class="otp-container">
+            <h2>Enter Verification Code</h2>
+            <div class="otp-inputs">
+                <input type="text" maxlength="1" pattern="[0-9]" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" autocomplete="off">
+                <input type="text" maxlength="1" pattern="[0-9]" autocomplete="off">
+            </div>
+            <button class="verify-btn">Verify</button>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            const inputs = $('.otp-inputs input');
+
+            // Handle input and auto-focus
+            inputs.on('input', function (e) {
+                const input = $(this);
+                const value = input.val();
+
+                // Allow only digits
+                if (value.length === 1 && /[0-9]/.test(value)) {
+                    // Move to next input if available
+                    const nextInput = input.next('input');
+                    if (nextInput.length) {
+                        nextInput.focus();
+                    }
+                } else {
+                    // Clear invalid input
+                    input.val('');
+                }
+            });
+
+            // Handle backspace to move to previous input
+            inputs.on('keydown', function (e) {
+                const input = $(this);
+                if (e.key === 'Backspace' && !input.val()) {
+                    const prevInput = input.prev('input');
+                    if (prevInput.length) {
+                        prevInput.focus();
+                    }
+                }
+            });
+
+            // Handle paste event
+            inputs.on('paste', function (e) {
+                e.preventDefault();
+                const pasteData = (e.originalEvent.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+                if (pasteData.length) {
+                    inputs.each(function (index) {
+                        if (index < pasteData.length) {
+                            $(this).val(pasteData[index]);
+                            if ($(this).next('input').length) {
+                                $(this).next('input').focus();
+                            }
+                        }
+                    });
+                }
+            });
+
+            // Handle verify button click
+            $('.verify-btn').on('click', function () {
+                let otp = '';
+                inputs.each(function () {
+                    otp += $(this).val();
+                });
+
+                if (otp.length === inputs.length && /^\d+$/.test(otp)) {
+                    alert('OTP Entered: ' + otp);
+                    // Add your verification logic here (e.g., send OTP to server)
+                } else {
+                    alert('Please enter a valid 6-digit OTP');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

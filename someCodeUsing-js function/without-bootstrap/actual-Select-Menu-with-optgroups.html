@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An actual Select Menu with optgroups</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <style>
+  @import url("https://fonts.googleapis.com/css2?family=Fleur+De+Leah&family=Lato:wght@400;700&display=swap");
+@layer presentation, checksupport, select, customselect;
+
+@layer presentation {
+  :root {
+    --page-bg: #f0ebe5;
+    --card-bg: #fdfaf6;
+    --text-dark: #5a4a42;
+    --text-heading: #8c6b4f;
+    --border: #dcd3c9;
+    --border-accent: #e0cda9;
+    --border-hover: #8c6b4f;
+    --font-heading: "Fleur De Leah", cursive;
+    --font-body: "Lato", sans-serif;
+    --card-max-width: 700px;
+    --border-radius: 8px;
+  }
+}
+
+/* I set this separatly for easy tinkering, but this is a progressive enhancement, notice the layer order */
+
+@layer checksupport {
+  select {
+    appearance: none;
+    @supports (appearance: base-select) {
+      &,
+      &::picker(select) {
+        appearance: base-select;
+      }
+    }
+  }
+}
+
+@layer customselect {
+  @supports (appearance: base-select) {
+    body:has(select:open) {
+      overflow: hidden;
+    }
+    select {
+      padding: 1rem 2.5rem;
+      justify-content: center;
+      &::picker-icon {
+        display: none;
+      }
+      ::checkmark {
+        display: none;
+      }
+    }
+    ::picker(select) {
+      gap: 3vw;
+      position-anchor: --body;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      opacity: 0;
+      transition: opacity, translate, display, overlay;
+      transition-duration: 0.4s;
+      transition-timing-function: ease-in-out;
+      transition-behavior: allow-discrete;
+    }
+
+    select:open::picker(select) {
+      opacity: 1;
+      translate: 0;
+      @starting-style {
+        opacity: 0;
+        translate: 0 20vh;
+      }
+    }
+
+    .menu-options {
+      @media (width > 600px) {
+        columns: 2;
+        columns-width: 45vw;
+        max-width: 800px;
+        margin-inline: auto;
+      }
+    }
+
+    optgroup {
+      padding: 1.5rem 1.5rem 0.5rem;
+      margin-top: 1rem;
+      border-bottom: 2px solid var(--border-accent);
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 400;
+      text-align: center;
+      color: var(--text-heading);
+      cursor: default;
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    option {
+      flex-direction: column;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+      white-space: normal;
+      break-inside: avoid;
+      transition: background-color 0.2s ease;
+      border: 3px dotted transparent;
+      &:last-of-type {
+        border-bottom: none;
+      }
+      &:first-of-type {
+        break-before: avoid;
+      }
+      &:disabled {
+        display: none;
+      }
+      &:where(:hover, :focus) {
+        outline: none;
+        background-color: var(--page-bg);
+      }
+      &:checked:not(:hover, :focus) {
+        background-color: transparent;
+        border: 3px dotted var(--border-accent);
+      }
+    }
+
+    .info {
+      display: block;
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      font-style: italic;
+      text-align: center;
+      color: var(--text-heading);
+    }
+    selectedcontent {
+      text-align: center;
+    }
+  }
+}
+
+@layer select {
+  select {
+    width: 100%;
+    padding: 1rem 2.5rem 1rem 1rem;
+    border: 2px solid var(--border);
+    border-radius: var(--border-radius);
+    background-color: var(--card-bg);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='%235a4a42'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 20px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    &:where(:hover, :focus) {
+      border-color: var(--border-hover);
+    }
+  }
+}
+
+@layer presentation {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    background-color: var(--page-bg);
+  }
+  body {
+    max-width: var(--card-max-width);
+    margin: 2rem auto;
+    padding: 2rem 3rem 3rem;
+    border-radius: var(--border-radius);
+    background-color: var(--card-bg);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.1);
+    font-family: var(--font-heading);
+    color: var(--text-dark);
+  }
+  br {
+    display: none;
+  }
+  h1,
+  h2 {
+    margin: 0;
+    font-weight: 400;
+    text-align: center;
+  }
+  h1 {
+    margin-bottom: 2rem;
+    font-size: clamp(3rem, 2.413rem + 2.9348vw, 4.6875rem);
+  }
+  label {
+    display: block;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid var(--border-accent);
+    font-size: clamp(2.5rem, 2.0652rem + 2.1739vw, 3.75rem);
+    color: var(--text-heading);
+    text-align: center;
+  }
+}
+
+    </style>
+</head>
+<body>
+  <h1>The Forlic Flower</h1>
+  <label for="starters-select">
+    Starters
+  </label>
+  <select name="starter" id="starters-select">
+    <button>
+      <selectedcontent></selectedcontent>
+    </button>
+    <div class="menu-options">
+      <option value="" selected disabled>Please choose a starter...</option>
+      <optgroup label="From the Sea">
+        <option value="tuna_tartare">Ahi Tuna Tartare <span class="info">with avocado, soy-ginger dressing, and wonton crisps</span></option>
+        <option value="seared_scallops">Seared Scallops <span class="info">with a lemon-butter and garlic sauce</span></option>
+      </optgroup>
+      <optgroup label="From the Land">
+        <option value="beef_carpaccio">Beef Carpaccio <span class="info">with arugula, capers, parmesan, and truffle oil</span></option>
+      </optgroup>
+      <optgroup label="Vegetarian">
+        <option value="bruschetta">Classic Bruschetta <span class="info">with fresh tomatoes, basil, garlic, and balsamic glaze</span></option>
+        <option value="mushroom_volauvent">Mushroom Vol-au-vent <span class="info">creamy wild mushrooms in a light puff pastry case</span></option>
+        <option value="tomato_soup">Roasted Tomato & Basil Soup <span class="info">served with a slice of sourdough bread</span></option>
+      </optgroup>
+    </div>
+  </select>
+
+  <label for="main-course-select">
+    Main Course
+  </label>
+  <select name="main_course" id="main-course-select">
+    <button>
+      <selectedcontent></selectedcontent>
+    </button>
+    <div class="menu-options">
+      <option value="" selected disabled>Please choose a main course...</option>
+      <optgroup label="Meat & Poultry">
+        <option value="filet_mignon">Filet Mignon (8oz) <span class="info">served with potato gratin and a red wine reduction</span></option>
+        <option value="rack_of_lamb">Herb-Crusted Rack of Lamb <span class="info">with mint jelly and roasted root vegetables</span></option>
+        <option value="duck_confit">Duck Confit <span class="info">with a cherry sauce and lentils du puy</span></option>
+        <option value="short_rib">Braised Beef Short Rib <span class="info">slow-cooked for 6 hours, served on creamy polenta</span></option>
+      </optgroup>
+      <optgroup label="Fish">
+        <option value="sea_bass">Pan-Seared Sea Bass <span class="info">with a lemon-caper sauce and sautéed asparagus</span></option>
+        <option value="swordfish">Grilled Swordfish <span class="info">with a Mediterranean salsa of olives, tomatoes, and herbs</span></option>
+      </optgroup>
+      <optgroup label="Vegetarian">
+        <option value="risotto_funghi">Risotto ai Funghi <span class="info">creamy Arborio rice with wild mushrooms, truffle, and parmesan</span></option>
+        <option value="gnocchi">Handmade Gnocchi <span class="info">in a sage and brown butter sauce with toasted pine nuts</span></option>
+        <option value="stuffed_peppers">Stuffed Bell Peppers <span class="info">filled with quinoa, black beans, corn, and topped with feta</span></option>
+      </optgroup>
+    </div>
+  </select>
+  <label for="desserts-select">
+    Desserts
+  </label>
+  <select name="dessert" id="desserts-select">
+
+    <button>
+      <selectedcontent></selectedcontent>
+    </button>
+    <div class="menu-options">
+      <option value="" selected disabled>Please choose a dessert...</option>
+      <optgroup label="Chocolate">
+        <option value="lava_cake">Chocolate Lava Cake <span class="info">warm molten center, served with vanilla bean ice cream</span></option>
+        <option value="chocolate_mousse">Triple Chocolate Mousse <span class="info">layers of dark, milk, and white chocolate</span></option>
+      </optgroup>
+      <optgroup label="Fruit & Cream">
+        <option value="apple_crumble">Classic Apple Crumble <span class="info">with a cinnamon oat topping and hot custard</span></option>
+        <option value="lemon_tart">Zesty Lemon Tart <span class="info">on a butter pastry crust with a delicate meringue top</span></option>
+        <option value="panna_cotta">Vanilla Bean Panna Cotta <span class="info">served with a fresh raspberry coulis</span></option>
+      </optgroup>
+      <optgroup label="Cheese">
+        <option value="cheese_platter">Artisanal Cheese Platter <span class="info">selection of three cheeses with fruit, nuts, and crackers</span></option>
+      </optgroup>
+    </div>
+  </select>
+</body>
+</html>

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Slider Bootstap 4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Stylesheet -->
+  <style>
+   body {
+  overflow-x: hidden;
+  height: 3000px;
+}
+.banner {
+  height: 870px;
+
+  min-height: 300px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.slider .carousel-caption {
+  /*  bottom: 270px;*/
+  top: 131px;
+}
+
+.slider .carousel-caption h5 {
+  font-size: 45px;
+
+  letter-spacing: 2px;
+  margin-top: 25px;
+}
+
+.slider .carousel-caption p {
+  font-size: 25px;
+  line-height: 1.9;
+}
+
+#banner-slider {
+  /*height: 350px;*/
+  width: 100%;
+}
+
+.slider .carousel-indicators li {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+.slider .carousel-indicators {
+  /* right: -95%;*/
+  /* display: inline-grid;*/
+  bottom: 22%;
+  justify-content: flex-end;
+}
+.slider .carousel-indicators li img {
+  border-radius: 50%;
+  border: 1px solid #fff;
+}
+
+.main-nav .navbar-toggler {
+  background: #fff;
+}
+
+.main-nav .navbar-toggler {
+  padding: 1px 5px;
+  font-size: 18px;
+  line-height: 0.3;
+}
+
+.main-nav {
+  background: #fff !important;
+  box-shadow: 0px 3px 10px 0px rgb(0 0 0 / 10%);
+  transition: 0.7s all;
+  -moz-transition: 0.7s all;
+  -webkit-transition: 0.7s all;
+  -o-transition: 0.7s all;
+  opacity: 0.8;
+}
+.main-nav .navbar-nav .nav-item .nav-link {
+  position: relative;
+
+  font-size: 18px;
+
+  color: #000;
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+@media (min-width: 0px) and (max-width: 768px) {
+  .banner {
+    height: 400px;
+  }
+  .slider .carousel-caption {
+    /* bottom: 30%;*/
+    display: block !important;
+  }
+
+  .slider .carousel-caption h5 {
+    font-size: 23px;
+    letter-spacing: 2px;
+  }
+
+  .slider .carousel-caption p {
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+  .slider .carousel-indicators {
+    display: none;
+
+    right: -55%;
+  }
+}
+
+.banner-tab ul.tabs {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  background: #fff;
+}
+.banner-tab ul.tabs li {
+  display: inline-block;
+  padding: 23px 118px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.banner-tab ul.tabs li.current {
+  background: #0f3d70;
+  color: #fff;
+}
+
+.banner-tab .tab-content {
+  display: none;
+  background: #ededed;
+  padding: 30px;
+}
+.banner-tab .tab-content p {
+  font-size: 18px;
+}
+.banner-tab .tab-content h5 {
+  color: #0f3d70;
+}
+
+.banner-tab .tab-content.current {
+  display: inherit;
+}
+.banner-tab {
+  top: -3%;
+  position: relative;
+  z-index: 111;
+}
+.banner-tab .row {
+  margin-right: -10px !important;
+}
+
+  </style>
+
+</head>
+<body id="">
+<nav class="navbar navbar-expand-xl navbar-light main-nav fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img src="https://i.ibb.co/0fbjSTp/kutch-chemical-logo.png" width="350" class="img-fluid" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link bg-primary text-white" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Milestone</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Our Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Media</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section class="slider">
+  <div id="banner-slider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#banner-slider" data-slide-to="0" class="active"><img class="d-block w-100" src="https://i.ibb.co/BwdfYp6/01.jpg" alt="" /></li>
+      <li data-target="#banner-slider" data-slide-to="1"><img class="d-block w-100" src="https://i.ibb.co/J2rvf6p/02.jpg" alt="" /></li>
+      <li data-target="#banner-slider" data-slide-to="2"><img class="d-block w-100" src="https://i.ibb.co/LkJ96nx/03.jpg" alt="" /></li>
+      <li data-target="#banner-slider" data-slide-to="3"><img class="d-block w-100" src="https://i.ibb.co/StZ8fqc/04.jpg" alt="" /></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="banner" style="background-image: url('https://images.pexels.com/photos/3105242/pexels-photo-3105242.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');"></div>
+        <div class="carousel-caption d-none d-md-block">
+          <div class="container">
+            <div class="row text-left">
+              <div class="col-md-3"></div>
+              <div class="col-md-9">
+                <h5>
+                  Welcome To Vikram Chemical
+                </h5>
+                <p>
+                  We are highly experienced in the processes of Chlorination, Nitration,<br />
+                  Sulfonation, Hydrogenation, Ethoxilation and Ammonolysis. We have more<br />
+                  than 20
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="banner" style="background-image: url('https://images.pexels.com/photos/3855962/pexels-photo-3855962.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');"></div>
+        <div class="carousel-caption d-none d-md-block">
+          <div class="container">
+            <div class="row text-left">
+              <div class="col-md-3"></div>
+              <div class="col-md-9">
+                <h5>
+                  Welcome To Vikram Chemical
+                </h5>
+                <p>
+                  We are highly experienced in the processes of Chlorination, Nitration,<br />
+                  Sulfonation, Hydrogenation, Ethoxilation and Ammonolysis. We have more<br />
+                  than 20
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="banner" style="background-image: url('https://images.pexels.com/photos/4413690/pexels-photo-4413690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');"></div>
+        <div class="carousel-caption d-none d-md-block">
+          <div class="container">
+            <div class="row text-left">
+              <div class="col-md-3"></div>
+              <div class="col-md-9">
+                <h5>
+                  Welcome To Vikram Chemical
+                </h5>
+                <p>
+                  We are highly experienced in the processes of Chlorination, Nitration,<br />
+                  Sulfonation, Hydrogenation, Ethoxilation and Ammonolysis. We have more<br />
+                  than 20
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-item">
+        <div class="banner" style="background-image: url('https://images.pexels.com/photos/2309992/pexels-photo-2309992.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');"></div>
+        <div class="carousel-caption d-none d-md-block">
+          <div class="container">
+            <div class="row text-left">
+              <div class="col-md-3"></div>
+              <div class="col-md-9">
+                <h5>
+                  Welcome To Vikram Chemical
+                </h5>
+                <p>
+                  We are highly experienced in the processes of Chlorination, Nitration,<br />
+                  Sulfonation, Hydrogenation, Ethoxilation and Ammonolysis. We have more<br />
+                  than 20
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="banner-tab">
+  <div class="container">
+    <div class="row">
+      <ul class="tabs">
+        <li class="tab-link current" data-tab="tab-1">Vikram Chemical</li>
+        <li class="tab-link" data-tab="tab-2">Our Products</li>
+        <li class="tab-link" data-tab="tab-3">Business Strategy</li>
+      </ul>
+
+      <div id="tab-1" class="tab-content current">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="https://i.ibb.co/8s3bT1J/6.jpg" class="img-fluid" />
+          </div>
+          <div class="col-md-3">
+            <h5>About Company</h5>
+            <p>We are highly experienced in the processes of Chlorination, Nitration, Sulfonation, Hydrogenation, Ethoxilation and Ammonolysis. We have more than 20 Specialty Chemicals in our Products basket.</p>
+          </div>
+          <div class="col-md-3">
+            <p>
+              We are exporting our products all over the world to more than 30 Countries. Our flagship companies have been conferred the status of “Star Export House” from Government of India. All our plants have the
+              Certification of ISO 9001 : 2008, ISO 14001 : 2004 & OHSAS 18001 : 2007 for our Products.
+            </p>
+          </div>
+          <div class="col-md-3">
+            <img src="https://i.ibb.co/8s3bT1J/6.jpg" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+      <div id="tab-2" class="tab-content">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="https://i.ibb.co/4Y4Bkkp/pr1-min.jpg" class="img-fluid" />
+          </div>
+
+          <div class="col-md-3">
+            <h5>Products</h5>
+            <ul>
+              <li>Chlorination Products</li>
+              <li>Nitration Products</li>
+              <li>Hydrogenation Products</li>
+              <li>Sulphuric Acid Group Products</li>
+              <li>Dyes Intermediates Products</li>
+              <li>Plasticizer Products</li>
+              <li>Oxidation/Neutralization Products</li>
+              <li>Electrolysis Process Products</li>
+            </ul>
+          </div>
+
+          <div class="col-md-3">
+            <h5>Online Consulting</h5>
+            <p>We have extended our reach beyond India in the USA, Europe, Turkey, Brazil, China, Pakistan and other countries across Globe.</p>
+          </div>
+
+          <div class="col-md-3">
+            <img src="https://i.ibb.co/VC33nxQ/pr2-min.jpg" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+      <div id="tab-3" class="tab-content">
+        <div class="row">
+          <div class="col-md-3">
+            <img src="https://i.ibb.co/Fwj92Ws/bs2-min.jpg" class="img-fluid" />
+          </div>
+          <div class="col-md-3">
+            <h5>Our Strength</h5>
+            <ul>
+              <li>Have sound experience of various Chemical process like Chlorination, Nitration, Sulphonation, Ethoxylation, Ammonolysis & Hydrogenation</li>
+              <li>Jhagadia unit is having proximity advantage of Chloro Alkali plants, because of which have advantage to get Chlorine & Hydrogen through pipeline.</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul>
+              <li>Gandhidham plant is having proximity advantage to international ports namely Kandla & Mundra</li>
+              <li>To ensure continuous and quality power, Captive power generation plants are installed at all the three manufacturing units.</li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <img src="https://i.ibb.co/pwnFsP4/bs1-min-1.jpg" class="img-fluid" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- container -->
+</section>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JS Script -->
+ <script>
+        // Carousel functionality
+        const carousel = document.querySelector('.carousel');
+        const items = document.querySelectorAll('.carousel-item');
+        const indicators = document.querySelectorAll('.carousel-indicators li');
+        const prevLink = document.querySelector('.carousel-links [data-slide="prev"]');
+        const nextLink = document.querySelector('.carousel-links [data-slide="next"]');
+        let currentIndex = 0;
+        const intervalTime = 5000;
+
+        function showSlide(index) {
+            items.forEach((item, i) => {
+                item.classList.toggle('active', i === index);
+                indicators[i].classList.toggle('active', i === index);
+            });
+            currentIndex = index;
+        }
+
+        function nextSlide() {
+            const nextIndex = (currentIndex + 1) % items.length;
+            showSlide(nextIndex);
+        }
+
+        function prevSlide() {
+            const prevIndex = (currentIndex - 1 + items.length) % items.length;
+            showSlide(prevIndex);
+        }
+
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+
+        prevLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            prevSlide();
+        });
+
+        nextLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            nextSlide();
+        });
+
+        // Auto slide
+        let slideInterval = setInterval(nextSlide, intervalTime);
+
+        carousel.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        carousel.addEventListener('mouseleave', () => {
+            slideInterval = setInterval(nextSlide, intervalTime);
+        });
+
+        // Tab functionality
+        const tabs = document.querySelectorAll('.banner-tab .tab-link');
+        const tabContents = document.querySelectorAll('.banner-tab .tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                tabs.forEach(t => t.classList.remove('current'));
+                tabContents.forEach(content => content.classList.remove('current'));
+                tab.classList.add('current');
+                document.getElementById(tabId).classList.add('current');
+            });
+        });
+
+        
+    </script>
+</body>
+</html>

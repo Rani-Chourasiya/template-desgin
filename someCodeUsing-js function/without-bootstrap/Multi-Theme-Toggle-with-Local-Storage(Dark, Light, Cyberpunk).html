@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Multi-Theme Toggle with Local Storage (Dark, Light, Cyberpunk)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- Custom Stylesheet -->
+  <style>
+   body {
+  margin: 0;
+  font-family: sans-serif;
+  transition: background 0.4s, color 0.4s;
+}
+
+.theme-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+}
+
+select {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 1rem;
+  margin-bottom: 40px;
+  border: none;
+  cursor: pointer;
+}
+
+.content-box {
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+}
+
+/* DARK */
+body.dark {
+  background: #111;
+  color: #eee;
+}
+
+body.dark .content-box {
+  background: #1f1f1f;
+  color: #ccc;
+}
+
+/* LIGHT */
+body.light {
+  background: #f2f2f2;
+  color: #111;
+}
+
+body.light .content-box {
+  background: #fff;
+  color: #333;
+}
+
+/* CYBERPUNK */
+body.cyberpunk {
+  background: #0a0a0a;
+  color: #0fffcf;
+}
+
+body.cyberpunk .content-box {
+  background: linear-gradient(145deg, #1f0033, #0a0a0a);
+  color: #f0f0f0;
+  border: 1px solid #00ffd5;
+  box-shadow: 0 0 12px #00ffd577;
+}
+
+  </style>
+
+</head>
+<body id="">
+<section class="">
+    <div class="theme-container">
+  <select id="themeSelector">
+    <option value="dark">Dark</option>
+    <option value="light">Light</option>
+    <option value="cyberpunk">Cyberpunk</option>
+  </select>
+
+  <div class="content-box">
+    <h1>Multi-Theme UI</h1>
+    <p>This layout updates instantly based on your theme selection.</p>
+  </div>
+</div>
+
+</section>
+
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+
+    <!-- Bootstrap-5 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- Custom JS Script -->
+ <script>
+    const themeSelector = document.getElementById("themeSelector");
+const savedTheme = localStorage.getItem("theme") || "dark";
+
+applyTheme(savedTheme);
+themeSelector.value = savedTheme;
+
+themeSelector.addEventListener("change", () => {
+  const selected = themeSelector.value;
+  applyTheme(selected);
+  localStorage.setItem("theme", selected);
+});
+
+function applyTheme(theme) {
+  document.body.className = theme;
+}
+
+ </script>
+</body>
+</html>

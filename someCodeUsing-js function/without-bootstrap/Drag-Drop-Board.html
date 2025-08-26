@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <title>Drag & Drop Board</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon" >
+
+<!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Bootstrap-5 -->
+ <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" /> -->
+    <!-- Custom Stylesheet -->
+  <style>
+   /* Variables */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5f6fa;
+    --text-color: #2d3436;
+    --border-color: #dcdde1;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --success-color: #00b894;
+    --warning-color: #fdcb6e;
+    --danger-color: #d63031;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--secondary-color);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+/* Button */
+.btn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Board */
+.board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+/* Column */
+.column {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: var(--spacing-sm);
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.task-count {
+    background: var(--primary-color);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Task List */
+.task-list {
+    min-height: 200px;
+    padding: var(--spacing-xs);
+}
+
+/* Task Card */
+.task-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    cursor: move;
+    transition: var(--transition);
+}
+
+.task-card:hover {
+    box-shadow: 0 4px 8px var(--shadow-color);
+    transform: translateY(-2px);
+}
+
+.task-card.dragging {
+    opacity: 0.5;
+    background: var(--secondary-color);
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+.task-title {
+    font-weight: 600;
+}
+
+.task-priority {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+}
+
+.priority-low {
+    background: var(--success-color);
+    color: white;
+}
+
+.priority-medium {
+    background: var(--warning-color);
+    color: var(--text-color);
+}
+
+.priority-high {
+    background: var(--danger-color);
+    color: white;
+}
+
+.task-description {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.close {
+    position: absolute;
+    right: var(--spacing-md);
+    top: var(--spacing-md);
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: var(--spacing-md);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: var(--spacing-xs);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+    background: white;
+    padding: var(--spacing-md) 0;
+    margin-top: var(--spacing-lg);
+    box-shadow: 0 -2px 4px var(--shadow-color);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.footer-section h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-section p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: var(--spacing-xs);
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.social-links a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--text-color);
+    transform: translateY(-2px);
+}
+
+.footer-bottom {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.footer-bottom a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-bottom a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .board {
+        grid-template-columns: 1fr;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Drag and Drop Visual Feedback */
+.task-list.drag-over {
+    background: var(--secondary-color);
+    border: 2px dashed var(--primary-color);
+} 
+  </style>
+
+</head>
+<body id="">
+<section class="">
+    <div class="container">
+        <header>
+            <h1>Modern Kanban Board</h1>
+            <button id="addTaskBtn" class="btn">
+                <i class="fas fa-plus"></i> Add Task
+            </button>
+        </header>
+
+        <div class="board">
+            <div class="column" id="todo">
+                <div class="column-header">
+                    <h2>To Do</h2>
+                    <span class="task-count" id="todo-count">0</span>
+                </div>
+                <div class="task-list" data-column="todo">
+                    <!-- Tasks will be added here dynamically -->
+                </div>
+            </div>
+
+            <div class="column" id="in-progress">
+                <div class="column-header">
+                    <h2>In Progress</h2>
+                    <span class="task-count" id="in-progress-count">0</span>
+                </div>
+                <div class="task-list" data-column="in-progress">
+                    <!-- Tasks will be added here dynamically -->
+                </div>
+            </div>
+
+            <div class="column" id="done">
+                <div class="column-header">
+                    <h2>Done</h2>
+                    <span class="task-count" id="done-count">0</span>
+                </div>
+                <div class="task-list" data-column="done">
+                    <!-- Tasks will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Modal -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Add New Task</h2>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Title</label>
+                    <input type="text" id="taskTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Description</label>
+                    <textarea id="taskDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="taskPriority">Priority</label>
+                    <select id="taskPriority">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Add Task</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>Created by <a href="https://harmoncode.com" target="_blank">HarmonCode</a></p>
+        </div>
+    </footer>
+</section>
+
+<!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script> -->
+
+    <!-- Bootstrap-5 -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+<!-- Custom JS Script -->
+ <script>
+    // DOM Elements
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskModal = document.getElementById('taskModal');
+const closeModal = document.querySelector('.close');
+const taskForm = document.getElementById('taskForm');
+const taskLists = document.querySelectorAll('.task-list');
+
+// State
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+let draggedTask = null;
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    initializeTasks();
+    setupEventListeners();
+});
+
+// Initialize Tasks
+function initializeTasks() {
+    tasks.forEach(task => {
+        addTaskToDOM(task);
+    });
+    updateTaskCounts();
+}
+
+// Setup Event Listeners
+function setupEventListeners() {
+    // Modal Events
+    addTaskBtn.addEventListener('click', () => {
+        taskModal.style.display = 'block';
+    });
+
+    closeModal.addEventListener('click', () => {
+        taskModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (e) => {
+        if (e.target === taskModal) {
+            taskModal.style.display = 'none';
+        }
+    });
+
+    // Form Submit
+    taskForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const title = document.getElementById('taskTitle').value;
+        const description = document.getElementById('taskDescription').value;
+        const priority = document.getElementById('taskPriority').value;
+
+        const task = {
+            id: Date.now().toString(),
+            title,
+            description,
+            priority,
+            column: 'todo'
+        };
+
+        tasks.push(task);
+        saveTasks();
+        addTaskToDOM(task);
+        updateTaskCounts();
+        taskForm.reset();
+        taskModal.style.display = 'none';
+    });
+
+    // Drag and Drop Events
+    taskLists.forEach(list => {
+        list.addEventListener('dragover', handleDragOver);
+        list.addEventListener('dragleave', handleDragLeave);
+        list.addEventListener('drop', handleDrop);
+    });
+}
+
+// Add Task to DOM
+function addTaskToDOM(task) {
+    const taskList = document.querySelector(`[data-column="${task.column}"]`);
+    const taskElement = document.createElement('div');
+    taskElement.className = 'task-card';
+    taskElement.draggable = true;
+    taskElement.id = task.id;
+    taskElement.innerHTML = `
+        <div class="task-header">
+            <span class="task-title">${task.title}</span>
+            <span class="task-priority priority-${task.priority}">${task.priority}</span>
+        </div>
+        <div class="task-description">${task.description}</div>
+    `;
+
+    // Drag Events
+    taskElement.addEventListener('dragstart', handleDragStart);
+    taskElement.addEventListener('dragend', handleDragEnd);
+
+    taskList.appendChild(taskElement);
+}
+
+// Drag and Drop Handlers
+function handleDragStart(e) {
+    draggedTask = this;
+    this.classList.add('dragging');
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', this.id);
+}
+
+function handleDragEnd() {
+    this.classList.remove('dragging');
+    draggedTask = null;
+}
+
+function handleDragOver(e) {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    this.classList.add('drag-over');
+}
+
+function handleDragLeave() {
+    this.classList.remove('drag-over');
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+    this.classList.remove('drag-over');
+
+    if (draggedTask) {
+        const newColumn = this.getAttribute('data-column');
+        const taskId = draggedTask.id;
+        
+        // Update task in state
+        const taskIndex = tasks.findIndex(task => task.id === taskId);
+        if (taskIndex !== -1) {
+            tasks[taskIndex].column = newColumn;
+            saveTasks();
+            updateTaskCounts();
+        }
+
+        // Move task in DOM
+        this.appendChild(draggedTask);
+    }
+}
+
+// Update Task Counts
+function updateTaskCounts() {
+    const columns = {
+        'todo': document.getElementById('todo-count'),
+        'in-progress': document.getElementById('in-progress-count'),
+        'done': document.getElementById('done-count')
+    };
+
+    // Reset all counts
+    Object.values(columns).forEach(element => {
+        element.textContent = '0';
+    });
+
+    // Update counts based on tasks
+    tasks.forEach(task => {
+        if (columns[task.column]) {
+            const currentCount = parseInt(columns[task.column].textContent);
+            columns[task.column].textContent = (currentCount + 1).toString();
+        }
+    });
+}
+
+// Save Tasks to Local Storage
+function saveTasks() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+// Add some sample tasks
+if (tasks.length === 0) {
+    const sampleTasks = [
+        {
+            id: '1',
+            title: 'Design Homepage',
+            description: 'Create a modern and responsive homepage design',
+            priority: 'high',
+            column: 'todo'
+        },
+        {
+            id: '2',
+            title: 'Implement Authentication',
+            description: 'Add user authentication system',
+            priority: 'medium',
+            column: 'in-progress'
+        },
+        {
+            id: '3',
+            title: 'Write Documentation',
+            description: 'Document the API endpoints',
+            priority: 'low',
+            column: 'done'
+        }
+    ];
+    tasks = sampleTasks;
+    saveTasks();
+    initializeTasks();
+} 
+ </script>
+</body>
+</html>

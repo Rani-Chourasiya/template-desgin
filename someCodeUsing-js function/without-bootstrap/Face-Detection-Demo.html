@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Face Detection Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <!-- Favicon icon -->
+    <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <!-- Custom Stylesheet -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #app {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            display: inline-block;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        video {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            transform: scaleX(-1); /* Mirror the video */
+        }
+
+        .detection-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 4px solid;
+            border-radius: 10px;
+            transition: border-color 0.3s ease;
+            pointer-events: none;
+        }
+
+        .detection-box.no-face {
+            border-color: #ff4444;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+        }
+
+        .detection-box.face-detected {
+            border-color: #44ff44;
+            box-shadow: 0 0 20px rgba(68, 255, 68, 0.5);
+        }
+
+        .status {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .loading {
+            color: #ffaa00;
+        }
+
+        .error {
+            color: #ff4444;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        button:disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div id="app">
+            <h1>Face Detection Demo</h1>
+
+            <div class="video-container" v-show="videoReady">
+                <video ref="video" autoplay muted playsinline></video>
+                <div class="detection-box" :class="faceDetected ? 'face-detected' : 'no-face'"></div>
+            </div>
+
+            <div class="status">
+                <p v-if="loading" class="loading">{{ loadingMessage }}</p>
+                <p v-else-if="error" class="error">{{ error }}</p>
+                <p v-else-if="videoReady">
+                    {{ faceDetected ? '✅ Face Detected' : '❌ No Face Detected' }}
+                </p>
+            </div>
+
+            <div class="controls">
+                <button @click="startCamera" :disabled="cameraStarted || loading">
+                    Start Camera
+                </button>
+                <button @click="stopCamera" :disabled="!cameraStarted">
+                    Stop Camera
+                </button>
+            </div>
+
+            <div class="info">
+                <p>Position your face within the detection box</p>
+                <p>The box will turn green when a face is detected</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vue.js -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.21.0/dist/tf.min.js"></script>
+    <!-- BlazeFace model -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/blazeface@0.1.0/dist/blazeface.js"></script>
+
+    <!-- Custom JS Script -->
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    model: null,
+                    videoReady: false,
+                    cameraStarted: false,
+                    faceDetected: false,
+                    loading: false,
+                    loadingMessage: "",
+                    error: null,
+                    stream: null,
+                    detectionInterval: null
+                };
+            },
+            mounted() {
+                this.loadModel();
+            },
+            beforeUnmount() {
+                this.stopCamera();
+            },
+            methods: {
+                async loadModel() {
+                    try {
+                        this.loading = true;
+                        this.loadingMessage = "Initializing TensorFlow.js...";
+
+                        // Wait for TensorFlow.js to be ready
+                        await tf.ready();
+
+                        this.loadingMessage = "Loading face detection model...";
+
+                        // Load the BlazeFace model
+                        this.model = await blazeface.load();
+
+                        this.loading = false;
+                        this.loadingMessage = "";
+
+                        // Auto-start camera after model loads
+                        this.startCamera();
+                    } catch (err) {
+                        this.loading = false;
+                        this.error = "Failed to load model: " + err.message;
+                        console.error("Model loading error:", err);
+                    }
+                },
+
+                async startCamera() {
+                    try {
+                        this.loading = true;
+                        this.loadingMessage = "Accessing camera...";
+                        this.error = null;
+
+                        // Get webcam stream
+                        this.stream = await navigator.mediaDevices.getUserMedia({
+                            video: {
+                                width: 640,
+                                height: 480,
+                                facingMode: "user"
+                            }
+                        });
+
+                        // Set video source
+                        this.$refs.video.srcObject = this.stream;
+
+                        // Wait for video to be ready
+                        await new Promise((resolve) => {
+                            this.$refs.video.onloadedmetadata = resolve;
+                        });
+
+                        this.videoReady = true;
+                        this.cameraStarted = true;
+                        this.loading = false;
+
+                        // Start face detection
+                        this.startDetection();
+                    } catch (err) {
+                        this.loading = false;
+                        this.error = "Camera access denied or not available";
+                        console.error("Camera error:", err);
+                    }
+                },
+
+                stopCamera() {
+                    // Stop detection
+                    if (this.detectionInterval) {
+                        clearInterval(this.detectionInterval);
+                        this.detectionInterval = null;
+                    }
+
+                    // Stop video stream
+                    if (this.stream) {
+                        this.stream.getTracks().forEach((track) => track.stop());
+                        this.stream = null;
+                    }
+
+                    this.videoReady = false;
+                    this.cameraStarted = false;
+                    this.faceDetected = false;
+                },
+
+                startDetection() {
+                    // Run detection every 100ms
+                    this.detectionInterval = setInterval(async () => {
+                        if (this.model && this.videoReady) {
+                            await this.detectFaces();
+                        }
+                    }, 100);
+                },
+
+                async detectFaces() {
+                    try {
+                        const video = this.$refs.video;
+
+                        // Ensure video is ready and has dimensions
+                        if (!video || video.readyState !== 4) {
+                            return;
+                        }
+
+                        // Ensure video has valid dimensions
+                        if (video.videoWidth === 0 || video.videoHeight === 0) {
+                            return;
+                        }
+
+                        // Make predictions
+                        const predictions = await this.model.estimateFaces(video, false);
+
+                        console.log("Predictions:", predictions); // Log predictions for debugging
+
+                        // Check if any faces are detected
+                        if (predictions.length > 0) {
+                            // Check if face is roughly in the center
+                            const face = predictions[0];
+                            const videoWidth = video.videoWidth;
+                            const videoHeight = video.videoHeight;
+
+                            // Get face center
+                            const faceCenterX = (face.topLeft[0] + face.bottomRight[0]) / 2;
+                            const faceCenterY = (face.topLeft[1] + face.bottomRight[1]) / 2;
+
+                            // Check if face center is within the detection box area
+                            const boxSize = 200; // Detection box size
+                            const centerX = videoWidth / 2;
+                            const centerY = videoHeight / 2;
+                            const tolerance = boxSize / 2;
+
+                            if (
+                                Math.abs(faceCenterX - centerX) < tolerance &&
+                                Math.abs(faceCenterY - centerY) < tolerance
+                            ) {
+                                this.faceDetected = true;
+                            } else {
+                                this.faceDetected = false;
+                            }
+                        } else {
+                            this.faceDetected = false;
+                        }
+                    } catch (err) {
+                        console.error("Detection error:", err);
+                    }
+                }
+            }
+        }).mount("#app");
+    </script>
+</body>
+</html>
