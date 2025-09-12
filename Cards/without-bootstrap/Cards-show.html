@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards show</title>
+    <style>
+        @charset "utf-8";
+
+body{
+    padding: 0;
+    margin: 0;
+}
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-container{
+    margin: 2rem;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: inset 15px 15px 25px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.card{
+    width: 40%;
+    height: 50%;
+    flex-shrink: 0;
+    margin: 0 20%;
+    color: black;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: #e6e6e6;
+    position: relative;
+    top: 1em;
+    left: 0;
+    transform: translate(0);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+}
+
+.card-header, .card-body, .card-footer{
+    text-align: center;
+
+}
+
+.card-body, .card-footer{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: grey;
+}
+
+    </style>
+</head>
+<body>
+       <div class="container">
+        <div class="sub-container">
+            <!-- cards start -->
+            <div class="card" >
+                <div class="card-header">
+                    <h3>Header1</h3>
+                </div>
+                <div class="card-body">
+                    <p>Card1</p>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+            <div class="card" >
+                <div class="card-header">
+                    <h3>Header2</h3>
+                </div>
+                <div class="card-body">
+                    <p>Card2</p>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+            <div class="card" >
+                <div class="card-header">
+                    <h3>Header3</h3>
+                </div>
+                <div class="card-body">
+                    <p>Card3</p>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+            <!-- cards end  -->
+        </div>        
+    </div>
+    <script>
+        window.onload = function(){  
+        shuffleCards()
+        let intervalId = setInterval(moveProjectCards, 2000)
+
+}
+
+function shuffleCards() {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        putCardStart(card)
+    });
+    const firstCard = document.querySelector('.card')
+    viewCard(firstCard)
+}
+function putCardStart(card) {
+    const cards = document.querySelectorAll('.card');
+    const width = card.offsetWidth; // Get the width of a card
+    const marginLeft =                         parseFloat(window.getComputedStyle(card).marginLeft)
+            // let index = parseInt(card.dataset.index)
+    for(let i = 0; i < cards.length; i++){
+    if(card == cards[i])
+        card.style.transform = `translateX(-${(width*i) + (marginLeft*2*i)}px)`
+            }
+}
+
+function viewCard(card, direction='right') {
+    const cardCon = document.querySelector('.sub-container')
+    const leftSpace = cardCon.offsetWidth / 3   //x
+    let card1Distace = card.offsetLeft //cd
+    let conDistance = cardCon.offsetLeft //wd
+    card.style.transform = `translateX(${(conDistance - card1Distace)+leftSpace}px)`  //formula to place card1 in place was "(wd-cd)+x"
+    card.classList.add('view')
+    card.dataset.direction = direction
+}
+
+
+function moveProjectCards() {
+      let target = document.querySelector('.view')
+      let conWidth = document.querySelector('.sub-container').offsetWidth
+      let transValue = parseInt(target.style.transform.split('(')[1].replace(')', ''))
+      target.classList.remove('view')
+      target.style.transform = `translateX(${transValue + conWidth}px)`
+      if(target.nextElementSibling !== null){
+          target.nextElementSibling.classList.add('view')
+          viewCard(target.nextElementSibling)
+          if(target.dataset.direction === 'left'){
+              putCardStart(target)
+              target.nextElementSibling.dataset.direction='left'
+          }
+      }else{      //all child was show now do in reverse order
+          const card = document.querySelector('.card')
+          console.log('All card was show now do in reverse order');
+          if(target.dataset.direction === 'left'){
+              putCardStart(target)
+              direction = 'right'
+          }else
+              direction = 'left'
+          viewCard(card, direction=direction)
+     }
+}
+
+
+    </script>
+</body>
+</html>

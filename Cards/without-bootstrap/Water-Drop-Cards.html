@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Drop Cards</title>
+    <style>
+        *,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #c2dfff;
+  font-family: "Source Sans Pro", sans-serif;
+  color: #404040;
+}
+
+.cards .container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  gap: 5rem;
+}
+
+.cards .drop {
+  width: 350px;
+  height: 350px;
+  position: relative;
+  box-shadow: inset 20px 20px 20px rgba(0, 0, 0, 0.1),
+    25px 35px 20px rgba(0, 0, 0, 0.1), 25px 30px 30px rgba(0, 0, 0, 0.1),
+    inset -20px -20px 25px rgba(255, 255, 255, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 0;
+  padding: 4rem;
+  transition: border-radius 0.5s;
+  overflow: hidden;
+  text-align: center;
+  animation: drop 2s infinite alternate ease-in-out;
+}
+
+.cards .drop:nth-child(1) {
+  border-radius: 38% 62% 46% 54% / 46% 51% 49% 54%;
+}
+
+.cards .drop:nth-child(2) {
+  border-radius: 38% 62% 46% 54% / 46% 51% 49% 54%;
+}
+
+.cards .drop:nth-child(3) {
+  border-radius: 38% 62% 46% 54% / 46% 51% 49% 54%;
+}
+
+@keyframes drop {
+  from {
+    border-radius: 38% 62% 46% 54% / 46% 51% 49% 54%;
+  }
+
+  to {
+    border-radius: 50%;
+  }
+}
+
+.cards .drop::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 75px;
+  width: 35px;
+  height: 35px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.cards .drop::after {
+  content: "";
+  position: absolute;
+  top: 90px;
+  left: 100px;
+  width: 15px;
+  height: 15px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+.read-btn {
+  text-decoration: none;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  font-family: inherit;
+  color: inherit;
+  font-weight: 600;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .cards .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cards .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <section class="cards">
+  <div class="container">
+    <div class="drop">
+      <h2>Card Title</h2>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, voluptatem.</p>
+      <a class="read-btn" href="#">Read More</a>
+    </div>
+    <div class="drop">
+      <h2>Card Title</h2>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, voluptatem.</p>
+      <a class="read-btn" href="#">Read More</a>
+    </div>
+    <div class="drop">
+      <h2>Card Title</h2>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas, voluptatem.</p>
+      <a class="read-btn" href="#">Read More</a>
+    </div>
+  </div>
+</section>
+</body>
+</html>
