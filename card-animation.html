@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello, World!</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* team section css start*/
+
+.team-section {
+    padding: 0 35px 60px 35px;
+}
+
+.team-section-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+    .team-section-title h2 {
+        color: var(--green-base);
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+        .team-section-title h2::after {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--green-dark);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        }
+
+        .team-section-title h2:before {
+            content: "";
+            position: absolute;
+            display: block;
+            width: 160px;
+            height: 1px;
+            background: var(--green-base);
+            left: 0;
+            right: 0;
+            bottom: 1px;
+            margin: auto;
+        }
+
+
+    .team-section-title p {
+        color: var(--black-300);
+        font-size: 16px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+.team-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.team-column {
+    flex: 1 1 45%;
+    max-width: 45%;
+    min-width: 300px;
+}
+
+.team-member {
+    box-shadow: 0px 2px 15px var(--shadow-medium);
+    border-radius: 5px;
+    transition: 0.5s;
+    padding: 30px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+    .team-member:hover {
+        transform: translateY(-10px);
+    }
+
+    .team-member .pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        flex-shrink: 0;
+    }
+
+        .team-member .pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+    .team-member .member-info {
+        flex: 1;
+    }
+
+    .team-member h4 {
+        font-size: 20px;
+        margin-bottom: 5px;
+        font-weight: 700;
+    }
+
+    .team-member span {
+        font-size: 15px;
+        font-weight: 500;
+        display: block;
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+        .team-member span::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 1px;
+            background: var(--green-base);
+            bottom: 0;
+            left: 0;
+        }
+
+    .team-member p {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+.social {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+    .social a {
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--green-base);
+        transition: background 0.3s ease-in-out;
+        text-decoration: none;
+    }
+
+        .social a i {
+            font-size: 16px;
+            color: var(--accent-white);
+        }
+
+        .social a:hover {
+            background: var(--green-base);
+        }
+
+            .social a:hover i {
+                color: var(--accent-white);
+            }
+            /* === BOX with ANIMATED BORDER === */
+.box {
+    position: relative;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+/* Animated Border Spans */
+.box span {
+    position: absolute;
+    display: block;
+    background-color: #4CAF50;
+    z-index: 1;
+}
+
+/* TOP */
+.box span:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    animation: animate-top 4s linear infinite;
+}
+
+/* RIGHT */
+.box span:nth-child(2) {
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    animation: animate-right 4s linear infinite 1s;
+}
+
+/* BOTTOM */
+.box span:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    animation: animate-bottom 4s linear infinite 2s;
+}
+
+/* LEFT */
+.box span:nth-child(4) {
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    animation: animate-left 4s linear infinite 3s;
+}
+
+/* === ANIMATION KEYFRAMES === */
+@keyframes animate-top {
+    0% { transform: scaleX(0); transform-origin: left; }
+    50% { transform: scaleX(1); transform-origin: left; }
+    50.1% { transform: scaleX(1); transform-origin: right; }
+    100% { transform: scaleX(0); transform-origin: right; }
+}
+
+@keyframes animate-right {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    50.1% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+@keyframes animate-bottom {
+    0% { transform: scaleX(0); transform-origin: right; }
+    50% { transform: scaleX(1); transform-origin: right; }
+    50.1% { transform: scaleX(1); transform-origin: left; }
+    100% { transform: scaleX(0); transform-origin: left; }
+}
+
+@keyframes animate-left {
+    0% { transform: scaleY(0); transform-origin: bottom; }
+    50% { transform: scaleY(1); transform-origin: bottom; }
+    50.1% { transform: scaleY(1); transform-origin: top; }
+    100% { transform: scaleY(0); transform-origin: top; }
+}
+    </style>
+  </head>
+  <body>
+         <!-- Team Section -->
+    <section id="team" class="team-section">
+        <div class="team-section-title">
+            <h2 class="team-title">Team</h2>
+            <p>We specialize in delivering scalable and robust solutions tailored to your business needs.</p>
+        </div>
+
+        <div class="team-row">
+            <!-- Team Member: Atul Kumar -->
+            <div class="team-column">
+                <div class="box">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <div class="team-member">
+                        <div class="pic">
+                            <img src="~/Content/Animation/Akpal.png" alt="Atul Kumar">
+                        </div>
+                        <div class="member-info">
+                            <h4>Atul Kumar</h4>
+                            <strong>Full Stack Developer</strong>
+                            <p>Experienced in building scalable web and mobile applications using ASP.NET, C#, JavaScript, SQL, Flutter, and modern cloud technologies.</p>
+                            <div class="social">
+                                <a href="https://twitter.com/yourhandle" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="https://facebook.com/yourhandle" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="https://instagram.com/yourhandle" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="https://linkedin.com/in/yourlinkedin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member: Ravi Mishra -->
+            <div class="team-column">
+
+                <div class="team-member">
+                    <div class="pic">
+                        <img src="~/Content/Animation/Ravi.jpeg" alt="Ravi Mishra" />
+                    </div>
+                    <div class="member-info">
+                        <h4>Ravi Mishra</h4>
+                        <strong>Full Stack Developer (Mobile & Web)</strong>
+                        <p>Experienced in building scalable web and mobile applications using ASP.NET, C#, JavaScript, SQL, Flutter, and modern cloud technologies.</p>
+                        <div class="social">
+                            <a href="https://twitter.com/yourhandle" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="https://facebook.com/yourhandle" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://instagram.com/yourhandle" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://linkedin.com/in/yourlinkedin" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+
+
+
+  </body>
+</html>

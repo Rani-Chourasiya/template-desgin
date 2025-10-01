@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Theme Switcher</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .theme-buttons, .text-size-buttons {
+      margin: 10px 0;
+    }
+
+    button {
+      padding: 8px;
+      margin-right: 5px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .blue { background-color: #007bff; color: white; }
+    .orange { background-color: #f0ad4e; color: white; }
+    .green { background-color: #5cb85c; color: white; }
+    .purple { background-color: #6f42c1; color: white; }
+    .black { background-color: #000000; color: white; }
+
+    .accessibility-mode {
+      background-color: #eaeaea;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="text-size-buttons">
+    <button onclick="changeFontSize(-1)">A-</button>
+    <button onclick="resetFontSize()">A</button>
+    <button onclick="changeFontSize(1)">A+</button>
+    <button onclick="toggleAccessibility()">♿</button>
+  </div>
+
+  <div class="theme-buttons">
+    <button class="blue" onclick="changeTheme('blue')">A</button>
+    <button class="orange" onclick="changeTheme('orange')">A</button>
+    <button class="green" onclick="changeTheme('green')">A</button>
+    <button class="purple" onclick="changeTheme('purple')">A</button>
+    <button class="black" onclick="changeTheme('black')">A</button>
+  </div>
+
+  <h1>Welcome to Theme Switcher</h1>
+  <p>This is a demo of a color theme and accessibility switcher like your image.</p>
+
+  <script>
+    let currentFontSize = 16;
+    let accessibilityOn = false;
+
+    function changeFontSize(change) {
+      currentFontSize += change;
+      document.body.style.fontSize = currentFontSize + 'px';
+    }
+
+    function resetFontSize() {
+      currentFontSize = 16;
+      document.body.style.fontSize = currentFontSize + 'px';
+    }
+
+    function changeTheme(color) {
+      const colorMap = {
+        blue: ['#007bff', 'white'],
+        orange: ['#f0ad4e', 'white'],
+        green: ['#5cb85c', 'white'],
+        purple: ['#6f42c1', 'white'],
+        black: ['#000000', 'white']
+      };
+      document.body.style.backgroundColor = colorMap[color][0];
+      document.body.style.color = colorMap[color][1];
+    }
+
+    function toggleAccessibility() {
+      accessibilityOn = !accessibilityOn;
+      if (accessibilityOn) {
+        document.body.classList.add('accessibility-mode');
+      } else {
+        document.body.classList.remove('accessibility-mode');
+      }
+    }
+  </script>
+
+</body>
+</html>
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Color Theme Switcher</title>
+  <style>
+    body {
+      margin: 20px;
+      font-family: Arial, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .theme-buttons {
+      margin-bottom: 20px;
+    }
+
+    .theme-button {
+      width: 30px;
+      height: 30px;
+      border: none;
+      margin-right: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      color: white;
+    }
+
+    .blue    { background-color: #007bff; }
+    .orange  { background-color: #f0ad4e; }
+    .green   { background-color: #5cb85c; }
+    .purple  { background-color: #6f42c1; }
+    .black   { background-color: #000000; }
+  </style>
+</head>
+<body>
+
+  <div class="theme-buttons">
+    <button class="theme-button blue" onclick="setTheme('#007bff', 'white')">A</button>
+    <button class="theme-button orange" onclick="setTheme('#f0ad4e', 'white')">A</button>
+    <button class="theme-button green" onclick="setTheme('#5cb85c', 'white')">A</button>
+    <button class="theme-button purple" onclick="setTheme('#6f42c1', 'white')">A</button>
+    <button class="theme-button black" onclick="setTheme('#000000', 'white')">A</button>
+  </div>
+
+  <h1>Color Theme Example</h1>
+  <p>This page changes its background and text color using theme buttons.</p>
+
+  <script>
+    function setTheme(bgColor, textColor) {
+      document.body.style.backgroundColor = bgColor;
+      document.body.style.color = textColor;
+    }
+  </script>
+
+</body>
+</html> -->

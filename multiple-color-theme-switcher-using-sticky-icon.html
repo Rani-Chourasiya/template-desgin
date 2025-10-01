@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Signatures</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --nav-bg: #c7e2c7;
+      --link-color: #4CAF50;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    nav {
+      background-color: var(--nav-bg);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    nav .logo {
+      font-weight: bold;
+      font-size: 20px;
+      color: var(--link-color);
+    }
+
+    nav .menu a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+    }
+
+    .content {
+      padding: 30px;
+      text-align: center;
+    }
+
+    /* Theme Switcher Styles */
+    .theme-switcher {
+      position: fixed;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      background-color: var(--nav-bg);
+      border-radius: 0 8px 8px 0;
+      padding: 10px 5px;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+
+    .theme-switcher button {
+      display: block;
+      width: 40px;
+      height: 40px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .theme-switcher button:hover {
+      transform: scale(1.1);
+    }
+
+    .theme-switcher .toggle-icon {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-options {
+      display: none;
+      flex-direction: column;
+    }
+
+    .theme-options.active {
+      display: flex;
+    }
+
+    /* Theme Colors */
+    body.light-theme {
+      --bg-color: #ffffff;
+      --text-color: #000000;
+      --nav-bg: #c7e2c7;
+      --link-color: #4CAF50;
+    }
+
+    body.dark-theme {
+      --bg-color: #1e1e1e;
+      --text-color: #f0f0f0;
+      --nav-bg: #333;
+      --link-color: #4CAF50;
+    }
+
+    body.blue-theme {
+      --bg-color: #e6f0fa;
+      --text-color: #1e3a8a;
+      --nav-bg: #93c5fd;
+      --link-color: #1e40af;
+    }
+
+    body.sepia-theme {
+      --bg-color: #f5f5dc;
+      --text-color: #5c4033;
+      --nav-bg: #e4d5b7;
+      --link-color: #8b5a2b;
+    }
+
+    /* Theme Buttons */
+    .theme-light { background-color: #ffffff; }
+    .theme-dark { background-color: #1e1e1e; }
+    .theme-blue { background-color: #93c5fd; }
+    .theme-sepia { background-color: #e4d5b7; }
+  </style>
+</head>
+<body class="light-theme">
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">Digital Signatures</div>
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Services</a>
+      <a href="#">Features</a>
+      <a href="#">Workflow</a>
+      <a href="#">Pricing</a>
+      <a href="#">Team</a>
+      <a href="#">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <button class="toggle-icon" id="theme-toggle"><i class="fas fa-palette"></i></button>
+    <div class="theme-options">
+      <button class="theme-light" data-theme="light" title="Light Theme"></button>
+      <button class="theme-dark" data-theme="dark" title="Dark Theme"></button>
+      <button class="theme-blue" data-theme="blue" title="Blue Theme"></button>
+      <button class="theme-sepia" data-theme="sepia" title="Sepia Theme"></button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <h2>Trusted by global organizations</h2>
+    <p>This is a demo section to show multi-color theme switching.</p>
+  </div>
+
+  <!-- JavaScript: Theme Switcher Logic -->
+  <script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const themeOptions = document.querySelector('.theme-options');
+    const themeButtons = document.querySelectorAll('.theme-options button');
+    const body = document.body;
+
+    // Load theme from localStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    body.classList.add(savedTheme + '-theme');
+
+    // Toggle theme options visibility
+    toggleButton.addEventListener('click', () => {
+      themeOptions.classList.toggle('active');
+    });
+
+    // Apply selected theme
+    themeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.getAttribute('data-theme');
+        body.className = theme + '-theme';
+        localStorage.setItem('theme', theme);
+        themeOptions.classList.remove('active');
+      });
+    });
+
+    // Close theme options when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!themeOptions.contains(e.target) && !toggleButton.contains(e.target)) {
+        themeOptions.classList.remove('active');
+      }
+    });
+  </script>
+</body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Theme Switcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #98C69A;  /* default green */
+      --text-color: #000;
+      --bg-color: #fff;
+    }
+
+    [data-theme="green"] {
+      --primary-color: #98C69A;
+      --text-color: #000;
+      --bg-color: #fff;
+    }
+
+    [data-theme="blue"] {
+      --primary-color: #5DADE2;
+      --text-color: #fff;
+      --bg-color: #212F3D;
+    }
+
+    [data-theme="dark"] {
+      --primary-color: #1C1C1C;
+      --text-color: #f0f0f0;
+      --bg-color: #121212;
+    }
+
+    [data-theme="light"] {
+      --primary-color: #ffffff;
+      --text-color: #222;
+      --bg-color: #f9f9f9;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .navbar {
+      background-color: var(--primary-color);
+      padding: 1rem;
+      text-align: center;
+      color: var(--text-color);
+      width: 100%;
+      position: fixed;
+      top: 0;
+    }
+
+    /* Sticky Theme Button */
+    .theme-sticky {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      background: var(--primary-color);
+      color: var(--text-color);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-options {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 999;
+    }
+
+    .theme-options.active {
+      display: flex;
+    }
+
+    .theme-options button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .green-theme { background-color: #98C69A; }
+    .blue-theme { background-color: #5DADE2; }
+    .dark-theme { background-color: #1C1C1C; }
+    .light-theme { background-color: #f1f1f1; }
+
+    .content {
+      margin-top: 80px;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body data-theme="green">
+  <div class="navbar">
+    <h1>Theme Switcher Demo</h1>
+  </div>
+  <div class="content">
+    <h2>Welcome!</h2>
+    <p>Click the button below to switch themes.</p>
+  </div>
+  <button class="theme-sticky">☀</button>
+  <div class="theme-options">
+    <button class="green-theme" data-theme="green"></button>
+    <button class="blue-theme" data-theme="blue"></button>
+    <button class="dark-theme" data-theme="dark"></button>
+    <button class="light-theme" data-theme="light"></button>
+  </div>
+  <script>
+    const themeButton = document.querySelector('.theme-sticky');
+    const themeOptions = document.querySelector('.theme-options');
+    const themeButtons = document.querySelectorAll('.theme-options button');
+
+    themeButton.addEventListener('click', () => {
+      themeOptions.classList.toggle('active');
+    });
+
+    themeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const theme = button.getAttribute('data-theme');
+        document.body.setAttribute('data-theme', theme);
+        themeOptions.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html> -->

@@ -1,0 +1,335 @@
+﻿
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    height: 100%;
+    box-sizing: inherit;
+    padding-bottom: 6.74rem;
+}
+
+/*.main_container {
+    min-height: 100%;
+    position: relative;
+}*/
+
+.app-sidebar-logo .app-sidebar-logo-brand {
+    display: flex;
+    align-items: center;
+}
+
+.brand_text {
+    text-wrap: nowrap;
+    color: #074248 !important;
+    font-weight: bold;
+}
+
+@media(min-width: 992px) {
+    [data-kt-app-sidebar-hoverable=true][data-kt-app-sidebar-minimize=on] .app-sidebar:hover:not(.animating) .flex_add {
+        display: flex;
+        align-items: center;
+        z-index: -10;
+        position: relative;
+    }
+}
+
+[data-kt-app-layout=dark-sidebar] .app-sidebar .app-sidebar-logo {
+    border-bottom: 1px dashed #b1b1b1a8;
+}
+
+.border-bottom-dashed-1 {
+    border-top: 1px dashed #dfd4d4;
+}
+
+
+
+
+.logo_img_login img {
+    width: 330px !important
+}
+
+.login_bg {
+    background: url('../media/login/thumb-1920-750750.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+    .login_bg:after {
+        content: "";
+        background: #ffffff69;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+    .login_bg .container-fluid {
+        position: relative;
+        z-index: 1000;
+    }
+
+
+/* Landing Page */
+.landing-dark-bg {
+    background: url('../media/login/thumb-1920-750750.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: unset;
+}
+
+
+.panel {
+    margin-bottom: 0;
+    border: 1px solid #e3dddd;
+    border-radius: 10px;
+    box-shadow: 0 0 4px #e7e5e5;
+}
+
+.panel-header {
+    border-radius: 10px 10px 0 0;
+    padding: 11px 20px 5px;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    background: #1b84ff;
+}
+
+.panel-heading {
+    padding: 7px 10px 5px;
+    font-size: 15px;
+    color: #fff;
+    background: #549ef5;
+    font-weight: 600;
+}
+
+.panel-body {
+    padding: 20px;
+}
+
+.panel-footer {
+    border-top: 1px solid #d9d9d9;
+    padding: 16px 16px;
+    background: #f8f8f8;
+}
+
+
+.login_bg .form-control {
+    padding: 7px 5px;
+}
+
+
+/*  ============================================================== Common Master Layout Style Here ==========================================================*/
+.c_header_area img {
+    width: 60px;
+}
+
+.c_header_area {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    background: orange;
+}
+
+    .c_header_area h3 {
+        font-size: 54px;
+        color: red;
+        padding: 10px;
+        font-family: ui-monospace;
+        text-shadow: 0 0 10px #f7f3f3;
+    }
+
+.c_user_login_area {
+    background: #747474;
+    color: #fff;
+}
+
+.user-label-text li {
+    float: left;
+    display: block;
+    color: #fff;
+    padding: 3px 12px;
+    text-decoration: none;
+}
+
+.user-label-nav {
+    list-style: none;
+    padding: 0;
+    float: right;
+    width: inherit;
+    margin: -13px 10px;
+}
+
+
+    .user-label-nav li {
+        float: left;
+        display: block;
+        padding: 0;
+    }
+
+        .user-label-nav li a {
+            display: block;
+            color: #fff;
+            padding: 5px 12px;
+            text-decoration: none;
+        }
+
+
+            .user-label-nav li a:hover {
+                background: #f7f7f7;
+                color: #3c8dbc;
+                text-decoration: none;
+            }
+        /*.c_user_login_area ul li {
+            padding: 5px 10px;
+        }
+
+            .c_user_login_area ul li a {
+                color: #fff;
+            }
+
+                .c_user_login_area ul li a:hover {
+                    color: #000;
+                }
+
+            .c_user_login_area ul li:hover {
+                background: #f7f7f7;
+                text-decoration: none;
+            }*/
+
+
+.c_bg_image {
+    background: url(../media/login/home-bg.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: bottom;
+}
+
+.c_footer_area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+    .c_footer_area p {
+        background: #464646;
+        color: #fff;
+        padding: 4px;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+
+#kt_app_footer {
+    background: #ebebeb;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* frm System page style code here of common masterpage*/
+
+
+
+.box-model {
+    text-align: center;
+}
+
+    .box-model .fa-5x {
+        font-size: 50px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .box-model .panel-footer {
+        padding: 8px 0;
+    }
+
+    .box-model .pull-right i {
+        color: #fff;
+        font-size: 18px;
+    }
+/* Box Design bg color*/
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn {
+    padding: 7px 15px !important;
+}
+
+.table tr th {
+    color: #fff;
+    background: #1b84ff;
+    position: sticky;
+    top: 0;
+}
+
+.mb5 {
+    margin-bottom: 5.5rem;
+}
+
+.alertMsg {
+    padding: 6px 12px;
+    border-width: 1px;
+    border-radius: 4px;
+    border-style: solid;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+    .alertMsg::before {
+        display: block;
+        float: left;
+        font-family: FontAwesome;
+        margin-right: 5px;
+    }
+
+    .alertMsg.success {
+        color: #4CAF50;
+        border-color: #4CAF50;
+        background: #ebffec;
+    }
+
+        .alertMsg.success::before {
+            content: '\f00c';
+        }
+
+    .alertMsg.failed {
+        color: #f44336;
+        border-color: #f44336;
+        background: #fff1f1;
+    }
+
+        .alertMsg.failed::before {
+            content: '\f06a';
+        }
+
+.errorMsg {
+    bottom: -15px;
+    position: absolute;
+    left: 15px;
+    font-size: 11px;
+}
+
+.alertMsg.info {
+    color: #17a2b8;
+    border-color: #17a2b8;
+    background: #d7f9ff;
+}
+    .alertMsg.info::before {
+        content: '\f00c';
+    }
