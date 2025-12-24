@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        :root {
+            --bg: #0b0c2c;
+            --card-bg: rgba(11, 12, 44, 0.95);
+            --pulse: #00f5ff;
+            --spark: #ff006e;
+            --text-light: #e0f7fa;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            max-width: 95vw;
+            max-height: 95vh;
+        }
+
+        /* Avatar Orb */
+        .avatar-orb {
+            position: relative;
+            width: clamp(150px, 18vw, 250px);
+            aspect-ratio: 1;
+            border-radius: 50%;
+            overflow: hidden;
+            /* filter: drop-shadow(0 0 35px rgba(0,245,255,0.7)); */
+            flex-shrink: 0;
+        }
+
+        .orb-core {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            /* background: radial-gradient(circle at 30% 30%, #00f5ff, #001f33); */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* border: 3px solid rgba(0,245,255,0.3); */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .orb-core img {
+            width: 85%;
+            height: 85%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .orb-glow {
+            position: absolute;
+            inset: -12%;
+            /* background: conic-gradient(from 0deg, transparent, var(--pulse), transparent); */
+            filter: blur(25px);
+            animation: rotate 10s linear infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .avatar-orb:hover .orb-core {
+            transform: scale(1.1);
+            box-shadow: 0 0 35px var(--pulse);
+        }
+
+        /* Info Card */
+        .data-stream {
+            background: var(--card-bg);
+            backdrop-filter: blur(18px);
+            border-radius: 32px;
+            padding: 2rem 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 items per row */
+            gap: 1rem 1.5rem;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow: auto;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .data-stream:hover {
+            transform: translateY(-3px);
+        }
+
+        .stream-header {
+            grid-column: span 3;
+            /* header spans all 3 columns */
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .username {
+            font-size: clamp(1.6rem, 2vw, 2.3rem);
+            font-weight: 700;
+            /* background: linear-gradient(90deg, var(--pulse), #00b4d8); */
+            -webkit-background-clip: text;
+            /* -webkit-text-fill-color: transparent; */
+        }
+
+        /* .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #10b981;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-top: 0.4rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 1.8s infinite;
+            box-shadow: 0 0 12px #10b981;
+        } */
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.4
+            }
+        }
+
+        /* Info Lines */
+        .info-line {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .info-label {
+            color: rgba(0, 245, 255, 0.8);
+            font-size: 0.82rem;
+            letter-spacing: 0.4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+            font-weight: 500;
+        }
+
+        .info-label i {
+            font-size: 1.5rem;
+            color: var(--pulse);
+            animation: pulseIcon 2s infinite ease-in-out;
+        }
+
+        @keyframes pulseIcon {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .info-value {
+            color: var(--text-light);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+        }
+
+        /* Buttons */
+         /* .quantum-actions {
+            grid-column: span 3; 
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 1.5rem;
+        justify-content: center;
+        }
+
+        .q-btn {
+            flex: 1;
+            padding: 0.8rem;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--pulse), var(--spark));
+            color: var(--text-light);
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 245, 255, 0.25);
+        }
+
+        .q-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 245, 255, 0.45);
+        } */
+
+       
+
+        /* Responsive: 1 column on small screens */
+        @media(max-width:900px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .data-stream {
+                grid-template-columns: 1fr;
+                max-width: 90vw;
+                max-height: 75vh;
+            }
+
+            .quantum-actions {
+                flex-direction: column;
+            }
+        }
+
+        .wrapper,
+        .wrapper .img-area,
+        .buttons button,
+        .wrapper,
+        .wrapper .img-area,
+        .icon,
+        .wrapper,
+        .wrapper .img-area,
+        .buttons .q-btn {
+            background: #ecf0f3;
+            box-shadow: -3px -3px 7px #ffffff,
+                3px 3px 5px #ceced1;
+        }
+
+        .wrapper {
+            position: relative;
+            width: 350px;
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .wrapper .icon {
+            font-size: 17px;
+            color: #31344b;
+            position: absolute;
+            cursor: pointer;
+            opacity: 0.7;
+            top: 15px;
+            height: 35px;
+            width: 35px;
+            text-align: center;
+            line-height: 35px;
+            border-radius: 50%;
+            font-size: 16px;
+        }
+
+        .wrapper .icon i {
+            position: relative;
+            z-index: 9;
+        }
+
+        .wrapper .icon.arrow {
+            left: 15px;
+        }
+
+        .wrapper .icon.dots {
+            right: 15px;
+        }
+
+        .wrapper .img-area {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-area .inner-area {
+            height: calc(100% - 25px);
+            width: calc(100% - 25px);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .inner-area img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .wrapper .name {
+            font-size: 23px;
+            font-weight: 500;
+            color: #31344b;
+            margin: 10px 0 5px 0;
+        }
+
+
+        .buttons button:hover:before,
+        .buttons .q-btn:hover:before {
+            z-index: -1;
+            border-radius: 5px;
+        }
+
+        .wrapper .buttons {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .buttons button,
+        .buttons .q-btn {
+            position: relative;
+            width: 100%;
+            border: none;
+            outline: none;
+            padding: 12px 0;
+            color: #31344b;
+            font-size: 17px;
+            font-weight: 400;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            gap: 8px;
+        }
+
+        .buttons button:first-child,
+        .buttons .q-btn:first-child {
+            margin-right: 10px;
+        }
+
+        .buttons button:last-child,
+        .buttons .q-btn:last-child {
+            margin-left: 10px;
+        }
+
+        .wrapper .icon:hover::before,
+        .buttons button:hover:before,
+        .buttons .q-btn:hover:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+
+            background: #ecf0f3;
+            box-shadow: inset -3px -3px 7px #ffffff,
+                inset 3px 3px 5px #ceced1;
+        }
+
+        .wrapper .icon:hover::before {
+            border-radius: 50%;
+        }
+
+        /*  */
+
+        /* .menu {
+            position: relative;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+
+        .flyout {
+            align-items: center;
+            background: rgb(235, 246, 254);
+            color: #010c13;
+            display: flex;
+            font-size: 2rem;
+            justify-content: center;
+            line-height: 2rem;
+            opacity: 0;
+            position: absolute;
+            transition: all .5s linear;
+            padding: 8px 25px;
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .flyout:hover {
+            background: rgb(171, 218, 252);
+        }
+
+        .flyout-out {
+            opacity: 1;
+        }
+
+        .flyout-out:nth-of-type(1) {
+            transform: translate(0, -8rem);
+        }
+
+        .flyout-out:nth-of-type(2) {
+            transform: translate(4rem, -5rem);
+        }
+
+        .flyout-out:nth-of-type(3) {
+            transform: translate(6rem, 0);
+        }
+
+        .flyout-out:nth-of-type(4) {
+            transform: translate(4rem, 5rem);
+        }
+
+        .flyout-out:nth-of-type(5) {
+            transform: translate(0, 8rem);
+        } */
+/* Menu */
+        .user-info-menu {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        /* .trigger {
+            font-size: 2.5rem;
+            color: #555;
+        } */
+
+        .hidden { display: none; }
+
+        .flyout {
+            position: absolute;
+            background: #ebf6fe;
+            color: #010c13;
+            padding: 14px 24px;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.15rem;
+            font-weight: 500;
+            visibility: hidden;        /* hidden by default */
+            opacity: 0;
+        }
+
+        .flyout i { font-size: 1.6rem; }
+
+        .flyout:hover {
+            background: #abdaff;
+        }
+
+        /* Instantly visible when active */
+        .flyout-out {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Fixed positions – no animation */
+        .flyout-out:nth-of-type(1) { top: 0rem;  left: 4rem; }
+        .flyout-out:nth-of-type(2) { top: 4rem;  left: 4rem; }
+        .flyout-out:nth-of-type(3) { top: 8rem;  left: 4rem; }
+        .flyout-out:nth-of-type(4) { top: 12rem;   left: 4rem; }
+        .flyout-out:nth-of-type(5) { top: 16rem;   left: 4rem; }
+        /*  */
+   .status {
+   background: #eee;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+    display: flex;
+    position: relative;
+    top: 6rem;
+    right: .5rem;
+    border: 3px solid white;
+    z-index: 99999;
+    position: absolute;
+}
+ .status.active {
+    background: green;
+}
+    </style>
+</head>
+
+<body>
+    <section>
+    <div class="container">
+        <!-- Avatar -->
+        <div class="wrapper ">
+            <div class="avatar-orb img-area">
+                <div class="orb-glow"></div>
+                <div class="orb-core inner-area">
+                    <!-- <img src="@(string.IsNullOrWhiteSpace(user.Logo)? " /images/avatar.png": user.Logo)"
+                        alt="@user.UserName" /> -->
+                    <img src="https://i.pravatar.cc/100" alt="admin" />
+                     <span class="status active"></span>
+                </div>
+            </div>
+            <!-- Info items: 3 per row -->
+            <!-- No-Animation Flyout Menu -->
+        <div class="menu icon dots user-info-menu">
+            <a class="flyout" title="Role">
+                <i class="bi bi-person-badge"></i>
+                <span>Admin</span>
+            </a>
+            <a class="flyout" title="Plan">
+                <i class="bi bi-star-fill text-warning"></i>
+                <span>Premium</span>
+            </a>
+            <a class="flyout" title="Email">
+                <i class="bi bi-envelope-at"></i>
+                <span>john@example.com</span>
+            </a>
+            <a class="flyout" title="Phone">
+                <i class="bi bi-telephone"></i>
+                <span>+1 234 567 890</span>
+            </a>
+            <a class="flyout" title="Company">
+                <i class="bi bi-building"></i>
+                <span>Awesome Corp</span>
+            </a>
+
+            <i class="fas fa-arrow-left hidden"></i>
+            <i class="fas fa-ellipsis-v trigger"></i>
+        </div>
+            <!-- <div class="menu icon dots">
+                <a class="flyout"><i class="fa-brands fa-linkedin"></i></a>
+                <a class="flyout"><i class="fa-brands fa-github"></i></a>
+                <a class="flyout"><i class="fa-brands fa-codepen"></i></a>
+                <a class="flyout"><i class="fa-brands fa-line"></i></a>
+                <a class="flyout"><i class="fa-brands fa-instagram"></i></a>
+                <i class="fas fa-arrow-left hidden"></i>
+                <i class="fas fa-ellipsis-v"></i>
+            </div> -->
+            <div class="icon arrow"><i class="fas fa-arrow-left"></i></div>
+            <!-- <div class="icon dots"><i class="fas fa-ellipsis-v"></i></div> -->
+            <div class="stream-header">
+                <div class="username name">@user.UserName</div>
+                <!-- <div class="status">
+                    <div class="status-dot"></div> Active
+                </div> -->
+            </div>
+            <!-- Buttons -->
+            <div class="quantum-actions buttons">
+                <a asp-page="/EditProfile" class="q-btn"><i class="bi bi-gear-wide-connected"></i> Configure</a>
+                <a asp-page="/Logout" class="q-btn"><i class="bi bi-power"></i> Logout</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- <script>
+        const menu = document.querySelector('.menu');
+        const menuBars = document.querySelector('.fa-ellipsis-v');
+        const menuArrow = document.querySelector('.fa-arrow-left');
+        const flyoutWrap = document.querySelector('.flyout-wrap');
+        const flyouts = document.querySelectorAll('.flyout');
+
+        // Toggles display of the hamburger and arrow icons and flyouts when clicked.
+        menu.addEventListener('click', function () {
+            menuBars.classList.toggle('hidden');
+            menuArrow.classList.toggle('hidden');
+            flyouts.forEach(flyout => {
+                flyout.classList.toggle('flyout-out');
+            });
+        }); 
+    </script> -->
+    <script>
+        document.querySelectorAll('.user-info-menu').forEach(menu => {
+            const trigger = menu.querySelector('.trigger');
+            const arrow   = menu.querySelector('.fa-arrow-left');
+            const flyouts = menu.querySelectorAll('.flyout');
+
+            menu.addEventListener('click', () => {
+                trigger.classList.toggle('hidden');
+                arrow.classList.toggle('hidden');
+                flyouts.forEach(flyout => flyout.classList.toggle('flyout-out'));
+            });
+        });
+    </script>
+</body>
+
+</html>
