@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Profile Card</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    
+    <style>
+        .prothploy {
+            background: url('https://2.bp.blogspot.com/-QCNLvg32ulU/VaOWslE-aXI/AAAAAAAAGAc/KYWYae8-hFA/s1600/background.jpg') 
+                        top/cover no-repeat fixed;
+            min-height: 100vh;
+            font-family: 'Open Sans', sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrap {
+            width: 100%;
+            max-width: 725px;
+            min-height: 550px;
+            max-height: 550px;
+            /* margin: 80px auto; */
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .right-menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 135px;
+            height: 100%;
+            background: linear-gradient(
+                60deg, #646464ba, transparent),url('https://2.bp.blogspot.com/-QCNLvg32ulU/VaOWslE-aXI/AAAAAAAAGAc/KYWYae8-hFA/s1600/background.jpg') 
+                top/cover no-repeat fixed;
+            z-index: 2;
+            border-radius: 0 3px 3px 0;
+        }
+
+        .right-menu a {
+            display: block;
+            padding: 65px 15px;
+            text-align: center;
+            color: #292727;
+            text-decoration: none;
+            border-bottom: 1px solid #e0e0e0;
+            transition: color 0.2s;
+        }
+
+        .right-menu a:hover,
+        .right-menu a.active {
+            color: #222;
+            position: relative;
+        }
+
+        .right-menu a.active::after {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 50%;
+            width: 0;
+            height: 0;
+            border: 11px solid transparent;
+            border-right: 11px solid #946545;
+        }
+
+        .right-menu i {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .right-menu span {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .content-area {
+            margin-right: 120px;
+            padding: 60px 30px;
+            min-height: 450px;
+        }
+
+        .avatar img {
+            width: 150px;
+            height: 150px;
+            padding: 5px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        .content-section {
+    display: none;
+}
+.content-section.active {
+    display: block;
+}
+.my-skill .skill{
+    display: grid;
+    justify-content: center;
+}
+.skill {
+    padding: 1.25rem 78px;
+    margin: 0.5rem 10px;
+    /* margin-bottom: 1.25rem; */
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+    border-left-color: #946545;
+    text-align: center;
+
+}
+.skill i{
+    font-size: 2rem;
+    color: #222;
+}
+.skill p{
+   display: flex;
+   justify-self: center;
+}
+.callout {
+    padding: 1.25rem 1.25rem 7px;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid #eee;
+    border-left-width: .25rem;
+    border-radius: .25rem;
+    border-left-color: #946545;
+}
+
+    </style>
+</head>
+<body>
+<section class="prothploy">
+<div class="wrap">
+
+    <!-- Right vertical menu -->
+    <div class="right-menu">
+        <a href="#profile" class="active">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+        <a href="#skills">
+            <i class="fas fa-tools"></i>
+            <span>Skills</span>
+        </a>
+        <a href="#project">
+            <i class="fas fa-images"></i>
+            <span>Projects</span>
+        </a>
+    </div>
+
+    <!-- Main content area -->
+    <div class="content-area">
+
+        <!-- Profile -->
+        <div id="profile" class="content-section active">
+            <div class="avatar">
+                <div class="row mb-2">
+                    <div class="col-lg-5">
+                        <div class="profile-img">
+                            <img src="Rani.jpg" alt="Rani Chourasiya">
+                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="profile-text mt-2">
+                            <h2 class="name">Rani Chourasiya</h2>
+                            <p class="profile-title mb-1">Front End Designer</p>
+                            <a href="tel:9039596996" class="mobile No. d-block text-decoration-none text-dark fw-bold"><i class="fa-solid fa-phone me-2"></i>9039596996</a>
+                            <a href="mailto:ranichourasiya25@gmail.com" class="email text-decoration-none text-dark fw-bold"><i class="fa-solid fa-envelope me-2"></i>ranichourasiya25@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="professional_experience mt-4">
+                        <h5 class="fw-bold">PROFESSIONAL EXPERIENCE</h5>
+                        <table class="table table-bordered mt-4">
+                            <thead class="table-light">
+                              <tr>
+                                <th scope="col">Company Name</th>
+                                <th scope="col">Duration</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>JainSpark Infotech</td>
+                                <td>March 2021 to May 2022</td>
+                              </tr>
+                              <tr>
+                                <td>WebTech Integration</td>
+                                <td>July 2022 to August 2023</td>
+                              </tr>
+                              <tr>
+                                <td>Oswal Computers & Consultants Pvt. Ltd.</td>
+                                <td>July 2025 to January 2025</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+                <a href="http://www.arjunamgain.com.np/" target="_self" class="text-decoration-none"><i class="fa fa-link me-1"></i><span>More Details</span></a>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <div id="skills" class="content-section">
+            <div class="my-skill row gx-0">
+                <h4 class="fw-bold text-center">Skills</h4>
+                <div class="skill col-lg-3">
+                    <i class="fa-brands fa-html5"></i>
+                    <p class="">HTML</p>
+                </div>
+                <div class="skill col-lg-3">
+                    <i class="fa-brands fa-css"></i>
+                    <p class="">CSS</p>
+                </div>
+                <div class="skill col-lg-3">
+                    <i class="fa-brands fa-bootstrap"></i>
+                    <p class="">Bootstrap</p>
+                </div>
+                <div class="skill col-lg-3">
+                    <i class="fa-brands fa-js"></i>
+                    <p class="">JAVASCRIPT</p>
+                </div>
+                <div class="skill col-lg-3">
+                    <i></i>
+                    <p class="">JQUERY</p>
+                </div>
+                <div class="skill col-lg-3">
+                    <i class="fa-brands fa-wordpress"></i>
+                    <p class="">WORDPRESS</p>
+                </div>
+                <div class="skill col-lg-3">
+                    <i></i>
+                    <p class="">TAILWIND</p>
+                </div>
+                <div class="skill col-lg-3">
+                    <i class="fa-brands fa-github"></i>
+                    <p class="">GIT</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Projects -->
+        <div id="project" class="content-section">
+            <div class="my-projects">
+                <h4 class="fw-bold text-center">Latest Projects</h4>
+                <div class="callout">
+                    <h5 class="fw-bold">Bhopal Development Authority   </h5>
+                    <p class="">user-friendly website with HTML, CSS, Bootstrap, JavaScript for seamless content management and dynamic features.</p>
+                </div>
+                <div class="callout">
+                    <h5 class="fw-bold">IDA</h5>
+                    <p class="">user-friendly website with HTML, CSS, Bootstrap, JavaScript for seamless content management and dynamic features.</p>
+                </div>
+                <div class="callout">
+                    <h5 class="fw-bold">Nagar Parishad Dausa</h5>
+                    <p class="">user-friendly website with HTML, CSS, Bootstrap, JavaScript for seamless content management and dynamic features.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</section>
+<!-- Bootstrap JS + simple tab functionality -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.right-menu a').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelectorAll('.right-menu a').forEach(a => a.classList.remove('active'));
+            this.classList.add('active');
+
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+
+            const targetId = this.getAttribute('href').substring(1);
+            document.getElementById(targetId)?.classList.add('active');
+        });
+    });
+});
+</script>
+</body>
+</html>
