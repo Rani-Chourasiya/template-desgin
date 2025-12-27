@@ -1,0 +1,134 @@
+image zoom view left, right, top, bottom move
+
+<script>
+    let isZoomed = false;
+
+    document.getElementById("imgContainer").addEventListener("mousemove", function (e) {
+        const img = document.getElementById("imgViewer");
+
+        if (!isZoomed) return; // Only move when zoomed
+
+        const rect = this.getBoundingClientRect();
+
+        let x = ((e.clientX - rect.left) / rect.width) * 100;
+        let y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        img.style.transformOrigin = `${x}% ${y}%`;
+    });
+
+    document.getElementById("imgViewer").addEventListener("click", function () {
+        if (isZoomed) {
+            this.style.transform = "scale(1)";
+            this.style.cursor = "zoom-in";
+        } else {
+            this.style.transform = "scale(2.5)";
+            this.style.cursor = "zoom-out";
+        }
+        isZoomed = !isZoomed;
+    });
+
+</script>
+
+Iframe and image show and hide
+
+<script>
+    function ViewList(url, name) {
+        var imgContainer = document.getElementById("imgContainer");
+        var imgViewer = document.getElementById("imgViewer");
+        var frmDocument = document.getElementById("frmDocument");
+
+        // remove #toolbar=0 or any hash from URL
+        var cleanUrl = url.split("#")[0].toLowerCase();
+
+        // PDF check
+        var isPDF = cleanUrl.endsWith(".pdf");
+
+        if (isPDF) {
+            // Show PDF in iframe
+            frmDocument.style.display = "block";
+            frmDocument.src = url;
+
+            // Hide image container
+            imgContainer.style.display = "none";
+            imgViewer.src = "";
+        }
+        else {
+            // Show image
+            imgContainer.style.display = "block";
+            imgViewer.src = url;
+
+            // Hide iframe
+            frmDocument.style.display = "none";
+            frmDocument.src = "";
+        }
+    }
+
+</script>
+
+ <script>
+     function ViewList(url, name) {
+         var imgContainer = document.getElementById("imgContainer");
+         var imgViewer = document.getElementById("imgViewer");
+         var frmDocument = document.getElementById("frmDocument");
+
+         // remove #toolbar=0 or any hash from URL
+         var cleanUrl = url.split("#")[0].toLowerCase();
+
+         // PDF check
+         var isPDF = cleanUrl.endsWith(".pdf");
+
+         if (isPDF) {
+             // Show PDF in iframe
+             frmDocument.style.display = "block";
+             frmDocument.src = url;
+
+             // Hide image container
+             imgContainer.style.display = "none";
+             imgViewer.src = "";
+         }
+         else {
+             // Show image
+             imgContainer.style.display = "block";
+             imgViewer.src = url;
+
+             // Hide iframe
+             frmDocument.style.display = "none";
+             frmDocument.src = "";
+         }
+     }
+
+ </script>
+
+<script>
+    let isZoomed = false;
+
+    document.getElementById("imgContainer").addEventListener("mousemove", function (e) {
+        const img = document.getElementById("imgViewer");
+
+        if (!isZoomed) return; // Only move when zoomed
+
+        const rect = this.getBoundingClientRect();
+
+        let x = ((e.clientX - rect.left) / rect.width) * 100;
+        let y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        img.style.transformOrigin = `${x}% ${y}%`;
+    });
+
+    document.getElementById("imgViewer").addEventListener("click", function () {
+        if (isZoomed) {
+            this.style.transform = "scale(1)";
+            this.style.cursor = "zoom-in";
+        } else {
+            this.style.transform = "scale(2.5)";
+            this.style.cursor = "zoom-out";
+        }
+        isZoomed = !isZoomed;
+    });
+
+</script>
+
+ <div id="imgContainer" class="large_view zoom" style="display:none;">
+     <img id="imgViewer" src="" style="width:100%; height:auto;" />
+ </div>
+ <iframe id="frmDocument" src="" frameborder="0" style="width:100%; display:none;"></iframe>

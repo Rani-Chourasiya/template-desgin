@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ultra Glass User Cards - Premium Hover & 3D Tilt</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: linear-gradient(135deg, #0b1120, #1c2a48, #0b1120);
+    background-size: 300% 300%;
+    animation: bgMove 15s ease infinite;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    color: #fff;
+  }
+  @keyframes bgMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* GRID CONTAINER */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  /* USER CARD - PREMIUM GLASS EFFECT */
+  .user-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 22px 28px;
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.08));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.18);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    overflow: hidden;
+    cursor: grab;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Background subtle user icon */
+  .user-card::before {
+    content: "\f007";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 140px;
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    color: rgba(255,255,255,0.06);
+    transform: rotate(-20deg);
+  }
+
+  /* Liquid moving shine */
+  .user-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg,
+      transparent 30%,
+      rgba(255,255,255,0.12) 45%,
+      rgba(130,170,255,0.18) 50%,
+      transparent 55%
+    );
+    background-size: 300% 300%;
+    animation: shineFlow 12s linear infinite;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  @keyframes shineFlow {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  /* Mouse-following crystal glare */
+  .glare {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x,50%) var(--y,50%),
+      rgba(255,255,255,0.5) 0%,
+      rgba(130,170,255,0.2) 40%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* HOVER: 3D Tilt + Lift + Glare */
+  .user-card:hover {
+    transform: 
+      translateY(-14px) 
+      scale(1.05)
+      rotateY(calc((var(--x,50%) - 50%) * 0.9deg))
+      rotateX(calc((50% - var(--y,50%)) * 0.8deg))
+      translateZ(100px);
+    box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+    z-index: 10;
+  }
+
+  .user-card:hover .glare {
+    opacity: 1;
+  }
+
+  /* Logo & Text */
+  .logo-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,0.5);
+    object-fit: cover;
+    margin-right: 25px;
+    flex-shrink: 0;
+    box-shadow: 0 0 20px rgba(255,255,255,0.25);
+    transition: all 0.4s ease;
+  }
+  .user-card:hover .logo-img {
+    border-color: #82aaff;
+    box-shadow: 0 0 30px rgba(130,170,255,0.5);
+  }
+
+  .card-text .company-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #82aaff;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .card-text h3 {
+    margin: 4px 0;
+    font-size: 1.35rem;
+    color: #f0f9ff;
+    font-weight: 600;
+  }
+  .card-text p {
+    margin: 6px 0;
+    font-size: 0.98rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #d1d5db;
+  }
+
+  /* Badges */
+  .badges-top {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    top: 18px;
+    right: 18px;
+    z-index: 3;
+  }
+  .badge {
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  }
+  .active { background: linear-gradient(135deg, #10b981, #34d399); }
+  .inactive { background: linear-gradient(135deg, #ef4444, #f87171); }
+  .role { background: linear-gradient(135deg, #6366f1, #818cf8); }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .user-card {
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: center;
+    }
+    .logo-img { margin: 0 auto 15px; }
+    .badges-top { top: 12px; right: auto; left: 50%; transform: translateX(-50%); }
+  }
+</style>
+</head>
+<body>
+
+<div class="grid-container">
+  <!-- Card 1 -->
+  <div class="user-card">
+    <div class="glare"></div>
+    <img src="https://via.placeholder.com/90/4f46e5/ffffff?text=AR" class="logo-img" alt="logo">
+    <div class="card-text">
+      <div class="company-name">AR</div>
+      <h3>Ravi Mishra</h3>
+      <p>✉ Admin@gmail.com</p>
+      <p>☎ 7770931708</p>
+    </div>
+    <div class="badges-top">
+      <span class="badge active">Active</span>
+      <span class="badge role">Admin</span>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="user-card">
+    <div class="glare"></div>
+    <img src="https://via.placeholder.com/90/8b5cf6/ffffff?text=ARS" class="logo-img" alt="logo">
+    <div class="card-text">
+      <div class="company-name">AR Sign</div>
+      <h3>Ravi Kumar Mishra</h3>
+      <p>✉ User@gmail.com</p>
+      <p>☎ 1111111111</p>
+    </div>
+    <div class="badges-top">
+      <span class="badge active">Active</span>
+      <span class="badge role">User</span>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="user-card">
+    <div class="glare"></div>
+    <img src="https://via.placeholder.com/90/06b6d4/ffffff?text=MC" class="logo-img" alt="logo">
+    <div class="card-text">
+      <div class="company-name">MyCompany</div>
+      <h3>Ravi</h3>
+      <p>✉ Ravi@gmail.com</p>
+      <p>☎ 4654536543</p>
+    </div>
+    <div class="badges-top">
+      <span class="badge active">Active</span>
+      <span class="badge role">User</span>
+    </div>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="user-card">
+    <div class="glare"></div>
+    <img src="https://via.placeholder.com/90/10b981/ffffff?text=T" class="logo-img" alt="logo">
+    <div class="card-text">
+      <div class="company-name">Test</div>
+      <h3>Test</h3>
+      <p>✉ Test@gmail.com</p>
+      <p>☎ 1010101010</p>
+    </div>
+    <div class="badges-top">
+      <span class="badge active">Active</span>
+      <span class="badge role">Admin</span>
+    </div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="user-card">
+    <div class="glare"></div>
+    <img src="https://via.placeholder.com/90/f59e0b/ffffff?text=T1" class="logo-img" alt="logo">
+    <div class="card-text">
+      <div class="company-name">Test</div>
+      <h3>Test1</h3>
+      <p>✉ Test1@gmail.com</p>
+      <p>☎ 1234564324</p>
+    </div>
+    <div class="badges-top">
+      <span class="badge active">Active</span>
+      <span class="badge role">User</span>
+    </div>
+  </div>
+</div>
+
+<!-- Mouse tracking & glare injection -->
+<script>
+  document.querySelectorAll('.user-card').forEach(card => {
+    // Ensure glare exists
+    if (!card.querySelector('.glare')) {
+      card.insertAdjacentHTML('afterbegin', '<div class="glare"></div>');
+    }
+
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width) * 100;
+      const y = ((e.clientY - r.top) / r.height) * 100;
+      card.style.setProperty('--x', x + '%');
+      card.style.setProperty('--y', y + '%');
+    });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--x', '50%');
+      card.style.setProperty('--y', '50%');
+    });
+  });
+</script>
+
+</body>
+</html>
